@@ -8,12 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
-		E5F78F031B4D97860030DD2B /* DropABeat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F011B4D97860030DD2B /* DropABeat.xcdatamodeld */; };
 		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
 		E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F061B4D97860030DD2B /* Main.storyboard */; };
 		E5F78F0A1B4D97860030DD2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F091B4D97860030DD2B /* Images.xcassets */; };
 		E5F78F0D1B4D97860030DD2B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */; };
 		E5F78F191B4D97860030DD2B /* DropABeatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F181B4D97860030DD2B /* DropABeatTests.swift */; };
+		E5F78F241B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */; };
+		E5F78F251B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */; };
+		E5F78F281B4D9EFD0030DD2B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F271B4D9EFD0030DD2B /* AVFoundation.framework */; };
+		E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */; };
+		E5F78F5F1B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */; };
+		E5F78F601B4DC0680030DD2B /* Childish Gambino - 3005.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */; };
+		E5F78F611B4DC0680030DD2B /* Drake - Energy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */; };
+		E5F78F621B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */; };
+		E5F78F631B4DC0680030DD2B /* Meek Mill - Levels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */; };
+		E5F78F641B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */; };
+		E5F78F6B1B4E1A8F0030DD2B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F651B4E1A8E0030DD2B /* Bolts.framework */; };
+		E5F78F6C1B4E1A8F0030DD2B /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */; };
+		E5F78F6D1B4E1A8F0030DD2B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */; };
+		E5F78F6E1B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */; };
+		E5F78F6F1B4E1A8F0030DD2B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */; };
+		E5F78F701B4E1A8F0030DD2B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */; };
+		E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */; };
+		E5F78F741B4E1B770030DD2B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F731B4E1B770030DD2B /* CFNetwork.framework */; };
+		E5F78F761B4E1B7E0030DD2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F751B4E1B7E0030DD2B /* CoreGraphics.framework */; };
+		E5F78F781B4E1B860030DD2B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F771B4E1B860030DD2B /* CoreLocation.framework */; };
+		E5F78F7A1B4E1B900030DD2B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F791B4E1B900030DD2B /* MobileCoreServices.framework */; };
+		E5F78F7C1B4E1B9E0030DD2B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F7B1B4E1B9E0030DD2B /* QuartzCore.framework */; };
+		E5F78F7E1B4E1BAB0030DD2B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F7D1B4E1BAB0030DD2B /* Security.framework */; };
+		E5F78F801B4E1BB20030DD2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F7F1B4E1BB20030DD2B /* StoreKit.framework */; };
+		E5F78F821B4E1BBC0030DD2B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F811B4E1BBC0030DD2B /* SystemConfiguration.framework */; };
+		E5F78F841B4E1BCE0030DD2B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F831B4E1BCE0030DD2B /* libz.dylib */; };
+		E5F78F861B4E1BE30030DD2B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F851B4E1BE30030DD2B /* libsqlite3.dylib */; };
+		E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */; };
+		E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F8A1B502A560030DD2B /* SongSearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +58,6 @@
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E5F78F021B4D97860030DD2B /* DropABeat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DropABeat.xcdatamodel; sourceTree = "<group>"; };
 		E5F78F041B4D97860030DD2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E5F78F071B4D97860030DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E5F78F091B4D97860030DD2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -38,6 +65,35 @@
 		E5F78F121B4D97860030DD2B /* DropABeatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropABeatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78F171B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78F181B4D97860030DD2B /* DropABeatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropABeatTests.swift; sourceTree = "<group>"; };
+		E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fort Minor - Remember the Name.mp3"; sourceTree = "<group>"; };
+		E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kanye West - Gold Digger.mp3"; sourceTree = "<group>"; };
+		E5F78F271B4D9EFD0030DD2B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFileList.swift; sourceTree = "<group>"; };
+		E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Bobby Shmurda - Hot Nigga.mp3"; path = "../../DopeBeatsForXcode/Bobby Shmurda - Hot Nigga.mp3"; sourceTree = "<group>"; };
+		E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Childish Gambino - 3005.mp3"; path = "../../DopeBeatsForXcode/Childish Gambino - 3005.mp3"; sourceTree = "<group>"; };
+		E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Drake - Energy.mp3"; path = "../../DopeBeatsForXcode/Drake - Energy.mp3"; sourceTree = "<group>"; };
+		E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Drake - Zero to One Hundred.mp3"; path = "../../DopeBeatsForXcode/Drake - Zero to One Hundred.mp3"; sourceTree = "<group>"; };
+		E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Meek Mill - Levels.mp3"; path = "../../DopeBeatsForXcode/Meek Mill - Levels.mp3"; sourceTree = "<group>"; };
+		E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Nicki Minaj - Truffle Butter.mp3"; path = "../../DopeBeatsForXcode/Nicki Minaj - Truffle Butter.mp3"; sourceTree = "<group>"; };
+		E5F78F651B4E1A8E0030DD2B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Downloads/parse-library-1.7.5/Bolts.framework"; sourceTree = "<group>"; };
+		E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../Downloads/parse-library-1.7.5/ParseCrashReporting.framework"; sourceTree = "<group>"; };
+		E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../Downloads/parse-library-1.7.5/ParseUI.framework"; sourceTree = "<group>"; };
+		E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../Downloads/parse-library-1.7.5/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../Downloads/parse-library-1.7.5/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Downloads/parse-library-1.7.5/Parse.framework"; sourceTree = "<group>"; };
+		E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E5F78F731B4E1B770030DD2B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E5F78F751B4E1B7E0030DD2B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E5F78F771B4E1B860030DD2B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E5F78F791B4E1B900030DD2B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E5F78F7B1B4E1B9E0030DD2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E5F78F7D1B4E1BAB0030DD2B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E5F78F7F1B4E1BB20030DD2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E5F78F811B4E1BBC0030DD2B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E5F78F831B4E1BCE0030DD2B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E5F78F851B4E1BE30030DD2B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchViewController.swift; sourceTree = "<group>"; };
+		E5F78F8A1B502A560030DD2B /* SongSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +101,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5F78F861B4E1BE30030DD2B /* libsqlite3.dylib in Frameworks */,
+				E5F78F841B4E1BCE0030DD2B /* libz.dylib in Frameworks */,
+				E5F78F821B4E1BBC0030DD2B /* SystemConfiguration.framework in Frameworks */,
+				E5F78F801B4E1BB20030DD2B /* StoreKit.framework in Frameworks */,
+				E5F78F7E1B4E1BAB0030DD2B /* Security.framework in Frameworks */,
+				E5F78F7C1B4E1B9E0030DD2B /* QuartzCore.framework in Frameworks */,
+				E5F78F7A1B4E1B900030DD2B /* MobileCoreServices.framework in Frameworks */,
+				E5F78F781B4E1B860030DD2B /* CoreLocation.framework in Frameworks */,
+				E5F78F761B4E1B7E0030DD2B /* CoreGraphics.framework in Frameworks */,
+				E5F78F741B4E1B770030DD2B /* CFNetwork.framework in Frameworks */,
+				E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */,
+				E5F78F281B4D9EFD0030DD2B /* AVFoundation.framework in Frameworks */,
+				E5F78F6C1B4E1A8F0030DD2B /* ParseCrashReporting.framework in Frameworks */,
+				E5F78F6F1B4E1A8F0030DD2B /* ParseFacebookUtils.framework in Frameworks */,
+				E5F78F701B4E1A8F0030DD2B /* Parse.framework in Frameworks */,
+				E5F78F6D1B4E1A8F0030DD2B /* ParseUI.framework in Frameworks */,
+				E5F78F6B1B4E1A8F0030DD2B /* Bolts.framework in Frameworks */,
+				E5F78F6E1B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +135,7 @@
 		E5F78EF11B4D97850030DD2B = {
 			isa = PBXGroup;
 			children = (
+				E5F78F871B4E1C270030DD2B /* Frameworks */,
 				E5F78EFC1B4D97850030DD2B /* DropABeat */,
 				E5F78F151B4D97860030DD2B /* DropABeatTests */,
 				E5F78EFB1B4D97850030DD2B /* Products */,
@@ -79,12 +154,14 @@
 		E5F78EFC1B4D97850030DD2B /* DropABeat */ = {
 			isa = PBXGroup;
 			children = (
+				E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */,
 				E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */,
+				E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */,
+				E5F78F8A1B502A560030DD2B /* SongSearchTableViewCell.swift */,
 				E5F78F041B4D97860030DD2B /* ViewController.swift */,
 				E5F78F061B4D97860030DD2B /* Main.storyboard */,
 				E5F78F091B4D97860030DD2B /* Images.xcassets */,
 				E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */,
-				E5F78F011B4D97860030DD2B /* DropABeat.xcdatamodeld */,
 				E5F78EFD1B4D97860030DD2B /* Supporting Files */,
 			);
 			path = DropABeat;
@@ -93,6 +170,7 @@
 		E5F78EFD1B4D97860030DD2B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
 				E5F78EFE1B4D97860030DD2B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -113,6 +191,46 @@
 				E5F78F171B4D97860030DD2B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5F78F261B4D9D6A0030DD2B /* StoredMusic */ = {
+			isa = PBXGroup;
+			children = (
+				E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */,
+				E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */,
+				E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */,
+				E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */,
+				E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */,
+				E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */,
+				E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */,
+				E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */,
+			);
+			name = StoredMusic;
+			sourceTree = "<group>";
+		};
+		E5F78F871B4E1C270030DD2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5F78F651B4E1A8E0030DD2B /* Bolts.framework */,
+				E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */,
+				E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */,
+				E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */,
+				E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */,
+				E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */,
+				E5F78F851B4E1BE30030DD2B /* libsqlite3.dylib */,
+				E5F78F831B4E1BCE0030DD2B /* libz.dylib */,
+				E5F78F811B4E1BBC0030DD2B /* SystemConfiguration.framework */,
+				E5F78F7F1B4E1BB20030DD2B /* StoreKit.framework */,
+				E5F78F7D1B4E1BAB0030DD2B /* Security.framework */,
+				E5F78F7B1B4E1B9E0030DD2B /* QuartzCore.framework */,
+				E5F78F791B4E1B900030DD2B /* MobileCoreServices.framework */,
+				E5F78F771B4E1B860030DD2B /* CoreLocation.framework */,
+				E5F78F751B4E1B7E0030DD2B /* CoreGraphics.framework */,
+				E5F78F731B4E1B770030DD2B /* CFNetwork.framework */,
+				E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */,
+				E5F78F271B4D9EFD0030DD2B /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,9 +313,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5F78F601B4DC0680030DD2B /* Childish Gambino - 3005.mp3 in Resources */,
 				E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */,
 				E5F78F0D1B4D97860030DD2B /* LaunchScreen.xib in Resources */,
+				E5F78F241B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 in Resources */,
+				E5F78F5F1B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 in Resources */,
+				E5F78F251B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 in Resources */,
+				E5F78F611B4DC0680030DD2B /* Drake - Energy.mp3 in Resources */,
 				E5F78F0A1B4D97860030DD2B /* Images.xcassets in Resources */,
+				E5F78F641B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 in Resources */,
+				E5F78F631B4DC0680030DD2B /* Meek Mill - Levels.mp3 in Resources */,
+				E5F78F621B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */,
+				E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */,
+				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
 				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
-				E5F78F031B4D97860030DD2B /* DropABeat.xcdatamodeld in Sources */,
 				E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +472,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/alexraman/Downloads/parse-library-1.7.5",
+				);
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,6 +486,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/alexraman/Downloads/parse-library-1.7.5",
+				);
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -423,19 +559,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E5F78F011B4D97860030DD2B /* DropABeat.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E5F78F021B4D97860030DD2B /* DropABeat.xcdatamodel */,
-			);
-			currentVersion = E5F78F021B4D97860030DD2B /* DropABeat.xcdatamodel */;
-			path = DropABeat.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E5F78EF21B4D97850030DD2B /* Project object */;
 }

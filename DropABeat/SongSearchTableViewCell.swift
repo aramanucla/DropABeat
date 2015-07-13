@@ -7,3 +7,19 @@
 //
 
 import Foundation
+import UIKit
+
+class SongSearchTableViewCell: UITableViewCell
+{
+    @IBOutlet weak var SongTitleLabel: UILabel!
+    
+    @IBOutlet weak var PausePlayButton: UIButton!
+    
+    @IBAction func PlayButtonTapped(sender: AnyObject) {
+    }
+    
+    @IBAction func RestartButtonTapped(sender: AnyObject) {
+    }
+
+
+}
