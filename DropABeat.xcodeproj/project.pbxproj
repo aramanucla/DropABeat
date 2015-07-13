@@ -162,6 +162,8 @@
 				E5F78F061B4D97860030DD2B /* Main.storyboard */,
 				E5F78F091B4D97860030DD2B /* Images.xcassets */,
 				E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */,
+				E5F78EFE1B4D97860030DD2B /* Info.plist */,
+				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
 				E5F78EFD1B4D97860030DD2B /* Supporting Files */,
 			);
 			path = DropABeat;
@@ -170,8 +172,6 @@
 		E5F78EFD1B4D97860030DD2B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
-				E5F78EFE1B4D97860030DD2B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -549,6 +549,7 @@
 				E5F78F1E1B4D97860030DD2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E5F78F1F1B4D97860030DD2B /* Build configuration list for PBXNativeTarget "DropABeatTests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +558,7 @@
 				E5F78F211B4D97860030DD2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
