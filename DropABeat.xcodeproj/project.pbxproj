@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4001B5462D80071B961 /* SongPlayer.swift */; };
+		E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
 		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
 		E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F061B4D97860030DD2B /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E572D4001B5462D80071B961 /* SongPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
+		E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropThisBeatViewController.swift; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		E5F78EFC1B4D97850030DD2B /* DropABeat */ = {
 			isa = PBXGroup;
 			children = (
+				E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */,
+				E572D4001B5462D80071B961 /* SongPlayer.swift */,
 				E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */,
 				E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */,
 				E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */,
@@ -345,7 +351,9 @@
 				E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */,
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
 				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
+				E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */,
 				E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */,
+				E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

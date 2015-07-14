@@ -33,7 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
         
+        PFUser.logInWithUsername("test", password: "test")
         
+        if let user = PFUser.currentUser() {
+            println("Log in successful")
+        } else {
+            println("No logged in user :(")
+        }
+
         
         
         return true

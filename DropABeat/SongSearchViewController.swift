@@ -19,61 +19,36 @@ class SongSearchViewController: UIViewController {
     
     var songs: [PFObject] = []
     
-    //An Array of Song IDs and an Array of Song Names
-    var IDArray = [String]()
-    var NameArray = [String]()
+    var mySongPlayer = SongPlayer()
+    
+    /*****************************  func getLocationOfSong(arrayOfNames: [String], nameOfSong: String) -> Int{
+    
+    for var i = 0; i < arrayOfNames.count; i++
+    {
+    if arrayOfNames[i] == nameOfSong
+    {
+    println(i)
+    println("it works")
+    return i
+    
+    }
+    }
+    
+    return 0
+    }
+    
+    *****************************/
     
     
     
     override func viewDidLoad() {
+        mySongPlayer.queryAllSongs()
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        //Query all of the songs
-        var ObjectIDQuery = PFQuery(className: "Songs")
-        ObjectIDQuery.findObjectsInBackgroundWithBlock({
-            (objectsArray : [AnyObject]?, error: NSError?) -> Void in
-            
-            var objectIDs = objectsArray as! [PFObject]
-            
-            
-            for i in 0...objectIDs.count-1
-            {
-                self.IDArray.append(objectIDs[i].valueForKey("objectId") as! String)
-                self.NameArray.append(objectIDs[i].valueForKey("SongName") as! String)
-            }
-            
-            
-            
-            
-            
-        })
-    }
-    
-    ///I have to revisit this function 
-    
-  /*  func grabSong()
-    {
-        var SongQuery = PFQuery(className: "Songs")
-        SongQuery.getObjectInBackgroundWithId(IDArray[TableView.cellForRowAtIndexPath(<#indexPath: NSIndexPath#>)], block: {
-            (object : PFObject?, error : NSError?) -> Void in
-            
-            if let AudioFileURLTemp = object?.objectForKey("SongFile")?.url
-            {
-                searchAudioPlayer = AVPlayer(URL: NSURL(string: AudioFileURLTemp!))
-                searchAudioPlayer.play()
-            }
-            
-            
-            
-        })
-        
     }
     
     
-    */
-
+    
+    
     
     @IBOutlet weak var TableView: UITableView!
     
@@ -90,34 +65,51 @@ class SongSearchViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
         self.loadSongs()
     }
     
     
+    
+    static func searchUsers(searchText: String, completionBlock: PFArrayResultBlock) -> PFQuery
+    {
+        /*
+        NOTE: We are using a Regex to allow for a case insensitive compare of usernames.
+        Regex can be slow on large datasets. For large amount of data it's better to store
+        lowercased username in a separate column and perform a regular string compare.
+        */
+        var filteredSongQuery = PFQuery(className: "Songs")
+            .whereKey("SongName",
+                matchesRegex: searchText, modifiers: "i")
         
-    static func searchUsers(searchText: String, completionBlock: PFArrayResultBlock)
-        -> PFQuery {
-            /*
-            NOTE: We are using a Regex to allow for a case insensitive compare of usernames.
-            Regex can be slow on large datasets. For large amount of data it's better to store
-            lowercased username in a separate column and perform a regular string compare.
-            */
-            var filteredSongQuery = PFQuery(className: "Songs")
-                .whereKey("SongName",
-                    matchesRegex: searchText, modifiers: "i")
-
-            filteredSongQuery.orderByAscending("SongName")
-            filteredSongQuery.limit = 20
-            
-            filteredSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
-            
-            return filteredSongQuery
+        filteredSongQuery.orderByAscending("SongName")
+        filteredSongQuery.limit = 20
+        
+        filteredSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
+        
+        return filteredSongQuery
     }
     
     
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "DropThisBeat")
+        {
+            var upcoming: DropThisBeatViewController = segue.destinationViewController as! DropThisBeatViewController
+            
+            let indexPath = self.TableView.indexPathForSelectedRow()
+            
+            let thisSongNumber = indexPath!.row
+            
+            upcoming.songNumber = thisSongNumber
+            
+            self.TableView.deselectRowAtIndexPath(indexPath!, animated: true)
+            
+        }
+    }
 }
 
 extension SongSearchViewController: UITableViewDataSource {
@@ -134,15 +126,21 @@ extension SongSearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("SongSearchCell") as! SongSearchTableViewCell
         
         let song = songs[indexPath.row]
+        
         cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
+        
+        cell.playPauseButton.tag = indexPath.row
+        //   cell.tag = indexPath.row
+        //   cell.playPauseButton.addTarget(self, action: "playSong:", forControlEvents: .TouchUpInside)
         
         return cell
         
-
+        
     }
     
     
-
+    
+    
     
 }
 
@@ -154,8 +152,35 @@ extension SongSearchViewController: UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         SearchBar.resignFirstResponder()
-//        return true
+        //        return true
     }
     
     
+    
 }
+
+
+extension SongSearchViewController: UITableViewDelegate
+{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        self.performSegueWithIdentifier("DropThisBeat", sender: self)
+    }
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
