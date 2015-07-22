@@ -14,12 +14,10 @@ import AVKit
 
 //Create a public Selected Song Number
 
-public var SelectedSongNumber = Int()
 
 class ViewController: UIViewController {
     
-    
-    let mySongPlayer = SongPlayer()
+    var song: Song?
     
     @IBOutlet weak var PausePlay: UIButton!
     
@@ -27,96 +25,92 @@ class ViewController: UIViewController {
     @IBOutlet weak var SongNameLabel: UILabel!
     
     
-    
-    //Create an AudioFileList of audio files within the app
-    let myAudioFiles = AudioFileList()
-    
-    //Create an optional AVAudioPlayer (For the locally stored music)
-    var audioPlayer: AVAudioPlayer?
-    
+    @IBOutlet weak var RestartOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        mySongPlayer.queryAllSongs()
-    
+        SongPlayer.sharedInstance.queryAllSongs()
+        
+        PausePlay.hidden = true
+        RestartOutlet.hidden = true
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
+        
     }
-
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func songPlayStateDidChange(notification:NSNotification)
+    {
+        let info = notification.userInfo?[SongPlayStateKey] as! String
+        let notificationSong = notification.object as! Song
+        
+        
+        switch info {
+        case Paused:
+            if(notificationSong == song)
+            {
+                PausePlay.setTitle("Play", forState: UIControlState.Normal)
+            }
+        case Playing:
+            if(notificationSong == song)
+            {
+                PausePlay.setTitle("Pause", forState: UIControlState.Normal)
+            }
+        case Restart:
+            if(notificationSong == song)
+            {
+                PausePlay.setTitle("Pause", forState: UIControlState.Normal)
+            }
+        case Stopped:
+            if(notificationSong == song)
+            {
+                PausePlay.setTitle("Play", forState: UIControlState.Normal)
+            }
+            
+        default:
+            println("Action not implemented; neither pause nor playing")
+        }
+        
+    }
+    
     
     @IBAction func DropABeat(sender: AnyObject) {
         
-       /*** createAudioPlayer()
-        audioPlayer!.play()
-        PausePlay.setTitle("Pause", forState: UIControlState.Normal)
-
-*****/
         
-        SelectedSongNumber = mySongPlayer.randomNumberInParseSongArray()
-        mySongPlayer.grabSongAndPlay(selectedSongNumber: SelectedSongNumber)
-        PausePlay.setTitle("Pause", forState: UIControlState.Normal)
-        SongNameLabel.text = mySongPlayer.nameArray[SelectedSongNumber]
+        song = SongPlayer.sharedInstance.randomSong()
+        SongNameLabel.text = song!.SongName
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey: Playing])
+        
+        PausePlay.hidden = false
+        RestartOutlet.hidden = false
+        
     }
     
-    @IBAction func Restart(sender: AnyObject) {
-      /***  audioPlayer!.stop()
-        audioPlayer!.currentTime = 0
-        audioPlayer!.play()
-        PausePlay.setTitle("Pause", forState: UIControlState.Normal)
-
-****/
-        mySongPlayer.restart()
-        PausePlay.setTitle("Pause", forState: UIControlState.Normal)
+    @IBAction func RestartButton(sender: AnyObject) {
         
+        NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Restart])
     }
     
     @IBAction func PausePlay(sender: AnyObject) {
-        
-   /************************     if(audioPlayer!.playing)
+        if (PausePlay.titleForState(UIControlState.Normal) == "Pause")
         {
-            audioPlayer!.stop()
-            PausePlay.setTitle("Play", forState: UIControlState.Normal)
-            
+            NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Paused])
         }
-            
         else
         {
-            audioPlayer!.play()
-            PausePlay.setTitle("Pause", forState: UIControlState.Normal)
+            NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
         }
-      
-****************************************************/
-        
-        if (mySongPlayer.playPause())
-        {
-            PausePlay.setTitle("Play", forState: UIControlState.Normal)
-        }
-        
-        else
-        {
-            PausePlay.setTitle("Pause", forState: UIControlState.Normal)
-        }
-        
     }
     
-    
-    
- /*   func createAudioPlayer() {
-        
-      let audioFileString =  myAudioFiles.randomSong()
-        
-        let aURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(audioFileString, ofType: "mp3")!)
-        
-        audioPlayer = AVAudioPlayer(contentsOfURL: aURL, error: nil)
-        
-    }
-  */
     
 }
 

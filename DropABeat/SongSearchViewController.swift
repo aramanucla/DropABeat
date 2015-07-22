@@ -19,41 +19,27 @@ class SongSearchViewController: UIViewController {
     
     var songs: [PFObject] = []
     
-    var mySongPlayer = SongPlayer()
-    
-    /*****************************  func getLocationOfSong(arrayOfNames: [String], nameOfSong: String) -> Int{
-    
-    for var i = 0; i < arrayOfNames.count; i++
-    {
-    if arrayOfNames[i] == nameOfSong
-    {
-    println(i)
-    println("it works")
-    return i
-    
-    }
-    }
-    
-    return 0
-    }
-    
-    *****************************/
-    
-    
     
     override func viewDidLoad() {
-        mySongPlayer.queryAllSongs()
+        
+        SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
+        
     }
-    
-    
-    
     
     
     @IBOutlet weak var TableView: UITableView!
     
     
     @IBOutlet weak var SearchBar: UISearchBar!
+    
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.loadSongs()
+    }
+    
     
     func loadSongs()
     {
@@ -65,13 +51,6 @@ class SongSearchViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        self.loadSongs()
-    }
-    
-    
     
     static func searchUsers(searchText: String, completionBlock: PFArrayResultBlock) -> PFQuery
     {
@@ -80,7 +59,7 @@ class SongSearchViewController: UIViewController {
         Regex can be slow on large datasets. For large amount of data it's better to store
         lowercased username in a separate column and perform a regular string compare.
         */
-        var filteredSongQuery = PFQuery(className: "Songs")
+        var filteredSongQuery = PFQuery(className: "Song")
             .whereKey("SongName",
                 matchesRegex: searchText, modifiers: "i")
         
@@ -102,9 +81,11 @@ class SongSearchViewController: UIViewController {
             
             let indexPath = self.TableView.indexPathForSelectedRow()
             
-            let thisSongNumber = indexPath!.row
             
-            upcoming.songNumber = thisSongNumber
+            let cell = self.TableView.cellForRowAtIndexPath(indexPath!) as! SongSearchTableViewCell
+            
+            upcoming.song = cell.song!
+            
             
             self.TableView.deselectRowAtIndexPath(indexPath!, animated: true)
             
@@ -125,9 +106,11 @@ extension SongSearchViewController: UITableViewDataSource {
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("SongSearchCell") as! SongSearchTableViewCell
         
-        let song = songs[indexPath.row]
+        let song = songs[indexPath.row] as? Song
         
-        cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
+        cell.song = song
+        
+        cell.SongTitleLabel.text = song!.objectForKey("SongName") as? String
         
         cell.playPauseButton.tag = indexPath.row
         //   cell.tag = indexPath.row
@@ -148,6 +131,7 @@ extension SongSearchViewController: UISearchBarDelegate
 {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         loadSongs()
+        searchBar.showsCancelButton = true
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -155,6 +139,10 @@ extension SongSearchViewController: UISearchBarDelegate
         //        return true
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        SearchBar.resignFirstResponder()
+
+    }
     
     
 }
@@ -167,8 +155,6 @@ extension SongSearchViewController: UITableViewDelegate
         
         self.performSegueWithIdentifier("DropThisBeat", sender: self)
     }
-    
-    
     
     
     

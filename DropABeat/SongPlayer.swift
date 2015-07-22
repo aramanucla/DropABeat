@@ -11,109 +11,111 @@ import Parse
 import AVFoundation
 import AVKit
 
-public var AudioPlayer = AVPlayer()
+let Playing = "Playing"
+let Paused = "Paused"
+let Stopped = "Stopped"
+let Restart = "Restart"
 
-class SongPlayer
+let ChangeSongPlayState = "ChangeSongPlayState"
+let SongPlayStateDidChange = "SongPlayStateDidChange"
+let SongPlayStateKey: NSString = "SongPlayState"
+
+class SongPlayer: NSObject
 {
-    //An array of each song's ID's and Name in Parse
-    var IDArray = [String]()
-    var nameArray = [String]()
+    var audioPlayer = AVPlayer()
     
     var selectedSongNumber: Int = 0
     
-    //For Parse songs
-    var myAudioPlayer = AVPlayer()
+    var songs: [Song] = []
     
-    //For locally stored songs
-    let myAudioFiles = AudioFileList()
+    var currentSong: Song?
     
+    static let sharedInstance = SongPlayer()
+    
+    override init()
+    {
+        super.init()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeSongPlayState:", name: ChangeSongPlayState, object: nil)
+    }
     
     func queryAllSongs()
     {
-        var ObjectIDQuery = PFQuery(className: "Songs")
-        ObjectIDQuery.findObjectsInBackgroundWithBlock({
+        var allSongQuery = PFQuery(className: "Song")
+        allSongQuery.findObjectsInBackgroundWithBlock({
             (objectsArray : [AnyObject]?, error: NSError?) -> Void in
             
-            var objectIDs = objectsArray as! [PFObject]
             
-            
-            for i in 0...objectIDs.count-1
-            {
-                self.IDArray.append(objectIDs[i].valueForKey("objectId") as! String)
-                self.nameArray.append(objectIDs[i].valueForKey("SongName") as! String)
-            }
-            
+            self.songs = (objectsArray as? [Song])!
             
             
         })
-
+        
     }
     
-    func randomNumberInParseSongArray() -> Int
+    func randomSong() -> Song
     {
-        var unsignedArrayCount = UInt32(IDArray.count)
+        var unsignedArrayCount = UInt32(songs.count)
         var unsignedRandomNumber = arc4random_uniform(unsignedArrayCount)
         var randomNumber = Int(unsignedRandomNumber)
         
-        return randomNumber
+        return songs[randomNumber]
     }
     
     
     
-    func grabSongAndPlay(#selectedSongNumber: Int)
+    func notifySongPlayStateChange(song: Song?, state: String) {
+        NSNotificationCenter.defaultCenter().postNotificationName(SongPlayStateDidChange, object: song, userInfo: [SongPlayStateKey : state])
+    }
+    
+    
+    
+    func changeSongPlayState(notification: NSNotification)
     {
-        var SongQuery = PFQuery(className: "Songs")
-        SongQuery.getObjectInBackgroundWithId(IDArray[selectedSongNumber], block: {
-            (object : PFObject?, error : NSError?) -> Void in
-            
-            if let AudioFileURLTemp = object?.objectForKey("SongFile")?.url
-            {
-                AudioPlayer = AVPlayer(URL: NSURL(string: AudioFileURLTemp!))
-                AudioPlayer.play()
-            }
-            
-            
-            
-        })
+        let info = notification.userInfo?[SongPlayStateKey] as! String
         
-    }
-    
-    
-
-    func restart()
-    {
-        AudioPlayer.pause()
-        AudioPlayer.seekToTime(CMTimeMakeWithSeconds(0, 5), completionHandler: nil)
-        AudioPlayer.play()
-
-    }
-    
-    
-    //Returns true if Audio was playing then was paused, returns false if Audio wasn't playing but now is
-    func playPause() -> Bool
-    {
-        if(AudioPlayer.rate == 1.0)
-        {
-            AudioPlayer.pause()
-            return true;
+        
+        
+        switch info {
+        case Paused:
+            if(self.audioPlayer.rate == 1.0)
+            {
+                audioPlayer.pause()
+                self.notifySongPlayStateChange(self.currentSong, state: Paused)
+            }
+        case Playing:
+            if(self.currentSong?.objectId == notification.object?.objectId)
+            {
+                self.audioPlayer.play()
+                self.notifySongPlayStateChange(self.currentSong, state: Playing)
+            }
+                
+            else{
+                
+                if(self.currentSong != nil)
+                {
+                self.notifySongPlayStateChange(self.currentSong, state: Stopped)
+                }
+                
+                self.currentSong = notification.object as? Song
+                if let songURL = self.currentSong?.SongFile?.url {
+                    
+                    self.audioPlayer = AVPlayer(URL: NSURL(string: songURL))
+                    self.audioPlayer.play()
+                    
+                    self.notifySongPlayStateChange(self.currentSong, state: Playing)
+                    
+                }
+            }
+        case Restart:
+            audioPlayer.pause()
+            audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
+            audioPlayer.play()
+            self.notifySongPlayStateChange(self.currentSong, state: Restart)
             
+        default:
+            println("Action not implemented; handle additional states in song player")
         }
-            
-        else
-        {
-            AudioPlayer.play()
-            return false;
-        }
-
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-
 }

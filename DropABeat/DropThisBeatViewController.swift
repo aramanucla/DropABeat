@@ -9,22 +9,65 @@
 import UIKit
 
 class DropThisBeatViewController: UIViewController {
-
     
-    var songNumber: Int = -1
     
-    var mySongPlayer = SongPlayer()
+    var song: Song?
+    
+    
+    @IBOutlet weak var restartOutlet: UIButton!
     
     
     @IBOutlet weak var playPauseOutlet: UIButton!
     
     override func viewDidLoad() {
-        mySongPlayer.queryAllSongs()
+        SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
-
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
+        
+        SongNameLabel.text = song!.SongName
+        
         // Do any additional setup after loading the view.
     }
+    
+    
+    func songPlayStateDidChange(notification:NSNotification)
+    {
+        let info = notification.userInfo?[SongPlayStateKey] as! String
+        let notificationSong = notification.object as! Song
 
+        
+        
+        switch info {
+        case Paused:
+            if(notificationSong == song)
+            {
+                playPauseOutlet.setTitle("Play", forState: UIControlState.Normal)
+            }
+        case Playing:
+            if(notificationSong == song)
+            {
+                playPauseOutlet.setTitle("Pause", forState: UIControlState.Normal)
+            }
+        case Restart:
+            if(notificationSong == song)
+            {
+                playPauseOutlet.setTitle("Pause", forState: UIControlState.Normal)
+            }
+        case Stopped:
+            if(notificationSong == song)
+            {
+                playPauseOutlet.setTitle("Play", forState: UIControlState.Normal)
+            }
+        default:
+            println("Action not implemented; neither pause nor playing")
+        }
+        
+    }
+    
+    
+    @IBOutlet weak var SongNameLabel: UILabel!
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,40 +75,37 @@ class DropThisBeatViewController: UIViewController {
     
     @IBAction func dropThisBeat(sender: AnyObject) {
         
-        playPauseOutlet.setTitle("Pause", forState: UIControlState.Normal)
-        mySongPlayer.grabSongAndPlay(selectedSongNumber: mySongPlayer.IDArray.count - 1 - songNumber)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
+        
+        playPauseOutlet.hidden = false
+        restartOutlet.hidden = false
     }
-
+    
     @IBAction func playPauseButton(sender: AnyObject) {
         
-        if (mySongPlayer.playPause())
+        if (playPauseOutlet.titleForState(UIControlState.Normal) == "Pause")
         {
-            playPauseOutlet.setTitle("Play", forState: UIControlState.Normal)
+            NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey: Paused])
         }
-            
         else
         {
-            playPauseOutlet.setTitle("Pause", forState: UIControlState.Normal)
+            NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
         }
     }
     @IBAction func restart(sender: AnyObject) {
         
-        mySongPlayer.restart()
-        playPauseOutlet.setTitle("Pause", forState: UIControlState.Normal)
-    }
+        NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey: Restart])    }
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
-    @IBAction func dropThisNewBeat(sender: AnyObject) {
-        mySongPlayer.grabSongAndPlay(selectedSongNumber: songNumber)
-    }
+    
     
     
     

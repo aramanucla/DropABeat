@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E55FDAF51B55C28100F23278 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FDAF41B55C28100F23278 /* Song.swift */; };
 		E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4001B5462D80071B961 /* SongPlayer.swift */; };
 		E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E55FDAF41B55C28100F23278 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		E572D4001B5462D80071B961 /* SongPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
 		E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropThisBeatViewController.swift; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E55FDAF31B55ACA100F23278 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E55FDAF41B55C28100F23278 /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E5F78EF11B4D97850030DD2B = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +168,7 @@
 		E5F78EFC1B4D97850030DD2B /* DropABeat */ = {
 			isa = PBXGroup;
 			children = (
+				E55FDAF31B55ACA100F23278 /* Models */,
 				E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */,
 				E572D4001B5462D80071B961 /* SongPlayer.swift */,
 				E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */,
@@ -288,6 +299,7 @@
 				TargetAttributes = {
 					E5F78EF91B4D97850030DD2B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = N89556XS6U;
 					};
 					E5F78F111B4D97860030DD2B = {
 						CreatedOnToolsVersion = 6.4;
@@ -350,6 +362,7 @@
 				E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */,
 				E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */,
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
+				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
 				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
 				E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */,
 				E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */,
@@ -480,6 +493,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/alexraman/Downloads/parse-library-1.7.5",
@@ -487,6 +502,8 @@
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -494,6 +511,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/alexraman/Downloads/parse-library-1.7.5",
@@ -501,6 +520,8 @@
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
