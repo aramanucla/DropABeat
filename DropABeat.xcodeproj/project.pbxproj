@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		E55FDAF51B55C28100F23278 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FDAF41B55C28100F23278 /* Song.swift */; };
+		E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7BF1B6165E000F067F2 /* LikeHelper.swift */; };
+		E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */; };
 		E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4001B5462D80071B961 /* SongPlayer.swift */; };
 		E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */; };
+		E57B18401B603E06004FF7E2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E57B183F1B603E06004FF7E2 /* libc++.dylib */; };
+		E57B184C1B604D17004FF7E2 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E57B184A1B604D17004FF7E2 /* Realm.framework */; };
+		E57B184D1B604D17004FF7E2 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E57B184B1B604D17004FF7E2 /* RealmSwift.framework */; };
+		E589C28D1B62AEC6005A426C /* BeatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
 		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
 		E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F061B4D97860030DD2B /* Main.storyboard */; };
@@ -57,10 +63,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E57B18461B6048A5004FF7E2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E55FDAF41B55C28100F23278 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		E571F7BF1B6165E000F067F2 /* LikeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeHelper.swift; sourceTree = "<group>"; };
+		E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsAndFreestylesViewController.swift; sourceTree = "<group>"; };
 		E572D4001B5462D80071B961 /* SongPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
 		E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropThisBeatViewController.swift; sourceTree = "<group>"; };
+		E57B183F1B603E06004FF7E2 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E57B184A1B604D17004FF7E2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		E57B184B1B604D17004FF7E2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTableViewCell.swift; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +132,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57B18401B603E06004FF7E2 /* libc++.dylib in Frameworks */,
 				E5F78F861B4E1BE30030DD2B /* libsqlite3.dylib in Frameworks */,
+				E57B184D1B604D17004FF7E2 /* RealmSwift.framework in Frameworks */,
 				E5F78F841B4E1BCE0030DD2B /* libz.dylib in Frameworks */,
 				E5F78F821B4E1BBC0030DD2B /* SystemConfiguration.framework in Frameworks */,
 				E5F78F801B4E1BB20030DD2B /* StoreKit.framework in Frameworks */,
@@ -115,6 +142,7 @@
 				E5F78F7C1B4E1B9E0030DD2B /* QuartzCore.framework in Frameworks */,
 				E5F78F7A1B4E1B900030DD2B /* MobileCoreServices.framework in Frameworks */,
 				E5F78F781B4E1B860030DD2B /* CoreLocation.framework in Frameworks */,
+				E57B184C1B604D17004FF7E2 /* Realm.framework in Frameworks */,
 				E5F78F761B4E1B7E0030DD2B /* CoreGraphics.framework in Frameworks */,
 				E5F78F741B4E1B770030DD2B /* CFNetwork.framework in Frameworks */,
 				E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */,
@@ -170,6 +198,9 @@
 			children = (
 				E55FDAF31B55ACA100F23278 /* Models */,
 				E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */,
+				E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */,
+				E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */,
+				E571F7BF1B6165E000F067F2 /* LikeHelper.swift */,
 				E572D4001B5462D80071B961 /* SongPlayer.swift */,
 				E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */,
 				E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */,
@@ -228,6 +259,9 @@
 		E5F78F871B4E1C270030DD2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E57B183F1B603E06004FF7E2 /* libc++.dylib */,
+				E57B184A1B604D17004FF7E2 /* Realm.framework */,
+				E57B184B1B604D17004FF7E2 /* RealmSwift.framework */,
 				E5F78F651B4E1A8E0030DD2B /* Bolts.framework */,
 				E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */,
 				E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */,
@@ -260,6 +294,8 @@
 				E5F78EF61B4D97850030DD2B /* Sources */,
 				E5F78EF71B4D97850030DD2B /* Frameworks */,
 				E5F78EF81B4D97850030DD2B /* Resources */,
+				E57B18461B6048A5004FF7E2 /* Embed Frameworks */,
+				E57B18491B6049C2004FF7E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -354,18 +390,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E57B18491B6049C2004FF7E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E5F78EF61B4D97850030DD2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E589C28D1B62AEC6005A426C /* BeatsTableViewCell.swift in Sources */,
 				E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */,
 				E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */,
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
+				E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */,
 				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
 				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
 				E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */,
 				E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */,
+				E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */,
 				E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +553,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/alexraman/Downloads/parse-library-1.7.5",
+					"$(PROJECT_DIR)/DropABeat",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -516,6 +573,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/alexraman/Downloads/parse-library-1.7.5",
+					"$(PROJECT_DIR)/DropABeat",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DropABeat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

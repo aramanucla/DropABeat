@@ -20,7 +20,11 @@ class SongSearchViewController: UIViewController {
     var songs: [PFObject] = []
     
     
+    var likes: [PFObject]? = []
+
+    
     override func viewDidLoad() {
+        
         
         SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
@@ -36,6 +40,7 @@ class SongSearchViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool)
     {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewWillAppear(animated)
         self.loadSongs()
     }
@@ -113,8 +118,13 @@ extension SongSearchViewController: UITableViewDataSource {
         cell.SongTitleLabel.text = song!.objectForKey("SongName") as? String
         
         cell.playPauseButton.tag = indexPath.row
-        //   cell.tag = indexPath.row
-        //   cell.playPauseButton.addTarget(self, action: "playSong:", forControlEvents: .TouchUpInside)
+        
+        
+        LikeHelper.shouldLikeBeRed(cell, user: PFUser.currentUser()!, song: cell.song!)
+        
+        //Implement something that says, if cell.song is favorited (by checking in Parse)
+        //Set likeButton.selected = true
+        
         
         return cell
         
@@ -129,10 +139,15 @@ extension SongSearchViewController: UITableViewDataSource {
 
 extension SongSearchViewController: UISearchBarDelegate
 {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        loadSongs()
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        loadSongs()
+        
+    }
+    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         SearchBar.resignFirstResponder()
@@ -141,6 +156,7 @@ extension SongSearchViewController: UISearchBarDelegate
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         SearchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
 
     }
     
@@ -151,7 +167,6 @@ extension SongSearchViewController: UISearchBarDelegate
 extension SongSearchViewController: UITableViewDelegate
 {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         
         self.performSegueWithIdentifier("DropThisBeat", sender: self)
     }

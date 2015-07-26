@@ -17,6 +17,7 @@ class SongSearchTableViewCell: UITableViewCell
     // var tag = 0
     
     
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var SongTitleLabel: UILabel!
     
@@ -27,7 +28,6 @@ class SongSearchTableViewCell: UITableViewCell
     
     var song: Song?
     
-    
     @IBAction func RestartButtonTapped(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song!, userInfo: [SongPlayStateKey:Restart])
     }
@@ -37,7 +37,10 @@ class SongSearchTableViewCell: UITableViewCell
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
         restartButton.hidden = true
+        
+        
     }
+    
     
     
     func songPlayStateDidChange(notification:NSNotification)
@@ -75,6 +78,12 @@ class SongSearchTableViewCell: UITableViewCell
     }
     
     
+    
+    
+    @IBAction func likeSong(sender: AnyObject) {
+        song!.toggleLikeSong(PFUser.currentUser()!, cell: self)
+        
+    }
     
     @IBAction func playSong(sender: UIButton)
     {

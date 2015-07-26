@@ -11,6 +11,11 @@ import Parse
 
 class Song: PFObject, PFSubclassing, Equatable
 {
+    
+    var likes: [PFObject]? = []
+    
+    
+    
     @NSManaged var SongFile: PFFile?
     @NSManaged var SongName: String?
     @NSManaged var user: PFUser?
@@ -26,6 +31,47 @@ class Song: PFObject, PFSubclassing, Equatable
         dispatch_once(&onceToken) {
             // inform Parse about this subclass
             self.registerSubclass()
+        }
+    }
+    
+     
+    
+    
+    func toggleLikeSong(user: PFUser, cell:SongSearchTableViewCell)
+    {
+        //if the user likes the post, unlike it
+        if(cell.likeButton.selected == true)
+        {
+            LikeHelper.unlikePost(user, song: self)
+            cell.likeButton.selected = false
+        
+        }
+        
+        else
+        {
+            LikeHelper.likeSong(user, song: self)
+            cell.likeButton.selected = true
+            
+            
+        }
+    }
+    
+    func toggleMyFavoritesLikeSong(user: PFUser, cell:BeatsTableViewCell)
+    {
+        //if the user likes the post, unlike it
+        if(cell.likeButton.selected == true)
+        {
+            LikeHelper.unlikePost(user, song: self)
+            cell.likeButton.selected = false
+            
+        }
+            
+        else
+        {
+            LikeHelper.likeSong(user, song: self)
+            cell.likeButton.selected = true
+            
+            
         }
     }
 

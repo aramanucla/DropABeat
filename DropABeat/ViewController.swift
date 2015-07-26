@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     var song: Song?
     
+    var likes: [PFObject]? = []
+    
     @IBOutlet weak var PausePlay: UIButton!
     
     
@@ -28,6 +30,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var RestartOutlet: UIButton!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -92,6 +95,8 @@ class ViewController: UIViewController {
         
         PausePlay.hidden = false
         RestartOutlet.hidden = false
+        
+        
         
     }
     

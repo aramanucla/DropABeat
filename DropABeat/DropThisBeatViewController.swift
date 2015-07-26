@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DropThisBeatViewController: UIViewController {
     
@@ -20,6 +21,10 @@ class DropThisBeatViewController: UIViewController {
     @IBOutlet weak var playPauseOutlet: UIButton!
     
     override func viewDidLoad() {
+        
+                
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
         
@@ -35,7 +40,7 @@ class DropThisBeatViewController: UIViewController {
     {
         let info = notification.userInfo?[SongPlayStateKey] as! String
         let notificationSong = notification.object as! Song
-
+        
         
         
         switch info {
