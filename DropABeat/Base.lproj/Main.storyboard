@@ -17,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore Beats" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0p-py-GYY">
-                                <rect key="frame" x="247" y="85" width="107" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="X2M-md-YQ2">
                                 <rect key="frame" x="16" y="30" width="568" height="44"/>
                                 <constraints>
@@ -57,7 +51,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-e8-5XC">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-e8-5XC">
                                                     <rect key="frame" x="17" y="41" width="30" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Play">
@@ -67,7 +61,7 @@
                                                         <action selector="playSong:" destination="ceF-FK-I7b" eventType="touchUpInside" id="SwW-3w-zOv"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKK-Zd-llB">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKK-Zd-llB">
                                                     <rect key="frame" x="77" y="41" width="44" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Restart">
@@ -77,14 +71,14 @@
                                                         <action selector="RestartButtonTapped:" destination="ceF-FK-I7b" eventType="touchUpInside" id="THd-hg-wfu"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
                                                     <rect key="frame" x="256" y="29" width="34" height="28"/>
                                                     <state key="normal" image="heart">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="selected" image="heart_selected"/>
                                                     <connections>
-                                                        <action selector="likeSong:" destination="ceF-FK-I7b" eventType="touchUpInside" id="5Q2-F4-BPL"/>
+                                                        <action selector="likeSong:" destination="ceF-FK-I7b" eventType="touchUpInside" id="bSc-DP-8Lw"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -129,28 +123,40 @@
                                     <outlet property="delegate" destination="GSs-4O-hMb" id="4Yc-89-QUb"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Q1g-E2-0IU">
+                                <rect key="frame" x="243" y="76" width="115" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="WNa-lj-7tx"/>
+                                    <constraint firstAttribute="width" constant="115" id="gW1-me-O16"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Hot"/>
+                                    <segment title="New"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeTableView:" destination="GSs-4O-hMb" eventType="valueChanged" id="N8T-vq-Mso"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="top" secondItem="UUp-bD-OdU" secondAttribute="bottom" id="46N-nb-3rM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X2M-md-YQ2" secondAttribute="trailing" id="6Xf-5o-ZKa"/>
-                            <constraint firstItem="L0p-py-GYY" firstAttribute="top" secondItem="X2M-md-YQ2" secondAttribute="bottom" constant="11" id="Hof-ne-Rkx"/>
                             <constraint firstItem="FiX-f9-T5e" firstAttribute="top" secondItem="E4b-wB-tL6" secondAttribute="bottom" id="LS6-ZG-ODV"/>
                             <constraint firstItem="E4b-wB-tL6" firstAttribute="leading" secondItem="Tbb-W6-SXt" secondAttribute="leading" id="M3T-Re-VrV"/>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="leading" secondItem="Tbb-W6-SXt" secondAttribute="leadingMargin" constant="-16" id="OQw-0C-a8b"/>
                             <constraint firstItem="E4b-wB-tL6" firstAttribute="top" secondItem="X2M-md-YQ2" secondAttribute="bottom" constant="38" id="OZo-sH-Zeu"/>
-                            <constraint firstItem="L0p-py-GYY" firstAttribute="top" secondItem="X2M-md-YQ2" secondAttribute="bottom" constant="12" id="Wve-jB-BHg"/>
+                            <constraint firstAttribute="centerX" secondItem="Q1g-E2-0IU" secondAttribute="centerX" id="RCq-ZP-8oX"/>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="leading" secondItem="Tbb-W6-SXt" secondAttribute="leading" id="Xqz-9V-MAa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="E4b-wB-tL6" secondAttribute="trailing" id="Z8H-Tk-pgg"/>
-                            <constraint firstAttribute="centerX" secondItem="L0p-py-GYY" secondAttribute="centerX" id="amB-ng-Hbx"/>
                             <constraint firstItem="FiX-f9-T5e" firstAttribute="top" secondItem="E4b-wB-tL6" secondAttribute="bottom" constant="50" id="bKN-4S-CAw"/>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="top" secondItem="Tbb-W6-SXt" secondAttribute="topMargin" constant="30" id="gAC-w1-I0H"/>
+                            <constraint firstAttribute="centerX" secondItem="Q1g-E2-0IU" secondAttribute="centerX" id="k6c-y0-Zb5"/>
                             <constraint firstItem="E4b-wB-tL6" firstAttribute="top" secondItem="X2M-md-YQ2" secondAttribute="bottom" constant="40" id="lT4-bw-jhV"/>
                             <constraint firstAttribute="trailing" secondItem="X2M-md-YQ2" secondAttribute="trailing" id="lop-rZ-DPF"/>
                             <constraint firstItem="E4b-wB-tL6" firstAttribute="leading" secondItem="Tbb-W6-SXt" secondAttribute="leadingMargin" id="nQ3-iu-1ax"/>
-                            <constraint firstAttribute="centerX" secondItem="L0p-py-GYY" secondAttribute="centerX" id="qbY-Gk-sks"/>
+                            <constraint firstItem="Q1g-E2-0IU" firstAttribute="top" secondItem="X2M-md-YQ2" secondAttribute="bottom" constant="2" id="nzz-Tg-Vv0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X2M-md-YQ2" secondAttribute="trailing" id="sAz-za-tcW"/>
-                            <constraint firstAttribute="centerX" secondItem="L0p-py-GYY" secondAttribute="centerX" id="so9-bh-flz"/>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="leading" secondItem="Tbb-W6-SXt" secondAttribute="leadingMargin" id="tNa-HO-AmC"/>
                             <constraint firstAttribute="trailing" secondItem="E4b-wB-tL6" secondAttribute="trailing" id="yow-PX-7sW"/>
                         </constraints>
@@ -164,9 +170,7 @@
                                 <exclude reference="M3T-Re-VrV"/>
                                 <exclude reference="lT4-bw-jhV"/>
                                 <exclude reference="yow-PX-7sW"/>
-                                <exclude reference="Wve-jB-BHg"/>
-                                <exclude reference="amB-ng-Hbx"/>
-                                <exclude reference="qbY-Gk-sks"/>
+                                <exclude reference="k6c-y0-Zb5"/>
                                 <exclude reference="bKN-4S-CAw"/>
                             </mask>
                         </variation>
@@ -176,6 +180,7 @@
                     <connections>
                         <outlet property="SearchBar" destination="X2M-md-YQ2" id="CtS-xF-hYG"/>
                         <outlet property="TableView" destination="E4b-wB-tL6" id="DIb-3a-IXs"/>
+                        <outlet property="segmentedControl" destination="Q1g-E2-0IU" id="f0o-Oz-jbl"/>
                         <segue destination="PKS-Ts-Gkg" kind="show" identifier="DropThisBeat" id="CSs-vT-yRS"/>
                     </connections>
                 </viewController>
@@ -453,7 +458,7 @@
                                                         </mask>
                                                     </variation>
                                                     <connections>
-                                                        <action selector="likeSong:" destination="LZz-2P-mr3" eventType="touchUpInside" id="Lib-uS-5Dn"/>
+                                                        <action selector="unlikeLikedSong:" destination="LZz-2P-mr3" eventType="touchUpInside" id="GoY-4B-jbE"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6X9-3m-nPX">
@@ -568,15 +573,143 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="jKo-Pf-QSv"/>
+                    <navigationItem key="navigationItem" id="jKo-Pf-QSv">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="d8X-op-IvK">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Loj-Qa-Uc2">
+                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Beat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addBeat:" destination="QUs-cJ-GXB" eventType="touchUpInside" id="KWM-Qt-x49"/>
+                                    <segue destination="cxn-b8-hwj" kind="presentation" identifier="addBeatSegue" id="uZu-HL-vhe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="segmentedController" destination="kGf-7q-KMH" id="FX5-z5-6Yq"/>
                         <outlet property="tableView" destination="utQ-Xc-8fo" id="KY1-EU-ZyP"/>
+                        <segue destination="PKS-Ts-Gkg" kind="push" identifier="DropThisBeat" id="KmW-N2-dJR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw8-aV-NJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="1296"/>
+            <point key="canvasLocation" x="1173" y="1378"/>
+        </scene>
+        <!--AddSongMethodViewController-->
+        <scene sceneID="DdO-wt-xxZ">
+            <objects>
+                <viewController title="AddSongMethodViewController" id="cxn-b8-hwj" customClass="AddSongMethodViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yxE-tT-svX"/>
+                        <viewControllerLayoutGuide type="bottom" id="HeH-xV-G3L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ENs-oL-XwA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1F8-9k-G6r">
+                                <rect key="frame" x="225" y="241" width="95" height="30"/>
+                                <state key="normal" title="Record Beat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gRw-gv-ug5" kind="presentation" identifier="recordBeatSegue" id="VtR-F5-yZH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsY-8J-jnz">
+                                <rect key="frame" x="248" y="148" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="cxn-b8-hwj" eventType="touchUpInside" id="tZf-YA-KYm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="62w-ST-AQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="1445"/>
+        </scene>
+        <!--RecordSongViewController-->
+        <scene sceneID="QrM-7h-ye0">
+            <objects>
+                <viewController title="RecordSongViewController" id="gRw-gv-ug5" customClass="RecordSongViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m46-6D-Eoa"/>
+                        <viewControllerLayoutGuide type="bottom" id="OoT-dG-5BG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hac-Ge-kIw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAS-yh-UQc">
+                                <rect key="frame" x="206" y="294" width="56" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="gRw-gv-ug5" eventType="touchUpInside" id="aPh-qn-Lm2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJf-5D-fKC">
+                                <rect key="frame" x="95" y="294" width="50" height="30"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonTapped:" destination="gRw-gv-ug5" eventType="touchUpInside" id="oDe-d0-atv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dy6-7W-zYz">
+                                <rect key="frame" x="91" y="184" width="312" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Your Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4Z-Vi-lqh">
+                                <rect key="frame" x="91" y="150" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urk-Kf-9fC">
+                                <rect key="frame" x="107" y="402" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record Your Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgd-6i-KvO">
+                                <rect key="frame" x="99" y="265" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haw-QF-1Va">
+                                <rect key="frame" x="251" y="113" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="gRw-gv-ug5" eventType="touchUpInside" id="7Db-Lq-mr7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="beatNameField" destination="Dy6-7W-zYz" id="SeJ-PP-NCD"/>
+                        <outlet property="playButton" destination="IAS-yh-UQc" id="u44-9I-IzP"/>
+                        <outlet property="recordButton" destination="OJf-5D-fKC" id="I3Y-3g-Z62"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p8G-c4-EoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2873" y="1414"/>
         </scene>
         <!--Item-->
         <scene sceneID="9or-Bi-jby">
@@ -603,4 +736,7 @@
         <image name="heart_selected" width="72" height="68"/>
         <image name="people" width="42" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="KmW-N2-dJR"/>
+    </inferredMetricsTieBreakers>
 </document>

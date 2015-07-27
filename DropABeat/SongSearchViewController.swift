@@ -22,6 +22,7 @@ class SongSearchViewController: UIViewController {
     
     var likes: [PFObject]? = []
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         
@@ -38,6 +39,12 @@ class SongSearchViewController: UIViewController {
     @IBOutlet weak var SearchBar: UISearchBar!
     
     
+    
+    @IBAction func changeTableView(sender: AnyObject) {
+        self.loadSongs()
+        TableView.reloadData()
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -52,12 +59,12 @@ class SongSearchViewController: UIViewController {
             self.songs = songArray as! [PFObject]
             self.TableView.reloadData()
         }
-        SongSearchViewController.searchUsers(SearchBar.text, completionBlock: completionBlock)
+        self.searchUsers(SearchBar.text, completionBlock: completionBlock)
         
     }
     
     
-    static func searchUsers(searchText: String, completionBlock: PFArrayResultBlock) -> PFQuery
+    func searchUsers(searchText: String, completionBlock: PFArrayResultBlock) -> PFQuery
     {
         /*
         NOTE: We are using a Regex to allow for a case insensitive compare of usernames.
@@ -68,7 +75,18 @@ class SongSearchViewController: UIViewController {
             .whereKey("SongName",
                 matchesRegex: searchText, modifiers: "i")
         
-        filteredSongQuery.orderByAscending("SongName")
+        
+        if(segmentedControl.selectedSegmentIndex == 1){
+        filteredSongQuery.orderByDescending("createdAt")
+        
+        }
+        
+        else
+        {
+            filteredSongQuery.orderByDescending("numberOfLikes")
+
+        }
+    
         filteredSongQuery.limit = 20
         
         filteredSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
@@ -124,6 +142,7 @@ extension SongSearchViewController: UITableViewDataSource {
         
         //Implement something that says, if cell.song is favorited (by checking in Parse)
         //Set likeButton.selected = true
+        
         
         
         return cell

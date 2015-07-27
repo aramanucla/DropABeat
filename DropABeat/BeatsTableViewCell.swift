@@ -76,7 +76,7 @@ class BeatsTableViewCell: UITableViewCell {
     
     
     
-    @IBAction func likeSong(sender: AnyObject) {
+    @IBAction func unlikeLikedSong(sender: AnyObject) {
         unlikePost(PFUser.currentUser()!, song: self.song!)
     }
     
@@ -85,6 +85,12 @@ class BeatsTableViewCell: UITableViewCell {
     {
         var mySong = song
         var completionBlock = {(success: Bool, error: NSError?)->Void in self.delegate.reload(mySong)}
+        
+        
+        
+        song.incrementKey("numberOfLikes", byAmount: -1)
+        song.saveInBackground()
+        
         
         let query = PFQuery(className: "Like")
         query.whereKey("fromUser", equalTo: user)

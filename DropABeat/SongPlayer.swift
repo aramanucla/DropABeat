@@ -36,6 +36,7 @@ class SongPlayer: NSObject
     {
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeSongPlayState:", name: ChangeSongPlayState, object: nil)
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playSongFromBeginning:", name: AVPlayerItemDidPlayToEndTimeNotification, object: audioPlayer.currentItem)
     }
     
     func queryAllSongs()
@@ -102,6 +103,7 @@ class SongPlayer: NSObject
                     self.audioPlayer = AVPlayer(URL: NSURL(string: songURL))
                     self.audioPlayer.play()
                     
+                    
                     self.notifySongPlayStateChange(self.currentSong, state: Playing)
                     
                 }
@@ -117,5 +119,12 @@ class SongPlayer: NSObject
         }
     }
     
+    
+    func playSongFromBeginning(notification: NSNotification)
+    {
+        audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
+        audioPlayer.play()
+
+    }
     
 }

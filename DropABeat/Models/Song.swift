@@ -15,7 +15,7 @@ class Song: PFObject, PFSubclassing, Equatable
     var likes: [PFObject]? = []
     
     
-    
+    @NSManaged var numberOfLikes: Int
     @NSManaged var SongFile: PFFile?
     @NSManaged var SongName: String?
     @NSManaged var user: PFUser?

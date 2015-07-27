@@ -16,6 +16,10 @@ class LikeHelper
     
     
     static func likeSong(user: PFUser, song: Song) {
+        
+        song.incrementKey("numberOfLikes", byAmount: 1)
+        song.saveInBackground()
+        
         let likeObject = PFObject(className: "Like")
         likeObject["fromUser"] = user
         likeObject["toSong"] = song
@@ -24,6 +28,9 @@ class LikeHelper
     }
     
     static func unlikePost(user: PFUser, song: Song) {
+        
+        song.incrementKey("numberOfLikes", byAmount: -1)
+        song.saveInBackground()
         
         let query = PFQuery(className: "Like")
         query.whereKey("fromUser", equalTo: user)

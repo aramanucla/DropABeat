@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E547404B1B65EDA800FB1FAF /* RecordSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547404A1B65EDA800FB1FAF /* RecordSongViewController.swift */; };
+		E547404D1B65EDEE00FB1FAF /* AddSongMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547404C1B65EDEE00FB1FAF /* AddSongMethodViewController.swift */; };
 		E55FDAF51B55C28100F23278 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FDAF41B55C28100F23278 /* Song.swift */; };
 		E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7BF1B6165E000F067F2 /* LikeHelper.swift */; };
 		E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */; };
@@ -77,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E547404A1B65EDA800FB1FAF /* RecordSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSongViewController.swift; sourceTree = "<group>"; };
+		E547404C1B65EDEE00FB1FAF /* AddSongMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongMethodViewController.swift; sourceTree = "<group>"; };
 		E55FDAF41B55C28100F23278 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		E571F7BF1B6165E000F067F2 /* LikeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeHelper.swift; sourceTree = "<group>"; };
 		E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsAndFreestylesViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */,
 				E5F78F8A1B502A560030DD2B /* SongSearchTableViewCell.swift */,
 				E5F78F041B4D97860030DD2B /* ViewController.swift */,
+				E547404A1B65EDA800FB1FAF /* RecordSongViewController.swift */,
+				E547404C1B65EDEE00FB1FAF /* AddSongMethodViewController.swift */,
 				E5F78F061B4D97860030DD2B /* Main.storyboard */,
 				E5F78F091B4D97860030DD2B /* Images.xcassets */,
 				E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */,
@@ -417,7 +423,9 @@
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
 				E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */,
 				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
+				E547404B1B65EDA800FB1FAF /* RecordSongViewController.swift in Sources */,
 				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
+				E547404D1B65EDEE00FB1FAF /* AddSongMethodViewController.swift in Sources */,
 				E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */,
 				E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */,
 				E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */,

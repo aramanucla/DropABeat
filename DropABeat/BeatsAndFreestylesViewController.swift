@@ -107,6 +107,36 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     }
     */
 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "DropThisBeat")
+        {
+            var upcoming: DropThisBeatViewController = segue.destinationViewController as! DropThisBeatViewController
+            
+            let indexPath = self.tableView.indexPathForSelectedRow()
+            
+            
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeatsTableViewCell
+            
+            upcoming.song = cell.song!
+            
+            
+            self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
+            
+        }
+    }
+
+    
+    
+    
+    @IBAction func addBeat(sender: AnyObject) {
+        self.performSegueWithIdentifier("addBeatSegue", sender: self)
+        
+    }
+    
+    
+    
 }
 
 extension BeatsAndFreestylesViewController: UITableViewDataSource
@@ -142,7 +172,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             cell.song = song
             
-            cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
+            cell.SongTitleLabel.text = (song.objectForKey("SongName") as? String)! 
             
             cell.delegate = self
             
@@ -157,5 +187,14 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
 }
 
 
-
+extension BeatsAndFreestylesViewController: UITableViewDelegate
+{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.performSegueWithIdentifier("DropThisBeat", sender: self)
+    }
+    
+    
+    
+}
 
