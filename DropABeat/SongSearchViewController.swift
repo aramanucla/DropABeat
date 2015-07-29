@@ -27,7 +27,7 @@ class SongSearchViewController: UIViewController {
     override func viewDidLoad() {
         
         
-        SongPlayer.sharedInstance.queryAllSongs()
+      //  SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
         
     }
@@ -41,8 +41,12 @@ class SongSearchViewController: UIViewController {
     
     
     @IBAction func changeTableView(sender: AnyObject) {
+        
+        println("changeTableView gets called")
+        
         self.loadSongs()
-        TableView.reloadData()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool)
@@ -98,9 +102,9 @@ class SongSearchViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if(segue.identifier == "DropThisBeat")
+        if(segue.identifier == "showVideoRecorderSegue")
         {
-            var upcoming: DropThisBeatViewController = segue.destinationViewController as! DropThisBeatViewController
+            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
             
             let indexPath = self.TableView.indexPathForSelectedRow()
             
@@ -187,7 +191,7 @@ extension SongSearchViewController: UITableViewDelegate
 {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("DropThisBeat", sender: self)
+        self.performSegueWithIdentifier("showVideoRecorderSegue", sender: self)
     }
     
     

@@ -46,7 +46,7 @@ class SongSearchTableViewCell: UITableViewCell
     func songPlayStateDidChange(notification:NSNotification)
     {
         let info = notification.userInfo?[SongPlayStateKey] as! String
-        let notificationSong = notification.object as! Song
+        let notificationSong = notification.object as? Song
         
         
         switch info {
@@ -72,7 +72,7 @@ class SongSearchTableViewCell: UITableViewCell
                 playPauseButton.setTitle("Play", forState: UIControlState.Normal)
             }
         default:
-            println("Action not implemented; neither pause nor playing")
+            println("Probably recording, Action not implemented; neither pause nor playing")
         }
         
     }

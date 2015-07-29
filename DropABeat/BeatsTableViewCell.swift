@@ -42,7 +42,7 @@ class BeatsTableViewCell: UITableViewCell {
     func songPlayStateDidChange(notification:NSNotification)
     {
         let info = notification.userInfo?[SongPlayStateKey] as! String
-        let notificationSong = notification.object as! Song
+        let notificationSong = notification.object as? Song
         
         
         switch info {

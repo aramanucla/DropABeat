@@ -49,6 +49,16 @@ class LikeHelper
     
     static func shouldLikeBeRed(cell: SongSearchTableViewCell, user: PFUser, song: Song) {
     
+        if(cell.song?.user == PFUser.currentUser()!)
+        {
+            println("this is a song that i made")
+            cell.likeButton.hidden = true
+        }
+        
+        else
+        {
+            cell.likeButton.hidden = false
+        }
         
         var likes: [PFObject]? = []
         
@@ -64,7 +74,6 @@ class LikeHelper
             
         else
         {
-            likes = []
             cell.likeButton.selected = true
         }
         
@@ -76,6 +85,11 @@ class LikeHelper
 
     static func shouldLikeBeRed(cell: BeatsTableViewCell, user: PFUser, song: Song) {
         
+        
+        if(cell.song?.user == PFUser.currentUser()!)
+        {
+            cell.likeButton.hidden = true
+        }
         
         var likes: [PFObject]? = []
         

@@ -16,7 +16,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     var myBeats: [PFObject] = []
     var myFreestyles = []
     var songsArray = [Song]()
-    
+    var myPublishedBeats: [PFObject] = []
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -44,7 +44,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     func loadFavorites()
     {
-        var completionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
+        var likedSongsCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
             self.myBeats = songArray as! [PFObject]
             for like in self.myBeats {
                 
@@ -58,11 +58,42 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
             }
             self.tableView.reloadData()
         }
-        self.findFavorites(completionBlock)
+        
+        var likedSongCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
+            self.myBeats = songArray as! [PFObject]
+            for like in self.myBeats {
+                
+                let index = find(self.songsArray, like.objectForKey("toSong") as! Song)
+                
+                if(index == nil)
+                {
+                    self.songsArray.append(like.objectForKey("toSong") as! Song)
+                }
+                
+            }
+            self.tableView.reloadData()
+        }
+        
+        var mySongCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
+            self.myPublishedBeats = songArray as! [PFObject]
+            for song in self.myPublishedBeats {
+                
+                let index = find(self.songsArray, song as! Song)
+                
+                if(index == nil)
+                {
+                    self.songsArray.append(song as! Song)
+                }
+                
+            }
+            self.tableView.reloadData()
+        }
+        
+        self.findFavorites(likedSongCompletionBlock, mySongCompletionBlock: mySongCompletionBlock)
         
     }
     
-    func findFavorites(completionBlock: PFArrayResultBlock) -> PFQuery
+    func findFavorites(likedSongCompletionBlock: PFArrayResultBlock, mySongCompletionBlock: PFArrayResultBlock)
     {
         
         var favoriteSongQuery = PFQuery(className: "Like").whereKey("fromUser", equalTo: PFUser.currentUser()!)
@@ -70,17 +101,17 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
         favoriteSongQuery.includeKey("toSong")
         
         
+        var mySongQuery = PFQuery(className: "Song").whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        mySongQuery.findObjectsInBackgroundWithBlock(mySongCompletionBlock)
+        
 //        var songQuery = PFQuery(className: "Song").whereKey("objectId", matchesKey: "toSong", inQuery: favoriteSongQuery)
         
         
 //        filteredSongQuery.orderByAscending
 //        filteredSongQuery.limit = 20
 //        
-        favoriteSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
-        
-        
-        return favoriteSongQuery
-        
+        favoriteSongQuery.findObjectsInBackgroundWithBlock(likedSongCompletionBlock)
         
     }
 
@@ -110,14 +141,16 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if(segue.identifier == "DropThisBeat")
+        if(segue.identifier == "showVideoRecorderSegue")
         {
-            var upcoming: DropThisBeatViewController = segue.destinationViewController as! DropThisBeatViewController
+            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
             
             let indexPath = self.tableView.indexPathForSelectedRow()
             
             
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeatsTableViewCell
+            
+            println(cell.song)
             
             upcoming.song = cell.song!
             
@@ -184,6 +217,55 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songsArray.count
     }
+    
+    
+    
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        if(songsArray[indexPath.row].user == PFUser.currentUser()! )
+        {
+            return true
+        }
+        
+        else
+        {
+            return false
+        }
+       
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            
+            let query = PFQuery(className: "Song")
+            query.whereKey("user", equalTo: PFUser.currentUser()!).whereKey("objectId", equalTo: songsArray[indexPath.row].objectId!)
+            
+            
+            var reloadDataCompletionBlock = {(success: Bool, error: NSError?)->Void in
+                self.songsArray.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                tableView.reloadData()}
+            
+            var findSongCompletionBlock = {(results: [AnyObject]?, error: NSError?) -> Void in
+                if let results = results as? [PFObject]{
+                    for result in results{
+                        
+                        result.deleteInBackgroundWithBlock(reloadDataCompletionBlock)
+                    }
+                }
+                
+            
+            }
+            
+            
+            query.findObjectsInBackgroundWithBlock(findSongCompletionBlock)
+            
+            
+            
+        }
+    }
 }
 
 
@@ -191,10 +273,11 @@ extension BeatsAndFreestylesViewController: UITableViewDelegate
 {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("DropThisBeat", sender: self)
+        self.performSegueWithIdentifier("showVideoRecorderSegue", sender: self)
     }
     
     
     
 }
+
 

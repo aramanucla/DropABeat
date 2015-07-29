@@ -8,8 +8,10 @@
 
 import UIKit
 import AVFoundation
+import Parse
+import AudioToolbox
 
-class RecordSongViewController: UIViewController {
+class RecordSongViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var recordButton: UIButton!
@@ -17,9 +19,11 @@ class RecordSongViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var beatNameField: UITextField!
     
-    var testAudioPlayer: AVAudioPlayer?
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func playButtonTapped(sender: UIButton) {
+        
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         
         if sender.titleLabel?.text == "Play" {
             sender.setTitle("Stop", forState: UIControlState.Normal)
@@ -28,29 +32,29 @@ class RecordSongViewController: UIViewController {
                 
                 var error: NSError?
                 
-                testAudioPlayer = AVAudioPlayer(contentsOfURL: audioRecorder?.url,
-                    error: &error)
+                 NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: audioRecorder?.url, userInfo: [SongPlayStateKey:Playing])
+                
                 
                 // Set delegate after audio player gets instantiated.
-                testAudioPlayer?.delegate = self
                 
-                if let err = error {
-                    println("audioPlayer error: \(err.localizedDescription)")
-                } else {
-                    testAudioPlayer?.play()
-                }
+                
+             
             }
         } else { // When play button says "Stop" while playing
             playButton.setTitle("Play", forState: UIControlState.Normal)
             recordButton.enabled = true
             
-            testAudioPlayer?.stop()
-        }
+NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: audioRecorder?.url, userInfo: [SongPlayStateKey:Paused])        }
 
     }
     
   
     @IBAction func recordButtonTapped(sender: UIButton) {
+        
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryRecord, error: nil)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: nil, userInfo: [SongPlayStateKey:Paused])
+        
         if sender.titleLabel?.text == "Record" {
             sender.setTitle("Stop", forState: UIControlState.Normal)
             println((self.recordButton.titleLabel?.text)!)
@@ -66,6 +70,7 @@ class RecordSongViewController: UIViewController {
             sender.setTitle("Record", forState: UIControlState.Normal)
             playButton.setTitle("Play", forState: UIControlState.Normal)
             playButton.enabled = true
+            saveButton.enabled = true
         }
 
     }
@@ -78,6 +83,8 @@ class RecordSongViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        saveButton.hidden = true
+        
         // Do any additional setup after loading the view.
         
         // Instantiate the recorder.
@@ -114,6 +121,7 @@ class RecordSongViewController: UIViewController {
         } else {
             audioRecorder?.prepareToRecord()
         }
+        
 
     }
 
@@ -124,6 +132,28 @@ class RecordSongViewController: UIViewController {
     
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    @IBAction func saveToParse(sender: AnyObject) {
+        let songObject = PFObject(className: "Song")
+        songObject["SongName"] = beatNameField.text
+        songObject["numberOfLikes"] = 0
+        songObject["user"] = PFUser.currentUser()
+        
+        var songData: NSData!
+        var fileName: String? = nil
+        
+        if let unwrappedURL = audioRecorder?.url {
+            songData = NSData(contentsOfURL: unwrappedURL)
+            fileName = unwrappedURL.lastPathComponent
+        }
+        
+        let songFile = PFFile(name:fileName, data: songData)
+        
+        songObject["SongFile"] = songFile
+        
+        songObject.saveInBackground()
     }
 
     /*
@@ -157,6 +187,24 @@ extension RecordSongViewController: AVAudioPlayerDelegate {
     
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
         println("Audio Play Decode Error")
+    }
+    
+}
+
+extension RecordSongViewController: UITextFieldDelegate
+{
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.saveButton.hidden = false
+        self.saveButton.enabled = false
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        beatNameField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

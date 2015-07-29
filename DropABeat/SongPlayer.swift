@@ -15,6 +15,7 @@ let Playing = "Playing"
 let Paused = "Paused"
 let Stopped = "Stopped"
 let Restart = "Restart"
+let StopCurrentSong = "StopCurrentSong"
 
 let ChangeSongPlayState = "ChangeSongPlayState"
 let SongPlayStateDidChange = "SongPlayStateDidChange"
@@ -23,6 +24,7 @@ let SongPlayStateKey: NSString = "SongPlayState"
 class SongPlayer: NSObject
 {
     var audioPlayer = AVPlayer()
+    
     
     var selectedSongNumber: Int = 0
     
@@ -36,7 +38,9 @@ class SongPlayer: NSObject
     {
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeSongPlayState:", name: ChangeSongPlayState, object: nil)
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playSongFromBeginning:", name: AVPlayerItemDidPlayToEndTimeNotification, object: audioPlayer.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playSongFromBeginning:", name: AVPlayerItemDidPlayToEndTimeNotification, object: audioPlayer.currentItem)
+        
+        audioPlayer.volume = 1.0
     }
     
     func queryAllSongs()
@@ -78,12 +82,21 @@ class SongPlayer: NSObject
         
         switch info {
         case Paused:
+            
+            
+            
             if(self.audioPlayer.rate == 1.0)
             {
                 audioPlayer.pause()
                 self.notifySongPlayStateChange(self.currentSong, state: Paused)
             }
+            
+            
+            
         case Playing:
+            
+            if(notification.object is Song)
+            {
             if(self.currentSong?.objectId == notification.object?.objectId)
             {
                 self.audioPlayer.play()
@@ -94,8 +107,9 @@ class SongPlayer: NSObject
                 
                 if(self.currentSong != nil)
                 {
-                self.notifySongPlayStateChange(self.currentSong, state: Stopped)
+                    self.notifySongPlayStateChange(self.currentSong, state: Stopped)
                 }
+                
                 
                 self.currentSong = notification.object as? Song
                 if let songURL = self.currentSong?.SongFile?.url {
@@ -107,13 +121,37 @@ class SongPlayer: NSObject
                     self.notifySongPlayStateChange(self.currentSong, state: Playing)
                     
                 }
+                
             }
+            
+            }
+            
+            else
+            {
+                if(self.currentSong != nil)
+                {
+                    self.notifySongPlayStateChange(nil, state: Stopped)
+                }
+                
+                if let audioFileURL: AnyObject = notification.object{
+                self.audioPlayer = AVPlayer(URL: audioFileURL as! NSURL)
+                self.audioPlayer.play()
+                
+                
+                self.notifySongPlayStateChange(nil, state: Playing)
+                }
+
+            }
+            
+            
         case Restart:
             audioPlayer.pause()
             audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
             audioPlayer.play()
             self.notifySongPlayStateChange(self.currentSong, state: Restart)
-            
+        case StopCurrentSong:
+            audioPlayer.pause()
+            audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
         default:
             println("Action not implemented; handle additional states in song player")
         }
@@ -124,7 +162,7 @@ class SongPlayer: NSObject
     {
         audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
         audioPlayer.play()
-
+        
     }
     
 }

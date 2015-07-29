@@ -29,7 +29,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var RestartOutlet: UIButton!
     
+    @IBOutlet weak var captureButton: UIButton!
     override func viewDidLoad() {
+        
+        captureButton.hidden = true
+        
+         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,7 +58,7 @@ class ViewController: UIViewController {
     func songPlayStateDidChange(notification:NSNotification)
     {
         let info = notification.userInfo?[SongPlayStateKey] as! String
-        let notificationSong = notification.object as! Song
+        let notificationSong = notification.object as? Song
         
         
         switch info {
@@ -87,6 +92,7 @@ class ViewController: UIViewController {
     
     @IBAction func DropABeat(sender: AnyObject) {
         
+        captureButton.hidden = false
         
         song = SongPlayer.sharedInstance.randomSong()
         SongNameLabel.text = song!.SongName
@@ -113,6 +119,19 @@ class ViewController: UIViewController {
         else
         {
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "showVideoRecorderSegue")
+        {
+            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
+            
+            
+            upcoming.song = song!
+            
+                        
         }
     }
     

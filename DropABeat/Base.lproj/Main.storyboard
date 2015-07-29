@@ -51,7 +51,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-e8-5XC">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-e8-5XC">
                                                     <rect key="frame" x="17" y="41" width="30" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Play">
@@ -61,7 +61,7 @@
                                                         <action selector="playSong:" destination="ceF-FK-I7b" eventType="touchUpInside" id="SwW-3w-zOv"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKK-Zd-llB">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKK-Zd-llB">
                                                     <rect key="frame" x="77" y="41" width="44" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <state key="normal" title="Restart">
@@ -71,7 +71,7 @@
                                                         <action selector="RestartButtonTapped:" destination="ceF-FK-I7b" eventType="touchUpInside" id="THd-hg-wfu"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
                                                     <rect key="frame" x="256" y="29" width="34" height="28"/>
                                                     <state key="normal" image="heart">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,92 +181,12 @@
                         <outlet property="SearchBar" destination="X2M-md-YQ2" id="CtS-xF-hYG"/>
                         <outlet property="TableView" destination="E4b-wB-tL6" id="DIb-3a-IXs"/>
                         <outlet property="segmentedControl" destination="Q1g-E2-0IU" id="f0o-Oz-jbl"/>
-                        <segue destination="PKS-Ts-Gkg" kind="show" identifier="DropThisBeat" id="CSs-vT-yRS"/>
+                        <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="POQ-2x-RwS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9v-Ck-vur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699" y="545"/>
-        </scene>
-        <!--Drop This Beat View Controller-->
-        <scene sceneID="92J-VB-FtB">
-            <objects>
-                <viewController id="PKS-Ts-Gkg" customClass="DropThisBeatViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="E74-Oq-TaD"/>
-                        <viewControllerLayoutGuide type="bottom" id="xVK-vl-kf0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LQ5-uG-DeM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPC-43-ybh">
-                                <rect key="frame" x="449" y="366" width="50" height="30"/>
-                                <state key="normal" title="Restart">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="restart:" destination="PKS-Ts-Gkg" eventType="touchUpInside" id="Xe9-6P-mHY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0J-WH-9j6">
-                                <rect key="frame" x="101" y="366" width="43" height="30"/>
-                                <state key="normal" title="Pause">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playPauseButton:" destination="PKS-Ts-Gkg" eventType="touchUpInside" id="pQJ-3v-S4I"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4n-bI-k11">
-                                <rect key="frame" x="82" y="332" width="446" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4O-b3-cmc">
-                                <rect key="frame" x="251" y="285" width="99" height="30"/>
-                                <state key="normal" title="Drop this Beat">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dropThisBeat:" destination="PKS-Ts-Gkg" eventType="touchUpInside" id="dcI-Q2-TKm"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="R4O-b3-cmc" secondAttribute="centerY" id="8Pv-wM-T3h"/>
-                            <constraint firstItem="Y4n-bI-k11" firstAttribute="top" secondItem="R4O-b3-cmc" secondAttribute="bottom" constant="17" id="C3h-4R-gg0"/>
-                            <constraint firstAttribute="centerX" secondItem="R4O-b3-cmc" secondAttribute="centerX" id="F9a-M4-CQW"/>
-                            <constraint firstAttribute="centerX" secondItem="R4O-b3-cmc" secondAttribute="centerX" id="Lig-bT-tt6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Y4n-bI-k11" secondAttribute="trailing" constant="56" id="NlF-Sr-hyo"/>
-                            <constraint firstItem="k0J-WH-9j6" firstAttribute="leading" secondItem="LQ5-uG-DeM" secondAttribute="leadingMargin" constant="85" id="OAt-ui-etB"/>
-                            <constraint firstItem="k0J-WH-9j6" firstAttribute="top" secondItem="R4O-b3-cmc" secondAttribute="bottom" constant="51" id="Qdf-tG-lin"/>
-                            <constraint firstItem="XPC-43-ybh" firstAttribute="top" secondItem="R4O-b3-cmc" secondAttribute="bottom" constant="51" id="Qw3-lp-lwT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XPC-43-ybh" secondAttribute="trailing" constant="85" id="Qzj-Vx-pJc"/>
-                            <constraint firstAttribute="centerY" secondItem="R4O-b3-cmc" secondAttribute="centerY" id="bD9-cU-fx8"/>
-                            <constraint firstItem="Y4n-bI-k11" firstAttribute="leading" secondItem="LQ5-uG-DeM" secondAttribute="leadingMargin" constant="66" id="exw-cN-2id"/>
-                            <constraint firstAttribute="centerX" secondItem="Y4n-bI-k11" secondAttribute="centerX" id="zEO-yD-x77"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="zEO-yD-x77"/>
-                                <exclude reference="8Pv-wM-T3h"/>
-                                <exclude reference="Lig-bT-tt6"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="aVi-ld-S4J"/>
-                    <connections>
-                        <outlet property="SongNameLabel" destination="Y4n-bI-k11" id="uDd-bI-saM"/>
-                        <outlet property="playPauseOutlet" destination="k0J-WH-9j6" id="day-s0-8lQ"/>
-                        <outlet property="restartOutlet" destination="XPC-43-ybh" id="H2c-Vv-0dR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ony-mM-4f8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2648" y="577"/>
+            <point key="canvasLocation" x="1699" y="443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ogt-qW-9Qp">
@@ -333,14 +253,25 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZW-og-xgp">
+                                <rect key="frame" x="272" y="426" width="55" height="30"/>
+                                <state key="normal" title="Capture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="yx1-G0-1rC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="c9M-pB-2a3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="1Zw-Ew-mwa"/>
                             <constraint firstAttribute="centerY" secondItem="aPx-I1-kCt" secondAttribute="centerY" id="8Po-Nl-zns"/>
+                            <constraint firstAttribute="centerX" secondItem="HZW-og-xgp" secondAttribute="centerX" id="J1I-sP-vAR"/>
                             <constraint firstItem="30I-OG-dC6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="85" id="Nwy-D5-nbT"/>
                             <constraint firstItem="4hB-et-fzj" firstAttribute="top" secondItem="c9M-pB-2a3" secondAttribute="bottom" constant="11" id="SIe-1L-ZaR"/>
                             <constraint firstItem="30I-OG-dC6" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="51" id="Xec-O7-FuN"/>
+                            <constraint firstItem="HZW-og-xgp" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="111" id="dEK-Xy-LBE"/>
                             <constraint firstItem="c9M-pB-2a3" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="18" id="eiF-c6-IXE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4hB-et-fzj" secondAttribute="trailing" constant="85" id="iUe-1X-NuI"/>
                             <constraint firstAttribute="centerX" secondItem="aPx-I1-kCt" secondAttribute="centerX" id="jUV-Gc-LlR"/>
@@ -353,11 +284,33 @@
                         <outlet property="PausePlay" destination="30I-OG-dC6" id="Xlq-LW-Mjb"/>
                         <outlet property="RestartOutlet" destination="4hB-et-fzj" id="iuO-Nd-AYC"/>
                         <outlet property="SongNameLabel" destination="c9M-pB-2a3" id="zOt-c5-Xbr"/>
+                        <outlet property="captureButton" destination="HZW-og-xgp" id="9yr-Ht-bgO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="-159"/>
+            <point key="canvasLocation" x="671" y="-1039"/>
+        </scene>
+        <!--VideoRecorder-->
+        <scene sceneID="9MP-Ly-Mok">
+            <objects>
+                <viewController title="VideoRecorder" id="z94-ie-x9g" customClass="VideoRecorderViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FP0-RQ-4Mu"/>
+                        <viewControllerLayoutGuide type="bottom" id="f2k-ug-cJV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="08x-XK-r7G">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="returnToDropABeatViewController" id="5r3-Fj-zX7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="arr-gd-Mer" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3291" y="792"/>
         </scene>
         <!--Item-->
         <scene sceneID="EH2-qW-d7v">
@@ -376,7 +329,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWc-OJ-sD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-411" y="1045"/>
+            <point key="canvasLocation" x="-819" y="1869"/>
         </scene>
         <!--Beats And Freestyles View Controller-->
         <scene sceneID="ZPE-oW-0Iy">
@@ -467,7 +420,7 @@
                                                         <constraint firstAttribute="width" constant="302" id="M3O-yC-Ngo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -591,12 +544,12 @@
                     <connections>
                         <outlet property="segmentedController" destination="kGf-7q-KMH" id="FX5-z5-6Yq"/>
                         <outlet property="tableView" destination="utQ-Xc-8fo" id="KY1-EU-ZyP"/>
-                        <segue destination="PKS-Ts-Gkg" kind="push" identifier="DropThisBeat" id="KmW-N2-dJR"/>
+                        <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="hul-Xm-g4y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw8-aV-NJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173" y="1378"/>
+            <point key="canvasLocation" x="957" y="1642"/>
         </scene>
         <!--AddSongMethodViewController-->
         <scene sceneID="DdO-wt-xxZ">
@@ -634,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62w-ST-AQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2100" y="1445"/>
+            <point key="canvasLocation" x="2388" y="1997"/>
         </scene>
         <!--RecordSongViewController-->
         <scene sceneID="QrM-7h-ye0">
@@ -648,6 +601,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haw-QF-1Va">
+                                <rect key="frame" x="251" y="113" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="gRw-gv-ug5" eventType="touchUpInside" id="7Db-Lq-mr7"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAS-yh-UQc">
                                 <rect key="frame" x="206" y="294" width="56" height="30"/>
                                 <state key="normal" title="Play">
@@ -670,32 +632,29 @@
                                 <rect key="frame" x="91" y="184" width="312" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gRw-gv-ug5" id="ntP-T3-oWy"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Your Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4Z-Vi-lqh">
                                 <rect key="frame" x="91" y="150" width="125" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urk-Kf-9fC">
-                                <rect key="frame" x="107" y="402" width="34" height="30"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record Your Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgd-6i-KvO">
                                 <rect key="frame" x="99" y="265" width="141" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haw-QF-1Va">
-                                <rect key="frame" x="251" y="113" width="48" height="30"/>
-                                <state key="normal" title="Cancel">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urk-Kf-9fC">
+                                <rect key="frame" x="131" y="332" width="34" height="30"/>
+                                <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelButton:" destination="gRw-gv-ug5" eventType="touchUpInside" id="7Db-Lq-mr7"/>
+                                    <action selector="saveToParse:" destination="gRw-gv-ug5" eventType="touchUpInside" id="SJv-PP-tat"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -705,11 +664,12 @@
                         <outlet property="beatNameField" destination="Dy6-7W-zYz" id="SeJ-PP-NCD"/>
                         <outlet property="playButton" destination="IAS-yh-UQc" id="u44-9I-IzP"/>
                         <outlet property="recordButton" destination="OJf-5D-fKC" id="I3Y-3g-Z62"/>
+                        <outlet property="saveButton" destination="urk-Kf-9fC" id="gUa-qw-bOn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8G-c4-EoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2873" y="1414"/>
+            <point key="canvasLocation" x="3537" y="1734"/>
         </scene>
         <!--Item-->
         <scene sceneID="9or-Bi-jby">
@@ -728,7 +688,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRR-Un-b7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887" y="545"/>
+            <point key="canvasLocation" x="535" y="473"/>
         </scene>
     </scenes>
     <resources>
@@ -737,6 +697,7 @@
         <image name="people" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KmW-N2-dJR"/>
+        <segue reference="yx1-G0-1rC"/>
+        <segue reference="5r3-Fj-zX7"/>
     </inferredMetricsTieBreakers>
 </document>
