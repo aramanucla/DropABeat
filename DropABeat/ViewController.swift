@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Parse
 import AVKit
+import MediaPlayer
 
 
 //Create a public Selected Song Number
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var captureButton: UIButton!
     override func viewDidLoad() {
         
+        
         captureButton.hidden = true
         
          AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
@@ -43,6 +45,11 @@ class ViewController: UIViewController {
         
         PausePlay.hidden = true
         RestartOutlet.hidden = true
+        
+        
+        
+        
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
         

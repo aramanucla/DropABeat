@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import MobileCoreServices
 import AVFoundation
-
+import Parse
 
 class VideoRecorderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
@@ -19,6 +19,7 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     var captureDevice : AVCaptureDevice?
     
     var imagePicker = UIImagePickerController()
+    var hasPresentedPicker = false
     
     var song: Song?
     
@@ -27,9 +28,9 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     func buttonAction(sender:UIButton!)
     {
         println("The Song is \(song)")
-        
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
         
+        println("AHAHAHAHAHAHAHAHAHAHAHAHAHAH The song name is \(song)")
         
         if(count % 2 == 0){
         imagePicker.startVideoCapture()
@@ -38,7 +39,7 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
         
         else
         {
-            NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:StopCurrentSong])
+            
             imagePicker.stopVideoCapture()
             
         }
@@ -54,6 +55,11 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        if(hasPresentedPicker)
+        {
+            return
+        }
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             
@@ -71,21 +77,21 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             imagePicker.showsCameraControls = true
             
             
-                        var invisibleView = UIView(frame: CGRectMake(40, 40, imagePicker.view.frame.size.height, imagePicker.view.frame.size.height-200))
+                        var invisibleView = UIView(frame: CGRectMake(40, 40, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height-200))
                         view.backgroundColor = UIColor.clearColor()
             
                         imagePicker.cameraOverlayView = invisibleView
             
             
                         let button   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-                        button.frame = CGRectMake(100, 100, 100, 50)
+                        button.frame = CGRectMake(70, 200, 100, 90)
                         button.backgroundColor = UIColor.greenColor()
-                        button.setTitle("Play Beat & Record", forState: UIControlState.Normal)
+                        button.setTitle("Test Button", forState: UIControlState.Normal)
                         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
                         imagePicker.cameraOverlayView?.addSubview(button)
             
-            
-            
+        
+            hasPresentedPicker = true
             self.presentViewController(imagePicker, animated: true, completion: nil)
             
         }
@@ -110,33 +116,75 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     }
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        let tempImage = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
-        let pathString = tempImage.relativePath
-        
-        self.dismissViewControllerAnimated(true, completion: {})
-        
-        
-        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
-        
-    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        let tempImage = info[UIImagePickerControllerMediaURL] as! NSURL!
-        let pathString = tempImage.relativePath
-        self.dismissViewControllerAnimated(true, completion: {
+        let tempVideoURL = info[UIImagePickerControllerMediaURL] as! NSURL!
+        let pathString = tempVideoURL.relativePath
         
+        var videoName = "temp"
+        if let components = tempVideoURL.pathComponents as? [String] {
+            if components.count > 2 {
+                videoName = components[components.count - 2]
+            }
+        }
+        
+        videoName = videoName + ".mov"
+        
+        println("The tempVideo NSURL is \(tempVideoURL)")
+        
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+            
+
+            
         })
         
+        
+        let videoData = NSData(contentsOfURL: tempVideoURL)
+        var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentsDirectory: NSString = paths[0] as! NSString
+        
+        var tempPath: NSString = documentsDirectory.stringByAppendingPathComponent(videoName)
+
+        if let result = videoData?.writeToFile(tempPath as String, atomically: false) {
+            if result {
+                println("Successfully copied video file to \(tempPath)")
+            } else {
+                println("Failed when writing to file")
+            }
+        } else {
+            println("Didn't have video data to write")
+        }
+        
+        let videoObject = PFObject(className: "Video")
+        videoObject["user"] = PFUser.currentUser()
+        videoObject["song"] = self.song
+        videoObject["fileSystemPath"] = videoName
+        
+        videoObject.saveInBackgroundWithBlock { (success, error) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("didAddSong", object: nil)
+
+        }
+        
+        
+        
+        
         UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
+    
+        
+        //Send a notification to BeatsAndFreestylesViewController that didAddSong is now true
+        
         
     }
     
     
         func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     
-            dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(false, completion: { () -> Void in
+                self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+            })
+            
             performSegueWithIdentifier("returnToDropABeatViewController", sender: self)
             
             

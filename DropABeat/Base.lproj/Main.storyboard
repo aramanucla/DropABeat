@@ -304,13 +304,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="show" identifier="returnToDropABeatViewController" id="5r3-Fj-zX7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arr-gd-Mer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3291" y="792"/>
+            <point key="canvasLocation" x="3811" y="-168"/>
         </scene>
         <!--Item-->
         <scene sceneID="EH2-qW-d7v">
@@ -491,6 +488,36 @@
                                             <outlet property="likeButton" destination="XK5-3e-d3k" id="Xi7-Iy-S7W"/>
                                             <outlet property="playPauseButton" destination="0jr-Fc-xZO" id="HBd-LF-VAC"/>
                                             <outlet property="restartButton" destination="HAp-aF-2rm" id="w8c-oj-p8t"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FreestylesTableViewCell" id="fyD-wE-tl5" customClass="FreestylesTableViewCell" customModule="DropABeat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="561" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fyD-wE-tl5" id="LCN-Vf-jDx">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jtA-lF-hmV">
+                                                    <rect key="frame" x="20" y="8" width="31" height="53"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTH-5c-KBq">
+                                                    <rect key="frame" x="85" y="16" width="441" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="BTH-5c-KBq" secondAttribute="bottom" constant="24" id="5RK-ac-X4M"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BTH-5c-KBq" secondAttribute="trailing" constant="27" id="5be-Lu-kXZ"/>
+                                                <constraint firstItem="BTH-5c-KBq" firstAttribute="leading" secondItem="jtA-lF-hmV" secondAttribute="trailing" constant="34" id="GzH-e3-g4d"/>
+                                                <constraint firstItem="jtA-lF-hmV" firstAttribute="bottom" secondItem="LCN-Vf-jDx" secondAttribute="bottomMargin" id="Qz1-qK-hbN"/>
+                                                <constraint firstItem="jtA-lF-hmV" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leadingMargin" constant="12" id="cnW-rd-Ikr"/>
+                                                <constraint firstItem="BTH-5c-KBq" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leadingMargin" constant="77" id="n8P-yO-k10"/>
+                                                <constraint firstItem="jtA-lF-hmV" firstAttribute="top" secondItem="LCN-Vf-jDx" secondAttribute="topMargin" id="rM0-mO-31Q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="songTitleLabel" destination="BTH-5c-KBq" id="4IC-EI-H8h"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -697,7 +724,6 @@
         <image name="people" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yx1-G0-1rC"/>
-        <segue reference="5r3-Fj-zX7"/>
+        <segue reference="hul-Xm-g4y"/>
     </inferredMetricsTieBreakers>
 </document>
