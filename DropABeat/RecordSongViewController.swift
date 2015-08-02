@@ -154,6 +154,7 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         songObject["SongFile"] = songFile
         
         songObject.saveInBackground()
+        
     }
 
     /*

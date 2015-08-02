@@ -14,7 +14,6 @@ class LikeHelper
 {
     
     
-    
     static func likeSong(user: PFUser, song: Song) {
         
         song.incrementKey("numberOfLikes", byAmount: 1)
@@ -24,7 +23,9 @@ class LikeHelper
         likeObject["fromUser"] = user
         likeObject["toSong"] = song
         
-        likeObject.saveInBackgroundWithBlock(nil)
+        likeObject.saveInBackgroundWithBlock() { (success: Bool, error: NSError?) -> Void in
+                
+        }
     }
     
     static func unlikePost(user: PFUser, song: Song) {
@@ -36,7 +37,7 @@ class LikeHelper
         query.whereKey("fromUser", equalTo: user)
         query.whereKey("toSong", equalTo: song)
         
-        query.findObjectsInBackgroundWithBlock {
+        query.findObjectsInBackgroundWithBlock() {
             (results: [AnyObject]?, error: NSError?) -> Void in
             
             if let results = results as? [PFObject] {
@@ -51,7 +52,6 @@ class LikeHelper
     
         if(cell.song?.user == PFUser.currentUser()!)
         {
-            println("this is a song that i made")
             cell.likeButton.hidden = true
         }
         
@@ -107,6 +107,7 @@ class LikeHelper
             {
                 likes = []
                 cell.likeButton.selected = true
+                println("Changed it to \(cell.likeButton.selected)")
             }
             
         }
@@ -121,3 +122,4 @@ class LikeHelper
     
     
 }
+

@@ -13,6 +13,8 @@ class FreestylesTableViewCell: UITableViewCell {
     var pathString: String?
     
     
+    
+    @IBOutlet weak var videoThumbnail: UIImageView!
    
     @IBOutlet weak var songTitleLabel: UILabel!
     

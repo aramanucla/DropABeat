@@ -11,7 +11,22 @@ import Parse
 
 class BeatsTableViewCell: UITableViewCell {
 
-    var song: Song?
+    var song: Song! {
+        didSet {
+            if song.user! == PFUser.currentUser()! {
+                self.likeButton.hidden = true
+                self.likeButton.selected = false
+            } else {
+                self.likeButton.hidden = false
+                self.likeButton.selected = true
+            }
+            
+            if let songLabel = song.objectForKey("SongName") as? String {
+                self.SongTitleLabel.text = songLabel
+               // self.uploadedByUser.text = "Uploaded by \(song.user?.username)"
+            }
+        }
+    }
     
     var delegate: reloadDataDelegate!
     
@@ -25,6 +40,7 @@ class BeatsTableViewCell: UITableViewCell {
     @IBOutlet weak var playPauseButton: UIButton!
     
     
+    @IBOutlet weak var uploadedByUser: UILabel!
     
     
     @IBAction func RestartButtonTapped(sender: AnyObject) {

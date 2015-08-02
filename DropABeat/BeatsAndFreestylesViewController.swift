@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import MediaPlayer
+import AVFoundation
 
 class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
@@ -27,6 +28,8 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     var oldEndCount: Int = 0
     
     var moviePlayerController: MPMoviePlayerController!
+    
+    var uploadedByUsersArray = [String]()
     
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
@@ -49,9 +52,14 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     override func viewWillAppear(animated: Bool)
     {
-        //Set up a listener for didAddSong
+        self.songsArray = []
+        
+        //Set up a listener for didAddSong a.k.a when a video was added
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setDidAddSongToTrue:", name: "didAddSong", object: nil)
         
+        
+        
+        //Adds video at fileSystemPath to stringsOfVideoPaths Array
         
         if(didViewAppear || didAddSong){
             var videoQuery = PFQuery(className: "Video")
@@ -75,25 +83,11 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
                         
                         if let song = videos[self.oldEndCount]["song"] as? PFObject{
                             var title = song["SongName"] as? String
-                            println("title is \(title)")
                             self.myFreestyleSongNames.append(title!)
-                            println("my Freestyle song names are \(self.myFreestyleSongNames)")
                         }
                     }
                     
                     
-                    //                for video in videos {
-                    //                    if let song = video["song"] as? PFObject {
-                    //                        var title = song["SongName"] as? String
-                    //                        println("title is \(title)")
-                    //
-                    //
-                    //
-                    //                        self.myFreestyleSongNames.append(title!)
-                    //
-                    //                        println("my Freestyle song names are \(self.myFreestyleSongNames)")
-                    //                    }
-                    //                }
                 }
                 
                 self.oldEndCount = self.myFreestyleSongNames.count
@@ -114,7 +108,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     
     
-    
+    //To requery the videos if a video was added
     func setDidAddSongToTrue(notification: NSNotification)
     {
         self.didAddSong = true
@@ -122,61 +116,91 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
         tableView.reloadData()
     }
     
+    
     func loadFavorites()
     {
         
-        var likedSongCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
-            self.myBeats = songArray as! [PFObject]
-            for like in self.myBeats {
-                
-                let index = find(self.songsArray, like.objectForKey("toSong") as! Song)
-                
-                if(index == nil)
-                {
-                    self.songsArray.append(like.objectForKey("toSong") as! Song)
-                }
-                
-            }
-            self.tableView.reloadData()
-        }
         
         var mySongCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
-            self.myPublishedBeats = songArray as! [PFObject]
-            for song in self.myPublishedBeats {
-                
-                let index = find(self.songsArray, song as! Song)
-                
-                if(index == nil)
+            if let songList = songArray as? [Song]
+            {
+                for song in songList
                 {
-                    self.songsArray.append(song as! Song)
+                    self.songsArray.append(song)
+                    // self.uploadedByUsersArray.append("you")
                 }
                 
+                
             }
+            
+            
             self.tableView.reloadData()
         }
         
-        self.findFavorites(likedSongCompletionBlock, mySongCompletionBlock: mySongCompletionBlock)
+        
+        var likedSongCompletionBlock = { (likeArray: [AnyObject]?, error: NSError?) -> Void in
+            if let likesList = likeArray as? [PFObject] {
+                
+                for like in likesList {
+                    println(like)
+                    let song = like.objectForKey("toSong") as? Song
+                    if let foundSong = song {
+                        println(foundSong)
+                        self.songsArray.append(foundSong)
+                        println(self.songsArray.count)
+                    }
+                }
+                
+                var mySongQuery = PFQuery(className: "Song").whereKey("user", equalTo: PFUser.currentUser()!)
+                mySongQuery.findObjectsInBackgroundWithBlock(mySongCompletionBlock)
+//                
+//                println(likesList)
+//                println("Successfully downloaded")
+//                self.songsArray = songs
+                self.tableView.reloadData()
+            }
+//            for like in self.myBeats {
+//                
+//                //Check to see if the song is already in the songsArray, if it is, dont append it to the array
+//                
+//                let index = find(self.songsArray, like.objectForKey("toSong") as! Song)
+//                
+//                if(index == nil)
+//                {
+//                    println("Here")
+//                    let song = like.objectForKey("toSong") as! Song
+//                    self.songsArray.append(song)
+//                    
+//                    let uploadingUser = song.user?.username
+//                 //   self.uploadedByUsersArray.append(uploadingUser!)
+//                    
+//                    
+//                    
+//               
+//                    
+//                } else {
+//                    println("There")
+//                }
+//                
+//            }
+//            self.tableView.reloadData()
+        }
+        
+        
+        
+        self.findFavorites(likedSongCompletionBlock)
         
     }
     
-    func findFavorites(likedSongCompletionBlock: PFArrayResultBlock, mySongCompletionBlock: PFArrayResultBlock)
+    func findFavorites(likedSongCompletionBlock: PFArrayResultBlock)
     {
-        
+        println("Making query")
         var favoriteSongQuery = PFQuery(className: "Like").whereKey("fromUser", equalTo: PFUser.currentUser()!)
         
         favoriteSongQuery.includeKey("toSong")
         
         
-        var mySongQuery = PFQuery(className: "Song").whereKey("user", equalTo: PFUser.currentUser()!)
         
-        mySongQuery.findObjectsInBackgroundWithBlock(mySongCompletionBlock)
-        
-        //        var songQuery = PFQuery(className: "Song").whereKey("objectId", matchesKey: "toSong", inQuery: favoriteSongQuery)
-        
-        
-        //        filteredSongQuery.orderByAscending
-        //        filteredSongQuery.limit = 20
-        //
         favoriteSongQuery.findObjectsInBackgroundWithBlock(likedSongCompletionBlock)
         
     }
@@ -188,6 +212,15 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
         
         tableView.reloadData()
     }
+    
+    func reloadToAddLike(song: Song)
+    {
+        self.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
+    
+
     
     
     @IBAction func changeTableView(sender: AnyObject) {
@@ -218,7 +251,6 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
             
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeatsTableViewCell
             
-            println(cell.song)
             
             upcoming.song = cell.song!
             
@@ -247,15 +279,33 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("BeatsTableViewCell") as! BeatsTableViewCell
             
-            // let song = myBeats[indexPath.row].objectForKey("toSong") as? Song
-            
             let song = songsArray[indexPath.row]
+            
+//            cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
             
             cell.song = song
             
-            cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
             
-            LikeHelper.shouldLikeBeRed(cell, user: PFUser.currentUser()!, song: cell.song!)
+            
+            
+            
+            println(cell.likeButton.selected)
+            
+            println("The number of items in uploadedByUsersArray is \(uploadedByUsersArray.count)")
+            println("the indexpath.row of this row is \(indexPath.row)")
+            
+           // cell.uploadedByUser.text = "Uploaded by" + self.uploadedByUsersArray[indexPath.row]
+            
+            
+//            if(cell.song?.user == PFUser.currentUser()!)
+//            {
+//                cell.likeButton.hidden = true
+//            }
+//            
+//            else
+//            {
+//                cell.likeButton.selected = true
+//            }
             
             cell.delegate = self
             
@@ -271,7 +321,30 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             
             cell.songTitleLabel.text = myFreestyleSongNames[indexPath.row]
-            println(indexPath.row)
+            
+            var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+            var documentsDirectory: NSString = paths[0] as! NSString
+            
+            var videoPath: String = documentsDirectory.stringByAppendingPathComponent(stringsOfVideoPaths[indexPath.row])
+            
+            var url = NSURL(fileURLWithPath: videoPath)
+            
+            
+            var asset : AVURLAsset = AVURLAsset.assetWithURL(url) as! AVURLAsset
+            
+            var generator = AVAssetImageGenerator(asset: asset)
+            
+            
+            
+            let time = CMTimeMakeWithSeconds(1.0, 1)
+            var actualTime : CMTime = CMTimeMake(0, 0)
+            var error : NSError?
+            let myImage = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
+            
+            var curUIImage = UIImage(CGImage: myImage)
+            
+            cell.videoThumbnail.image = curUIImage ?? UIImage()
+
             
             return cell
         }
@@ -282,11 +355,11 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
         
         if(segmentedController.selectedSegmentIndex == 0)
         {
+            println(songsArray.count)
             return songsArray.count
         }
         else
         {
-            println("hi \(self.myFreestyleSongNames.count)")
             return self.myFreestyleSongNames.count
         }
     }
@@ -319,6 +392,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             var reloadDataCompletionBlock = {(success: Bool, error: NSError?)->Void in
                 self.songsArray.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                self.viewWillAppear(true)
                 tableView.reloadData()}
             
             var findSongCompletionBlock = {(results: [AnyObject]?, error: NSError?) -> Void in
