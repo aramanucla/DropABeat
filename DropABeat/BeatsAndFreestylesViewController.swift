@@ -29,7 +29,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     var moviePlayerController: MPMoviePlayerController!
     
-    var uploadedByUserArray = [String]()
+  //  var uploadedByUserArray = [String]()
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -126,7 +126,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
                 for song in songList
                 {
                     self.songsArray.append(song)
-                    self.uploadedByUserArray.append("you")
+                    //self.uploadedByUserArray.append("you")
                 }
                 
                 
@@ -146,45 +146,16 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
                     if let foundSong = song {
                         println(foundSong)
                         self.songsArray.append(foundSong)
-                        let uploadedByUser = foundSong.user?.username
-                        self.uploadedByUserArray.append(uploadedByUser!)
+                       // let uploadedByUser = foundSong.user?.username
+                       // self.uploadedByUserArray.append(uploadedByUser!)
                         println(self.songsArray.count)
                     }
                 }
                 
                 var mySongQuery = PFQuery(className: "Song").whereKey("user", equalTo: PFUser.currentUser()!)
                 mySongQuery.findObjectsInBackgroundWithBlock(mySongCompletionBlock)
-//                
-//                println(likesList)
-//                println("Successfully downloaded")
-//                self.songsArray = songs
                 self.tableView.reloadData()
             }
-//            for like in self.myBeats {
-//                
-//                //Check to see if the song is already in the songsArray, if it is, dont append it to the array
-//                
-//                let index = find(self.songsArray, like.objectForKey("toSong") as! Song)
-//                
-//                if(index == nil)
-//                {
-//                    println("Here")
-//                    let song = like.objectForKey("toSong") as! Song
-//                    self.songsArray.append(song)
-//                    
-//                    let uploadingUser = song.user?.username
-//                 //   self.uploadedByUsersArray.append(uploadingUser!)
-//                    
-//                    
-//                    
-//               
-//                    
-//                } else {
-//                    println("There")
-//                }
-//                
-//            }
-//            self.tableView.reloadData()
         }
         
         
@@ -282,33 +253,11 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             let song = songsArray[indexPath.row]
             
-            cell.uploadedByUser.text = "Uploaded by " + uploadedByUserArray[indexPath.row]
+           // cell.uploadedByUser.text = "Uploaded by " + uploadedByUserArray[indexPath.row]
             
-//            cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
             
+            //REMEMBER HERE THAT I HAVE A DIDSET FOR CELL.SONG THAT SETS THE LIKE BUTTON TO HIDDEN/SELECTED
             cell.song = song
-            
-            
-            
-            
-            
-            println(cell.likeButton.selected)
-            
-            
-            println("the indexpath.row of this row is \(indexPath.row)")
-            
-           // cell.uploadedByUser.text = "Uploaded by" + self.uploadedByUsersArray[indexPath.row]
-            
-            
-//            if(cell.song?.user == PFUser.currentUser()!)
-//            {
-//                cell.likeButton.hidden = true
-//            }
-//            
-//            else
-//            {
-//                cell.likeButton.selected = true
-//            }
             
             cell.delegate = self
             

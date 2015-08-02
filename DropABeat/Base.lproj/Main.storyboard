@@ -32,11 +32,11 @@
                                     <outlet property="delegate" destination="GSs-4O-hMb" id="D34-rY-JZf"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E4b-wB-tL6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E4b-wB-tL6">
                                 <rect key="frame" x="16" y="112" width="568" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongSearchCell" rowHeight="77" id="ceF-FK-I7b" userLabel="SongSearchTableViewCell" customClass="SongSearchTableViewCell" customModule="DropABeat" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongSearchCell" rowHeight="120" id="ceF-FK-I7b" userLabel="SongSearchTableViewCell" customClass="SongSearchTableViewCell" customModule="DropABeat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ceF-FK-I7b" id="jU6-bc-kRD">
@@ -71,8 +71,12 @@
                                                         <action selector="RestartButtonTapped:" destination="ceF-FK-I7b" eventType="touchUpInside" id="THd-hg-wfu"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
-                                                    <rect key="frame" x="256" y="29" width="34" height="28"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-F8-Tp5">
+                                                    <rect key="frame" x="466" y="16" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="dwU-lT-v76"/>
+                                                        <constraint firstAttribute="width" constant="44" id="ocI-ql-7OL"/>
+                                                    </constraints>
                                                     <state key="normal" image="heart">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -81,11 +85,20 @@
                                                         <action selector="likeSong:" destination="ceF-FK-I7b" eventType="touchUpInside" id="bSc-DP-8Lw"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFq-kL-kuf">
+                                                    <rect key="frame" x="20" y="77" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DRs-F8-Tp5" firstAttribute="leading" secondItem="JKK-Zd-llB" secondAttribute="trailing" constant="135" id="1EI-g5-ywi"/>
                                                 <constraint firstItem="bRu-e8-5XC" firstAttribute="top" secondItem="7ho-99-qS6" secondAttribute="bottom" constant="3" id="1ju-XU-Q0x"/>
+                                                <constraint firstItem="PFq-kL-kuf" firstAttribute="leading" secondItem="jU6-bc-kRD" secondAttribute="leadingMargin" constant="12" id="34L-cN-V8C"/>
                                                 <constraint firstItem="JKK-Zd-llB" firstAttribute="top" secondItem="7ho-99-qS6" secondAttribute="bottom" constant="3" id="8Xe-9a-aBD"/>
+                                                <constraint firstAttribute="centerY" secondItem="DRs-F8-Tp5" secondAttribute="centerY" id="BYW-2W-ZF1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="PFq-kL-kuf" secondAttribute="bottom" constant="13" id="K4X-fT-Tts"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7ho-99-qS6" secondAttribute="trailing" constant="80" id="MHU-cv-BN6"/>
                                                 <constraint firstItem="DRs-F8-Tp5" firstAttribute="top" secondItem="jU6-bc-kRD" secondAttribute="topMargin" constant="9" id="OI6-Wm-aCV"/>
                                                 <constraint firstItem="DRs-F8-Tp5" firstAttribute="top" secondItem="jU6-bc-kRD" secondAttribute="topMargin" constant="21" id="PpL-LY-thz"/>
@@ -99,13 +112,18 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="DRs-F8-Tp5" secondAttribute="bottom" constant="10" id="b0R-5b-e3z"/>
                                                 <constraint firstItem="7ho-99-qS6" firstAttribute="top" secondItem="jU6-bc-kRD" secondAttribute="topMargin" constant="9" id="b1q-sC-QfS"/>
                                                 <constraint firstItem="bRu-e8-5XC" firstAttribute="leading" secondItem="jU6-bc-kRD" secondAttribute="leadingMargin" constant="9" id="fTx-Ku-uhI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DRs-F8-Tp5" secondAttribute="trailing" constant="50" id="pas-T8-nGx"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="Rcm-pS-zqM"/>
+                                                    <exclude reference="XbH-VP-NbC"/>
+                                                    <exclude reference="1EI-g5-ywi"/>
                                                     <exclude reference="OI6-Wm-aCV"/>
+                                                    <exclude reference="PpL-LY-thz"/>
                                                     <exclude reference="QgF-UH-25Z"/>
                                                     <exclude reference="VVR-g6-AEc"/>
+                                                    <exclude reference="Vo7-QE-VCy"/>
                                                     <exclude reference="b0R-5b-e3z"/>
                                                 </mask>
                                             </variation>
@@ -115,6 +133,7 @@
                                             <outlet property="likeButton" destination="DRs-F8-Tp5" id="Q6K-8T-A4T"/>
                                             <outlet property="playPauseButton" destination="bRu-e8-5XC" id="iMY-WV-Lad"/>
                                             <outlet property="restartButton" destination="JKK-Zd-llB" id="ne0-Of-G4Y"/>
+                                            <outlet property="uploadedByUser" destination="PFq-kL-kuf" id="ERM-hb-qox"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -815,6 +834,6 @@
         <image name="people" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hul-Xm-g4y"/>
+        <segue reference="POQ-2x-RwS"/>
     </inferredMetricsTieBreakers>
 </document>

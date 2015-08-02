@@ -21,12 +21,23 @@ class SongSearchTableViewCell: UITableViewCell
     
     @IBOutlet weak var SongTitleLabel: UILabel!
     
+    @IBOutlet weak var uploadedByUser: UILabel!
     
     @IBOutlet weak var restartButton: UIButton!
     
     @IBOutlet weak var playPauseButton: UIButton!
     
-    var song: Song?
+    var song: Song?{
+        didSet{
+            if let songLabel = song!.objectForKey("SongName") as? String {
+                self.SongTitleLabel.text = songLabel
+                
+                if let username = song!.user?.username!{
+                    self.uploadedByUser.text = "Uploaded by " + username
+                }
+            }
+        }
+    }
     
     @IBAction func RestartButtonTapped(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song!, userInfo: [SongPlayStateKey:Restart])

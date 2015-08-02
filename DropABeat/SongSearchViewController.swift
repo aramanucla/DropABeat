@@ -17,8 +17,9 @@ public var searchAudioPlayer = AVPlayer()
 
 class SongSearchViewController: UIViewController {
     
-    var songs: [PFObject] = []
+    var songs: [Song] = []
     
+  //  var uploadedByUserArray = [String]()
     
     var likes: [PFObject]? = []
 
@@ -60,7 +61,14 @@ class SongSearchViewController: UIViewController {
     func loadSongs()
     {
         var completionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
-            self.songs = songArray as! [PFObject]
+            self.songs = songArray as! [Song]
+            
+//            for song in self.songs{
+//                if let username = song.user?.username!{
+//           // self.uploadedByUserArray.append(username)
+//                }
+//            }
+            
             self.TableView.reloadData()
         }
         self.searchUsers(SearchBar.text, completionBlock: completionBlock)
@@ -78,7 +86,7 @@ class SongSearchViewController: UIViewController {
         var filteredSongQuery = PFQuery(className: "Song")
             .whereKey("SongName",
                 matchesRegex: searchText, modifiers: "i")
-        
+        filteredSongQuery.includeKey("user")
         
         if(segmentedControl.selectedSegmentIndex == 1){
         filteredSongQuery.orderByDescending("createdAt")
@@ -133,13 +141,15 @@ extension SongSearchViewController: UITableViewDataSource {
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("SongSearchCell") as! SongSearchTableViewCell
         
-        let song = songs[indexPath.row] as? Song
+        let song = songs[indexPath.row]
         
+       // cell.uploadedByUser.text = "Uploaded by " + self.uploadedByUserArray[indexPath.row]
+            
         cell.song = song
         
-        cell.SongTitleLabel.text = song!.objectForKey("SongName") as? String
+       // cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
         
-        cell.playPauseButton.tag = indexPath.row
+       // cell.playPauseButton.tag = indexPath.row
         
         
         LikeHelper.shouldLikeBeRed(cell, user: PFUser.currentUser()!, song: cell.song!)
