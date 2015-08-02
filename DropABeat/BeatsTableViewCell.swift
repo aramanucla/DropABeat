@@ -23,7 +23,6 @@ class BeatsTableViewCell: UITableViewCell {
             
             if let songLabel = song.objectForKey("SongName") as? String {
                 self.SongTitleLabel.text = songLabel
-               // self.uploadedByUser.text = "Uploaded by \(song.user?.username)"
             }
         }
     }

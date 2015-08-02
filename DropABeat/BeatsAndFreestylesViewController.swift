@@ -29,8 +29,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
     
     var moviePlayerController: MPMoviePlayerController!
     
-    var uploadedByUsersArray = [String]()
-    
+    var uploadedByUserArray = [String]()
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -127,7 +126,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
                 for song in songList
                 {
                     self.songsArray.append(song)
-                    // self.uploadedByUsersArray.append("you")
+                    self.uploadedByUserArray.append("you")
                 }
                 
                 
@@ -147,6 +146,8 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
                     if let foundSong = song {
                         println(foundSong)
                         self.songsArray.append(foundSong)
+                        let uploadedByUser = foundSong.user?.username
+                        self.uploadedByUserArray.append(uploadedByUser!)
                         println(self.songsArray.count)
                     }
                 }
@@ -198,7 +199,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
         var favoriteSongQuery = PFQuery(className: "Like").whereKey("fromUser", equalTo: PFUser.currentUser()!)
         
         favoriteSongQuery.includeKey("toSong")
-        
+        favoriteSongQuery.includeKey("toSong.user")
         
         
         favoriteSongQuery.findObjectsInBackgroundWithBlock(likedSongCompletionBlock)
@@ -281,6 +282,8 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             let song = songsArray[indexPath.row]
             
+            cell.uploadedByUser.text = "Uploaded by " + uploadedByUserArray[indexPath.row]
+            
 //            cell.SongTitleLabel.text = song.objectForKey("SongName") as? String
             
             cell.song = song
@@ -291,7 +294,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             println(cell.likeButton.selected)
             
-            println("The number of items in uploadedByUsersArray is \(uploadedByUsersArray.count)")
+            
             println("the indexpath.row of this row is \(indexPath.row)")
             
            // cell.uploadedByUser.text = "Uploaded by" + self.uploadedByUsersArray[indexPath.row]
