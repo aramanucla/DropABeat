@@ -11,8 +11,9 @@ import Parse
 import MediaPlayer
 import AVFoundation
 
-class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
+class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, presentShareActionSheetDelegate {
     
+    var indexPathForSelectedMoreButton: NSIndexPath?
     
     var stringsOfVideoPaths: [String] = []
     
@@ -114,6 +115,20 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
         self.viewWillAppear(true)
         tableView.reloadData()
     }
+    
+    //Delegate function of BeatsTableViewCell
+    func showReportOptions(cell: BeatsTableViewCell)
+    {
+        indexPathForSelectedMoreButton = self.tableView.indexPathForCell(cell)
+        self.performSegueWithIdentifier("showMoreReportOptions", sender: self)
+        
+    }
+    
+    func presentActionSheet(actionSheet: UIAlertController) -> Void
+    {
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
     
     
     func loadFavorites()
@@ -230,6 +245,22 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate {
             self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
             
         }
+        
+        if (segue.identifier == "showReportOptions")
+        {
+            var upcoming: ReportSongViewController = segue.destinationViewController as! ReportSongViewController
+            
+            
+            
+            let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! SongSearchTableViewCell
+            
+            upcoming.song = cell.song!
+            
+            self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+            
+            indexPathForSelectedMoreButton = nil
+        }
+
     }
     
     
@@ -270,7 +301,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             let cell = tableView.dequeueReusableCellWithIdentifier("FreestylesTableViewCell") as! FreestylesTableViewCell
             
             // let song = myBeats[indexPath.row].objectForKey("toSong") as? Song
-            
+            cell.delegate = self
             
             cell.songTitleLabel.text = myFreestyleSongNames[indexPath.row]
             
