@@ -53,6 +53,7 @@ class LikeHelper
         if(cell.song?.user == PFUser.currentUser()!)
         {
             cell.likeButton.hidden = true
+            
         }
         
         else

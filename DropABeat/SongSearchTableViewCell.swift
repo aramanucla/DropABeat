@@ -35,6 +35,18 @@ class SongSearchTableViewCell: UITableViewCell
         didSet{
             LikeHelper.shouldLikeBeRed(self, user: PFUser.currentUser()!, song: song!)
             
+            
+            //Put this in the didSet of Snog
+            if let theUsersWhoReportedThisSong = song?.usersWhoReportedSong{
+                for user in theUsersWhoReportedThisSong{
+                    if (user == PFUser.currentUser())
+                    {
+                        userHasNotReportedThisSong = false
+                    }
+                }
+            }
+            
+            
             if let songLabel = song!.objectForKey("SongName") as? String {
                 self.SongTitleLabel.text = songLabel
                 
@@ -84,9 +96,9 @@ class SongSearchTableViewCell: UITableViewCell
         }
         
         
-//        if(userHasNotReportedThisSong){
+        if(userHasNotReportedThisSong){
         myActionSheet.addAction(reportButtonAction)
-//        }
+        }
         myActionSheet.addAction(shareButtonAction)
         myActionSheet.addAction(cancelButtonAction)
         
@@ -106,15 +118,7 @@ class SongSearchTableViewCell: UITableViewCell
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
         restartButton.hidden = true
         
-//        
-//        if let theUsersWhoReportedSongs = song?.usersWhoReportedSong{
-//        for user in theUsersWhoReportedSongs{
-//            if (user == PFUser.currentUser())
-//            {
-//                userHasNotReportedThisSong = false
-//            }
-//        }
-//        }
+        
         
     }
     

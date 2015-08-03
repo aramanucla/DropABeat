@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5A1C73AA-84A8-4DAE-ACCB-F98DAF7740F1</string>
 	<key>IDESourceControlProjectName</key>
-	<string>DropABeat</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>F7A9DC0120BCA31392E91637F3C5DC25E574D895</key>
 		<string>https://bitbucket.org/alexraman/dropabeat.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DropABeat.xcodeproj</string>
+	<string>DropABeat.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F7A9DC0120BCA31392E91637F3C5DC25E574D895</key>
