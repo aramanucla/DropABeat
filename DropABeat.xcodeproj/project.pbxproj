@@ -59,6 +59,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E5DE46BF1B6FF94F00F65478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62EAE5DC1AD82A000069D0EC;
+			remoteInfo = ConvenienceKit;
+		};
+		E5DE46C11B6FF94F00F65478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62EAE5E71AD82A000069D0EC;
+			remoteInfo = ConvenienceKitTests;
+		};
+		E5DE46C31B6FF94F00F65478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62EAE65C1AD844C90069D0EC;
+			remoteInfo = ConvenienceKitApp;
+		};
+		E5DE46D11B6FFF5300F65478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 62EAE5DB1AD82A000069D0EC;
+			remoteInfo = ConvenienceKit;
+		};
 		E5F78F131B4D97860030DD2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E5F78EF21B4D97850030DD2B /* Project object */;
@@ -96,6 +124,7 @@
 		E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSongViewController.swift; sourceTree = "<group>"; };
 		E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSongTableViewCell.swift; sourceTree = "<group>"; };
 		E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTableViewCell.swift; sourceTree = "<group>"; };
+		E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConvenienceKit.xcodeproj; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ConvenienceKit/ConvenienceKit/ConvenienceKit.xcodeproj"; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +209,16 @@
 				E55FDAF41B55C28100F23278 /* Song.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E5DE46BA1B6FF94F00F65478 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5DE46C01B6FF94F00F65478 /* ConvenienceKit.framework */,
+				E5DE46C21B6FF94F00F65478 /* ConvenienceKitTests.xctest */,
+				E5DE46C41B6FF94F00F65478 /* ConvenienceKitApp.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E5F78EF11B4D97850030DD2B = {
@@ -274,6 +313,7 @@
 		E5F78F871B4E1C270030DD2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */,
 				E57B183F1B603E06004FF7E2 /* libc++.dylib */,
 				E5F78F651B4E1A8E0030DD2B /* Bolts.framework */,
 				E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */,
@@ -312,6 +352,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E5DE46D21B6FFF5300F65478 /* PBXTargetDependency */,
 			);
 			name = DropABeat;
 			productName = DropABeat;
@@ -366,6 +407,12 @@
 			mainGroup = E5F78EF11B4D97850030DD2B;
 			productRefGroup = E5F78EFB1B4D97850030DD2B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E5DE46BA1B6FF94F00F65478 /* Products */;
+					ProjectRef = E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E5F78EF91B4D97850030DD2B /* DropABeat */,
@@ -373,6 +420,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E5DE46C01B6FF94F00F65478 /* ConvenienceKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ConvenienceKit.framework;
+			remoteRef = E5DE46BF1B6FF94F00F65478 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5DE46C21B6FF94F00F65478 /* ConvenienceKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ConvenienceKitTests.xctest;
+			remoteRef = E5DE46C11B6FF94F00F65478 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E5DE46C41B6FF94F00F65478 /* ConvenienceKitApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ConvenienceKitApp.app;
+			remoteRef = E5DE46C31B6FF94F00F65478 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E5F78EF81B4D97850030DD2B /* Resources */ = {
@@ -439,6 +510,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E5DE46D21B6FFF5300F65478 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ConvenienceKit;
+			targetProxy = E5DE46D11B6FFF5300F65478 /* PBXContainerItemProxy */;
+		};
 		E5F78F141B4D97860030DD2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E5F78EF91B4D97850030DD2B /* DropABeat */;
