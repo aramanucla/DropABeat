@@ -16,6 +16,10 @@ class SongSearchTableViewCell: UITableViewCell
 {
     // var tag = 0
     
+    var delegate: presentActionSheetDelegate!
+    
+    
+    var userHasNotReportedThisSong: Bool = true
     
     @IBOutlet weak var likeButton: UIButton!
     
@@ -29,6 +33,8 @@ class SongSearchTableViewCell: UITableViewCell
     
     var song: Song?{
         didSet{
+            LikeHelper.shouldLikeBeRed(self, user: PFUser.currentUser()!, song: song!)
+            
             if let songLabel = song!.objectForKey("SongName") as? String {
                 self.SongTitleLabel.text = songLabel
                 
@@ -36,6 +42,7 @@ class SongSearchTableViewCell: UITableViewCell
                     self.uploadedByUser.text = "Uploaded by " + username
                 }
             }
+            
         }
     }
     
@@ -43,12 +50,71 @@ class SongSearchTableViewCell: UITableViewCell
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song!, userInfo: [SongPlayStateKey:Restart])
     }
     
+    
+    @IBAction func moreButtonTapped(sender: AnyObject) {
+        
+        //An Action Sheet that lets you choose to report/share a song
+        var myActionSheet: UIAlertController = UIAlertController(title: nil, message: "Choose an option", preferredStyle: UIAlertControllerStyle.ActionSheet)
+
+        
+        /**********************Creates Action Sheet**********************/
+        
+        let reportButtonAction = UIAlertAction(title: "Report", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
+            println("report button tapped")
+            
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! SongSearchTableViewCell
+            
+            self.delegate.showReportOptions(cell)
+            
+            
+            
+        }
+        
+        
+        let shareButtonAction = UIAlertAction(title: "Share", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
+            println("Share button tapped")
+            
+        }
+        
+        let cancelButtonAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
+            println("Cancel button tapped")
+            
+        }
+        
+        
+//        if(userHasNotReportedThisSong){
+        myActionSheet.addAction(reportButtonAction)
+//        }
+        myActionSheet.addAction(shareButtonAction)
+        myActionSheet.addAction(cancelButtonAction)
+        
+
+        
+
+        //Delegate is songSearchViewController
+        delegate.presentActionSheet(myActionSheet)
+    }
+    
+    
+    
+    
     override func awakeFromNib() {
         SongPlayer.sharedInstance.queryAllSongs()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
         restartButton.hidden = true
         
+//        
+//        if let theUsersWhoReportedSongs = song?.usersWhoReportedSong{
+//        for user in theUsersWhoReportedSongs{
+//            if (user == PFUser.currentUser())
+//            {
+//                userHasNotReportedThisSong = false
+//            }
+//        }
+//        }
         
     }
     
@@ -115,4 +181,8 @@ class SongSearchTableViewCell: UITableViewCell
     
 }
 
-
+protocol presentActionSheetDelegate
+{
+    func presentActionSheet(actionSheet: UIAlertController) -> Void
+    func showReportOptions(cell: SongSearchTableViewCell)->Void
+}

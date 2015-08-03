@@ -19,6 +19,8 @@ class Song: PFObject, PFSubclassing, Equatable
     @NSManaged var SongFile: PFFile?
     @NSManaged var SongName: String?
     @NSManaged var user: PFUser?
+    @NSManaged var usersWhoReportedSong: [PFUser]
+    
     
     static func parseClassName() -> String
     {

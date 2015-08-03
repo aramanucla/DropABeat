@@ -15,7 +15,11 @@ import AVFoundation
 public var searchAudioPlayer = AVPlayer()
 
 
-class SongSearchViewController: UIViewController {
+class SongSearchViewController: UIViewController, presentActionSheetDelegate {
+    
+    //Only to pass the indexPath of the more button pressed form the table view cell class to this class
+    var indexPathForSelectedMoreButton: NSIndexPath?
+    
     
     var songs: [Song] = []
     
@@ -106,6 +110,18 @@ class SongSearchViewController: UIViewController {
         return filteredSongQuery
     }
     
+    //To present the action sheet (delegate function of songSearchTableViewCell
+    func presentActionSheet(actionSheet: UIAlertController) -> Void
+    {
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showReportOptions(cell: SongSearchTableViewCell)
+    {
+        indexPathForSelectedMoreButton = TableView.indexPathForCell(cell)
+        self.performSegueWithIdentifier("showReportOptions", sender: self)
+        
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -124,8 +140,28 @@ class SongSearchViewController: UIViewController {
             
             self.TableView.deselectRowAtIndexPath(indexPath!, animated: true)
             
+            
+            
+        }
+        
+        if (segue.identifier == "showReportOptions")
+        {
+            var upcoming: ReportSongViewController = segue.destinationViewController as! ReportSongViewController
+            
+//            let indexPath = self.TableView.inde
+            
+            
+            let cell = self.TableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! SongSearchTableViewCell
+            
+            upcoming.song = cell.song!
+            
+            self.TableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+            
+            indexPathForSelectedMoreButton = nil
         }
     }
+    
+    
 }
 
 extension SongSearchViewController: UITableViewDataSource {
@@ -143,6 +179,8 @@ extension SongSearchViewController: UITableViewDataSource {
         
         let song = songs[indexPath.row]
         
+        cell.delegate = self
+        
        // cell.uploadedByUser.text = "Uploaded by " + self.uploadedByUserArray[indexPath.row]
             
         cell.song = song
@@ -152,12 +190,12 @@ extension SongSearchViewController: UITableViewDataSource {
        // cell.playPauseButton.tag = indexPath.row
         
         
-        LikeHelper.shouldLikeBeRed(cell, user: PFUser.currentUser()!, song: cell.song!)
-        
         //Implement something that says, if cell.song is favorited (by checking in Parse)
         //Set likeButton.selected = true
+
         
         
+        //Implement something just like LikeHelper.shouldLikeCellBeRed that says, if a song
         
         return cell
         

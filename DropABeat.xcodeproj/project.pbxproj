@@ -18,6 +18,8 @@
 		E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4001B5462D80071B961 /* SongPlayer.swift */; };
 		E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */; };
 		E57B18401B603E06004FF7E2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E57B183F1B603E06004FF7E2 /* libc++.dylib */; };
+		E58283311B6EEBB600C15D6C /* ReportSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */; };
+		E58283331B6EEBEA00C15D6C /* ReportSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */; };
 		E589C28D1B62AEC6005A426C /* BeatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
 		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
@@ -91,6 +93,8 @@
 		E572D4001B5462D80071B961 /* SongPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
 		E572D4021B54768B0071B961 /* DropThisBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropThisBeatViewController.swift; sourceTree = "<group>"; };
 		E57B183F1B603E06004FF7E2 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSongViewController.swift; sourceTree = "<group>"; };
+		E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSongTableViewCell.swift; sourceTree = "<group>"; };
 		E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTableViewCell.swift; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
 				E5F78EFD1B4D97860030DD2B /* Supporting Files */,
 				E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */,
+				E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */,
+				E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */,
 			);
 			path = DropABeat;
 			sourceTree = "<group>";
@@ -405,7 +411,9 @@
 				E56A38F91B69790100D7393B /* FreestylesTableViewCell.swift in Sources */,
 				E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */,
 				E5F78F891B5028B20030DD2B /* SongSearchViewController.swift in Sources */,
+				E58283331B6EEBEA00C15D6C /* ReportSongTableViewCell.swift in Sources */,
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
+				E58283311B6EEBB600C15D6C /* ReportSongViewController.swift in Sources */,
 				E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */,
 				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
 				E547404B1B65EDA800FB1FAF /* RecordSongViewController.swift in Sources */,

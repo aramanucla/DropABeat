@@ -139,6 +139,7 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         let songObject = PFObject(className: "Song")
         songObject["SongName"] = beatNameField.text
         songObject["numberOfLikes"] = 0
+        songObject["usersWhoReportedSong"] = []
         songObject["user"] = PFUser.currentUser()
         
         var songData: NSData!
