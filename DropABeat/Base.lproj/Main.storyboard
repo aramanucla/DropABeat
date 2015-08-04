@@ -173,7 +173,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X2M-md-YQ2" firstAttribute="top" secondItem="UUp-bD-OdU" secondAttribute="bottom" id="46N-nb-3rM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X2M-md-YQ2" secondAttribute="trailing" id="6Xf-5o-ZKa"/>
@@ -346,7 +346,7 @@
             </objects>
             <point key="canvasLocation" x="-742" y="196"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
@@ -358,17 +358,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPx-I1-kCt">
-                                <rect key="frame" x="258" y="285" width="84" height="30"/>
-                                <state key="normal" title="Drop A Beat">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="DropABeat:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AVX-ZT-boB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30I-OG-dC6">
-                                <rect key="frame" x="101" y="366" width="43" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30I-OG-dC6">
+                                <rect key="frame" x="114" y="380" width="43" height="30"/>
                                 <state key="normal" title="Pause">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -376,8 +367,8 @@
                                     <action selector="PausePlay:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BbM-bP-Hb7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hB-et-fzj">
-                                <rect key="frame" x="449" y="366" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hB-et-fzj">
+                                <rect key="frame" x="450" y="386" width="50" height="30"/>
                                 <state key="normal" title="Restart">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -385,14 +376,14 @@
                                     <action selector="RestartButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OmS-XC-6Bv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9M-pB-2a3">
-                                <rect key="frame" x="66" y="333" width="466" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9M-pB-2a3">
+                                <rect key="frame" x="66" y="499" width="466" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZW-og-xgp">
-                                <rect key="frame" x="272" y="426" width="55" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZW-og-xgp">
+                                <rect key="frame" x="273" y="437" width="55" height="30"/>
                                 <state key="normal" title="Capture">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -400,24 +391,35 @@
                                     <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="yx1-G0-1rC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPx-I1-kCt">
+                                <rect key="frame" x="240" y="240" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="HLR-5y-o0e"/>
+                                    <constraint firstAttribute="width" constant="200" id="MdB-3S-UIA"/>
+                                    <constraint firstAttribute="height" constant="200" id="TDA-zt-UCO"/>
+                                    <constraint firstAttribute="width" constant="120" id="VOB-tg-7OW"/>
+                                </constraints>
+                                <state key="normal" title="Drop A Beat" image="DropABeat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MdB-3S-UIA"/>
+                                        <exclude reference="TDA-zt-UCO"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="DropABeat:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AVX-ZT-boB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="c9M-pB-2a3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="1Zw-Ew-mwa"/>
-                            <constraint firstAttribute="centerY" secondItem="aPx-I1-kCt" secondAttribute="centerY" id="8Po-Nl-zns"/>
-                            <constraint firstAttribute="centerX" secondItem="HZW-og-xgp" secondAttribute="centerX" id="J1I-sP-vAR"/>
-                            <constraint firstItem="30I-OG-dC6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="85" id="Nwy-D5-nbT"/>
-                            <constraint firstItem="4hB-et-fzj" firstAttribute="top" secondItem="c9M-pB-2a3" secondAttribute="bottom" constant="11" id="SIe-1L-ZaR"/>
-                            <constraint firstItem="30I-OG-dC6" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="51" id="Xec-O7-FuN"/>
-                            <constraint firstItem="HZW-og-xgp" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="111" id="dEK-Xy-LBE"/>
-                            <constraint firstItem="c9M-pB-2a3" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="18" id="eiF-c6-IXE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4hB-et-fzj" secondAttribute="trailing" constant="85" id="iUe-1X-NuI"/>
-                            <constraint firstAttribute="centerX" secondItem="aPx-I1-kCt" secondAttribute="centerX" id="jUV-Gc-LlR"/>
-                            <constraint firstItem="4hB-et-fzj" firstAttribute="top" secondItem="aPx-I1-kCt" secondAttribute="bottom" constant="51" id="t8S-yV-QPu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c9M-pB-2a3" secondAttribute="trailing" constant="52" id="yfE-wj-arO"/>
+                            <constraint firstAttribute="centerX" secondItem="aPx-I1-kCt" secondAttribute="centerX" id="Hsg-Jc-ePe"/>
+                            <constraint firstAttribute="centerY" secondItem="aPx-I1-kCt" secondAttribute="centerY" id="rkd-SM-dI9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="vkT-3o-cH9"/>
+                    <tabBarItem key="tabBarItem" title="" image="dj" id="vkT-3o-cH9"/>
                     <connections>
                         <outlet property="PausePlay" destination="30I-OG-dC6" id="Xlq-LW-Mjb"/>
                         <outlet property="RestartOutlet" destination="4hB-et-fzj" id="iuO-Nd-AYC"/>
@@ -427,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="671" y="-1039"/>
+            <point key="canvasLocation" x="689" y="-1187"/>
         </scene>
         <!--VideoRecorder-->
         <scene sceneID="9MP-Ly-Mok">
@@ -509,7 +511,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.2005530232032755" green="0.77646307361058486" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.099999386642913968" green="0.73568165126109331" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="71h-or-dG1" firstAttribute="top" secondItem="2OP-bt-p1i" secondAttribute="bottom" constant="150" id="7lU-Sl-ev0"/>
                             <constraint firstItem="1QC-aS-WYI" firstAttribute="top" secondItem="2OP-bt-p1i" secondAttribute="bottom" constant="15" id="Lmg-hy-jvU"/>
@@ -836,7 +838,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="utQ-Xc-8fo" firstAttribute="leading" secondItem="j5Z-0G-1fx" secondAttribute="leadingMargin" constant="4" id="7VD-ku-aaa"/>
                             <constraint firstAttribute="centerX" secondItem="Iyn-em-7QA" secondAttribute="centerX" id="EJc-dW-JDx"/>
@@ -1030,14 +1032,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DropABeat" width="354" height="361"/>
+        <image name="dj" width="38" height="40"/>
         <image name="heart" width="72" height="68"/>
         <image name="heart_selected" width="72" height="68"/>
         <image name="more" width="60" height="60"/>
         <image name="people" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="POQ-2x-RwS"/>
-        <segue reference="i4s-FA-UFl"/>
+        <segue reference="yx1-G0-1rC"/>
         <segue reference="sdR-4h-OZM"/>
+        <segue reference="auD-AO-cS3"/>
     </inferredMetricsTieBreakers>
 </document>

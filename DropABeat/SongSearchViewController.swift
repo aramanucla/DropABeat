@@ -11,7 +11,7 @@ import UIKit
 import Parse
 import AVKit
 import AVFoundation
-import ConvenienceKit
+//import ConvenienceKit
 
 
 public var searchAudioPlayer = AVPlayer()
