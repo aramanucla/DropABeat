@@ -27,6 +27,11 @@ class FreestylesTableViewCell: UITableViewCell {
         
         let shareButtonAction = UIAlertAction(title: "Share", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
             println("Share button tapped")
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! FreestylesTableViewCell
+            
+            self.delegate.showVideoShareOptions(cell)
             
         }
         
@@ -58,5 +63,7 @@ class FreestylesTableViewCell: UITableViewCell {
 protocol presentShareActionSheetDelegate
 {
     func presentActionSheet(actionSheet: UIAlertController) -> Void
+    func showVideoShareOptions(cell: FreestylesTableViewCell)->Void
+    
 }
 

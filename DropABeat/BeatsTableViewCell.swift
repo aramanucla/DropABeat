@@ -96,6 +96,12 @@ class BeatsTableViewCell: UITableViewCell {
         
         let shareButtonAction = UIAlertAction(title: "Share", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
             println("Share button tapped")
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! BeatsTableViewCell
+            
+            self.delegate.showShareOptions(cell)
+            
             
         }
         
@@ -224,4 +230,6 @@ protocol reloadDataDelegate{
     func reload(song: Song) -> Void
     func showReportOptions(cell: BeatsTableViewCell)->Void
     func presentActionSheet(actionSheet: UIAlertController) -> Void
+    func showShareOptions(cell: BeatsTableViewCell)->Void
+
 }

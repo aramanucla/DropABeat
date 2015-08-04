@@ -88,6 +88,12 @@ class SongSearchTableViewCell: UITableViewCell
         let shareButtonAction = UIAlertAction(title: "Share", style: UIAlertActionStyle.Default) { (ACTION) -> Void in
             println("Share button tapped")
             
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! SongSearchTableViewCell
+            
+            self.delegate.showShareOptions(cell)
+            
         }
         
         let cancelButtonAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (ACTION) -> Void in
@@ -189,4 +195,5 @@ protocol presentActionSheetDelegate
 {
     func presentActionSheet(actionSheet: UIAlertController) -> Void
     func showReportOptions(cell: SongSearchTableViewCell)->Void
+    func showShareOptions(cell: SongSearchTableViewCell)->Void
 }

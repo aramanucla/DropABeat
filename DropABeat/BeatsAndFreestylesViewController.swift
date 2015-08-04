@@ -129,6 +129,18 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
         self.presentViewController(actionSheet, animated: true, completion: nil)
     }
     
+    func showShareOptions(cell: BeatsTableViewCell)->Void
+    {
+        indexPathForSelectedMoreButton = self.tableView.indexPathForCell(cell)
+        self.performSegueWithIdentifier("showSocialShareOptions", sender: self)
+    }
+
+    func showVideoShareOptions(cell: FreestylesTableViewCell)->Void
+    {
+        indexPathForSelectedMoreButton = self.tableView.indexPathForCell(cell)
+        self.performSegueWithIdentifier("showSocialShareOptions", sender: self)
+    }
+    
     
     
     func loadFavorites()
@@ -260,6 +272,52 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
             
             indexPathForSelectedMoreButton = nil
         }
+        
+        if (segue.identifier == "showSocialShareOptions")
+        {
+            //if you're in beats
+            if(segmentedController.selectedSegmentIndex == 0){
+            
+            var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
+            
+            
+            let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! BeatsTableViewCell
+            
+            if let cellSongURL = cell.song!.SongFile?.url{
+                upcoming.url = NSURL(string: cellSongURL)
+            }
+            
+            self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+            
+            indexPathForSelectedMoreButton = nil
+            }
+            
+                
+            //if youre in freestyles
+            else
+            {
+    
+                var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
+                
+                
+                var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+                var documentsDirectory: NSString = paths[0] as! NSString
+                
+                var videoPath: String = documentsDirectory.stringByAppendingPathComponent(stringsOfVideoPaths[indexPathForSelectedMoreButton!.row])
+                
+                if let url = NSURL(fileURLWithPath: videoPath)
+                {
+                    upcoming.url = url
+                }
+                
+                self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+                
+                indexPathForSelectedMoreButton = nil
+            }
+
+            
+        }
+
 
     }
     

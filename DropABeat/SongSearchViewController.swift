@@ -19,13 +19,16 @@ public var searchAudioPlayer = AVPlayer()
 
 class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     
+    let defaultRange = 0...9
+    let additionalRangeSize = 10
+    
     //Only to pass the indexPath of the more button pressed form the table view cell class to this class
     var indexPathForSelectedMoreButton: NSIndexPath?
     
     
     var songs: [Song] = []
     
-  //  var uploadedByUserArray = [String]()
+
     
     var likes: [PFObject]? = []
 
@@ -40,7 +43,8 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     }
     
     
-    @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     
     @IBOutlet weak var SearchBar: UISearchBar!
@@ -55,6 +59,19 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
         
         
     }
+
+    /************************STUFF IM TRYING TO DO WITH TIMELINE COMPONENT************/
+    
+//    func loadInRange(range: Range<Int>, completionBlock: ([Post]?) -> Void) {
+//        // 1
+//        ParseHelper.timelineRequestforCurrentUser(range) {
+//            (result: [AnyObject]?, error: NSError?) -> Void in
+//            // 2
+//            let posts = result as? [Post] ?? []
+//            // 3
+//            completionBlock(posts)
+//        }
+//    }
     
     override func viewWillAppear(animated: Bool)
     {
@@ -75,7 +92,7 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
 //                }
 //            }
             
-            self.TableView.reloadData()
+            self.tableView.reloadData()
         }
         self.searchUsers(SearchBar.text, completionBlock: completionBlock)
         
@@ -105,7 +122,12 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
 
         }
     
-        filteredSongQuery.limit = 20
+        
+        /**************STUFF THAT I WAS TRYNA DO WITH TIMELINECOMPONENT****************/
+        
+//        filteredSongQuery.skip = range.startIndex
+//        filteredSongQuery.limit = range.endIndex - range.startIndex
+        
         
         filteredSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
         
@@ -120,9 +142,15 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     
     func showReportOptions(cell: SongSearchTableViewCell)
     {
-        indexPathForSelectedMoreButton = TableView.indexPathForCell(cell)
+        indexPathForSelectedMoreButton = tableView.indexPathForCell(cell)
         self.performSegueWithIdentifier("showReportOptions", sender: self)
         
+    }
+    
+    func showShareOptions(cell: SongSearchTableViewCell)->Void
+    {
+        indexPathForSelectedMoreButton = tableView.indexPathForCell(cell)
+        self.performSegueWithIdentifier("showSongSocialShareOptions", sender: self)
     }
     
     
@@ -132,15 +160,15 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
         {
             var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
             
-            let indexPath = self.TableView.indexPathForSelectedRow()
+            let indexPath = self.tableView.indexPathForSelectedRow()
             
             
-            let cell = self.TableView.cellForRowAtIndexPath(indexPath!) as! SongSearchTableViewCell
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! SongSearchTableViewCell
             
             upcoming.song = cell.song!
             
             
-            self.TableView.deselectRowAtIndexPath(indexPath!, animated: true)
+            self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
             
             
             
@@ -149,18 +177,36 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
         if (segue.identifier == "showReportOptions")
         {
             var upcoming: ReportSongViewController = segue.destinationViewController as! ReportSongViewController
+                    
             
-//            let indexPath = self.TableView.inde
-            
-            
-            let cell = self.TableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! SongSearchTableViewCell
+            let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! SongSearchTableViewCell
             
             upcoming.song = cell.song!
             
-            self.TableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+            self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
             
             indexPathForSelectedMoreButton = nil
         }
+        
+        if (segue.identifier == "showSongSocialShareOptions")
+        {
+            var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
+            
+            
+            let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! SongSearchTableViewCell
+            
+            if let cellSongURL = cell.song!.SongFile?.url{
+            upcoming.url = NSURL(string: cellSongURL)
+            }
+            
+            self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+            
+            indexPathForSelectedMoreButton = nil
+        }
+
+        
+        
+        
     }
     
     

@@ -21,6 +21,9 @@
 		E58283311B6EEBB600C15D6C /* ReportSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */; };
 		E58283331B6EEBEA00C15D6C /* ReportSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */; };
 		E589C28D1B62AEC6005A426C /* BeatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */; };
+		E5DE46D41B70148E00F65478 /* SocialShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE46D31B70148E00F65478 /* SocialShareViewController.swift */; };
+		E5DE46D61B70155200F65478 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DE46D51B70155200F65478 /* Social.framework */; };
+		E5DE46D81B70383800F65478 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE46D71B70383800F65478 /* LoginViewController.swift */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
 		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
 		E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F061B4D97860030DD2B /* Main.storyboard */; };
@@ -125,6 +128,9 @@
 		E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSongTableViewCell.swift; sourceTree = "<group>"; };
 		E589C28C1B62AEC6005A426C /* BeatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTableViewCell.swift; sourceTree = "<group>"; };
 		E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConvenienceKit.xcodeproj; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ConvenienceKit/ConvenienceKit/ConvenienceKit.xcodeproj"; sourceTree = "<group>"; };
+		E5DE46D31B70148E00F65478 /* SocialShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialShareViewController.swift; sourceTree = "<group>"; };
+		E5DE46D51B70155200F65478 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E5DE46D71B70383800F65478 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DE46D61B70155200F65478 /* Social.framework in Frameworks */,
 				E57B18401B603E06004FF7E2 /* libc++.dylib in Frameworks */,
 				E5F78F861B4E1BE30030DD2B /* libsqlite3.dylib in Frameworks */,
 				E5F78F841B4E1BCE0030DD2B /* libz.dylib in Frameworks */,
@@ -267,6 +274,8 @@
 				E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */,
 				E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */,
 				E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */,
+				E5DE46D31B70148E00F65478 /* SocialShareViewController.swift */,
+				E5DE46D71B70383800F65478 /* LoginViewController.swift */,
 			);
 			path = DropABeat;
 			sourceTree = "<group>";
@@ -313,6 +322,7 @@
 		E5F78F871B4E1C270030DD2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5DE46D51B70155200F65478 /* Social.framework */,
 				E5DE46B91B6FF94F00F65478 /* ConvenienceKit.xcodeproj */,
 				E57B183F1B603E06004FF7E2 /* libc++.dylib */,
 				E5F78F651B4E1A8E0030DD2B /* Bolts.framework */,
@@ -478,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DE46D41B70148E00F65478 /* SocialShareViewController.swift in Sources */,
 				E589C28D1B62AEC6005A426C /* BeatsTableViewCell.swift in Sources */,
 				E56A38F91B69790100D7393B /* FreestylesTableViewCell.swift in Sources */,
 				E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */,
@@ -485,6 +496,7 @@
 				E58283331B6EEBEA00C15D6C /* ReportSongTableViewCell.swift in Sources */,
 				E5F78F8B1B502A560030DD2B /* SongSearchTableViewCell.swift in Sources */,
 				E58283311B6EEBB600C15D6C /* ReportSongViewController.swift in Sources */,
+				E5DE46D81B70383800F65478 /* LoginViewController.swift in Sources */,
 				E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */,
 				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
 				E547404B1B65EDA800FB1FAF /* RecordSongViewController.swift in Sources */,

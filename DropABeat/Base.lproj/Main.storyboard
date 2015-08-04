@@ -214,15 +214,16 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="SearchBar" destination="X2M-md-YQ2" id="CtS-xF-hYG"/>
-                        <outlet property="TableView" destination="E4b-wB-tL6" id="DIb-3a-IXs"/>
                         <outlet property="segmentedControl" destination="Q1g-E2-0IU" id="f0o-Oz-jbl"/>
+                        <outlet property="tableView" destination="E4b-wB-tL6" id="qLO-jt-Yz8"/>
                         <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="POQ-2x-RwS"/>
                         <segue destination="pfD-Pz-yjD" kind="presentation" identifier="showReportOptions" id="i4s-FA-UFl"/>
+                        <segue destination="uws-j9-snV" kind="presentation" identifier="showSongSocialShareOptions" id="wMj-LQ-CRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9v-Ck-vur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699" y="443"/>
+            <point key="canvasLocation" x="1771" y="473"/>
         </scene>
         <!--Report Song View Controller-->
         <scene sceneID="ezb-Sp-U4B">
@@ -306,6 +307,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImP-mG-d7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2525" y="1208"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Z3v-ME-nV2">
+            <objects>
+                <viewController id="qPK-u5-FZH" customClass="LoginViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a9M-cI-WDE"/>
+                        <viewControllerLayoutGuide type="bottom" id="MQL-sT-41g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Tc-Ha-3yB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRp-NJ-K9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1504" y="221"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ogt-qW-9Qp">
@@ -446,6 +465,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWc-OJ-sD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-819" y="1869"/>
+        </scene>
+        <!--Social Share View Controller-->
+        <scene sceneID="llt-Sh-tvj">
+            <objects>
+                <viewController id="uws-j9-snV" customClass="SocialShareViewController" customModule="DropABeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2OP-bt-p1i"/>
+                        <viewControllerLayoutGuide type="bottom" id="P3n-1D-B9X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oPe-KX-Giv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71h-or-dG1">
+                                <rect key="frame" x="233" y="170" width="134" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Share on Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareOnFacebook:" destination="uws-j9-snV" eventType="touchUpInside" id="ceU-g3-LhE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeF-nl-AcT">
+                                <rect key="frame" x="245" y="420" width="111" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Share on Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareOnTwitter:" destination="uws-j9-snV" eventType="touchUpInside" id="78G-F5-Fho"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QC-aS-WYI">
+                                <rect key="frame" x="31" y="35" width="48" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="uws-j9-snV" eventType="touchUpInside" id="WyR-Ml-VKP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2005530232032755" green="0.77646307361058486" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="71h-or-dG1" firstAttribute="top" secondItem="2OP-bt-p1i" secondAttribute="bottom" constant="150" id="7lU-Sl-ev0"/>
+                            <constraint firstItem="1QC-aS-WYI" firstAttribute="top" secondItem="2OP-bt-p1i" secondAttribute="bottom" constant="15" id="Lmg-hy-jvU"/>
+                            <constraint firstItem="1QC-aS-WYI" firstAttribute="leading" secondItem="oPe-KX-Giv" secondAttribute="leadingMargin" constant="15" id="U6e-Xo-Ofc"/>
+                            <constraint firstAttribute="centerX" secondItem="WeF-nl-AcT" secondAttribute="centerX" id="fbV-fX-DS0"/>
+                            <constraint firstAttribute="centerX" secondItem="71h-or-dG1" secondAttribute="centerX" id="qxX-La-Zbb"/>
+                            <constraint firstItem="P3n-1D-B9X" firstAttribute="top" secondItem="WeF-nl-AcT" secondAttribute="bottom" constant="150" id="vfK-rt-hIa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K3b-Ld-cRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="1192"/>
         </scene>
         <!--Beats And Freestyles View Controller-->
         <scene sceneID="ZPE-oW-0Iy">
@@ -805,11 +882,12 @@
                         <outlet property="tableView" destination="utQ-Xc-8fo" id="KY1-EU-ZyP"/>
                         <segue destination="z94-ie-x9g" kind="show" identifier="showVideoRecorderSegue" id="hul-Xm-g4y"/>
                         <segue destination="pfD-Pz-yjD" kind="presentation" identifier="showMoreReportOptions" id="auD-AO-cS3"/>
+                        <segue destination="uws-j9-snV" kind="presentation" identifier="showSocialShareOptions" id="sdR-4h-OZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw8-aV-NJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957" y="1642"/>
+            <point key="canvasLocation" x="937" y="1724"/>
         </scene>
         <!--AddSongMethodViewController-->
         <scene sceneID="DdO-wt-xxZ">
@@ -958,7 +1036,8 @@
         <image name="people" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="auD-AO-cS3"/>
-        <segue reference="hul-Xm-g4y"/>
+        <segue reference="POQ-2x-RwS"/>
+        <segue reference="i4s-FA-UFl"/>
+        <segue reference="sdR-4h-OZM"/>
     </inferredMetricsTieBreakers>
 </document>
