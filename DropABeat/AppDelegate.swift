@@ -86,6 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Otherwise set the LoginViewController to be the first
             let loginViewController = PFLogInViewController()
             
+            
+//            loginViewController.logInView?.logo = nil
+            
+//            var logInLogoTitle = UILabel()
+//            logInLogoTitle.text = "Drop A Beat"
+//            loginViewController.logInView?.logo = logInLogoTitle
+            
+            
             loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
