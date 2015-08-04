@@ -45,11 +45,7 @@
 		E5F78F631B4DC0680030DD2B /* Meek Mill - Levels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */; };
 		E5F78F641B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */; };
 		E5F78F6B1B4E1A8F0030DD2B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F651B4E1A8E0030DD2B /* Bolts.framework */; };
-		E5F78F6C1B4E1A8F0030DD2B /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */; };
 		E5F78F6D1B4E1A8F0030DD2B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */; };
-		E5F78F6E1B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */; };
-		E5F78F6F1B4E1A8F0030DD2B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */; };
-		E5F78F701B4E1A8F0030DD2B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */; };
 		E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */; };
 		E5F78F741B4E1B770030DD2B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F731B4E1B770030DD2B /* CFNetwork.framework */; };
 		E5F78F761B4E1B7E0030DD2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F751B4E1B7E0030DD2B /* CoreGraphics.framework */; };
@@ -162,11 +158,7 @@
 		E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Meek Mill - Levels.mp3"; path = "../../DopeBeatsForXcode/Meek Mill - Levels.mp3"; sourceTree = "<group>"; };
 		E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Nicki Minaj - Truffle Butter.mp3"; path = "../../DopeBeatsForXcode/Nicki Minaj - Truffle Butter.mp3"; sourceTree = "<group>"; };
 		E5F78F651B4E1A8E0030DD2B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Downloads/parse-library-1.7.5/Bolts.framework"; sourceTree = "<group>"; };
-		E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../Downloads/parse-library-1.7.5/ParseCrashReporting.framework"; sourceTree = "<group>"; };
 		E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../Downloads/parse-library-1.7.5/ParseUI.framework"; sourceTree = "<group>"; };
-		E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../Downloads/parse-library-1.7.5/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
-		E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../Downloads/parse-library-1.7.5/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
-		E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../Downloads/parse-library-1.7.5/Parse.framework"; sourceTree = "<group>"; };
 		E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E5F78F731B4E1B770030DD2B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E5F78F751B4E1B7E0030DD2B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -202,12 +194,8 @@
 				E5F78F741B4E1B770030DD2B /* CFNetwork.framework in Frameworks */,
 				E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */,
 				E5F78F281B4D9EFD0030DD2B /* AVFoundation.framework in Frameworks */,
-				E5F78F6C1B4E1A8F0030DD2B /* ParseCrashReporting.framework in Frameworks */,
-				E5F78F6F1B4E1A8F0030DD2B /* ParseFacebookUtils.framework in Frameworks */,
-				E5F78F701B4E1A8F0030DD2B /* Parse.framework in Frameworks */,
 				E5F78F6D1B4E1A8F0030DD2B /* ParseUI.framework in Frameworks */,
 				E5F78F6B1B4E1A8F0030DD2B /* Bolts.framework in Frameworks */,
-				E5F78F6E1B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework in Frameworks */,
 				1CCA9B9908F09B09D62154D1 /* Pods_DropABeat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,11 +330,7 @@
 				E5DE46D51B70155200F65478 /* Social.framework */,
 				E57B183F1B603E06004FF7E2 /* libc++.dylib */,
 				E5F78F651B4E1A8E0030DD2B /* Bolts.framework */,
-				E5F78F661B4E1A8F0030DD2B /* ParseCrashReporting.framework */,
 				E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */,
-				E5F78F681B4E1A8F0030DD2B /* ParseFacebookUtilsV4.framework */,
-				E5F78F691B4E1A8F0030DD2B /* ParseFacebookUtils.framework */,
-				E5F78F6A1B4E1A8F0030DD2B /* Parse.framework */,
 				E5F78F851B4E1BE30030DD2B /* libsqlite3.dylib */,
 				E5F78F831B4E1BCE0030DD2B /* libz.dylib */,
 				E5F78F811B4E1BBC0030DD2B /* SystemConfiguration.framework */,
