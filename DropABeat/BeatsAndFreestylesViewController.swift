@@ -16,6 +16,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     var indexPathForSelectedMoreButton: NSIndexPath?
     
     var stringsOfVideoPaths: [String] = []
+    var stringsOfAssetURLs: [NSString] = []
     
     var myNSFileManager = NSFileManager()
     
@@ -75,6 +76,10 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
                     for self.oldEndCount; self.oldEndCount < videos.count; self.oldEndCount++
                     {
                         
+                        if let assetURL = videos[self.oldEndCount]["videoAssetURL"] as? NSString
+                        {
+                            self.stringsOfAssetURLs.append(assetURL)
+                        }
                         
                         if let fileURLPath = videos[self.oldEndCount]["fileSystemPath"] as? String
                         {
@@ -300,12 +305,9 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
                 var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
                 
                 
-                var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                var documentsDirectory: NSString = paths[0] as! NSString
+                var thisAssetURL: String  = self.stringsOfAssetURLs[indexPathForSelectedMoreButton!.row] as String
                 
-                var videoPath: String = documentsDirectory.stringByAppendingPathComponent(stringsOfVideoPaths[indexPathForSelectedMoreButton!.row])
-                
-                if let url = NSURL(fileURLWithPath: videoPath)
+                if let url = NSURL(string: thisAssetURL)
                 {
                     upcoming.videoURL = url
                 }

@@ -11,6 +11,7 @@ import MediaPlayer
 import MobileCoreServices
 import AVFoundation
 import Parse
+import AssetsLibrary
 
 class VideoRecorderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
@@ -20,6 +21,8 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     
     var imagePicker = UIImagePickerController()
     var hasPresentedPicker = false
+    
+    let assetsLibrary = ALAssetsLibrary()
     
     var song: Song?
     
@@ -119,6 +122,12 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
+        
+        
+        let videoShareURL = info[UIImagePickerControllerReferenceURL] as! NSURL!
+        
+        println("The video share URL is  \(videoShareURL)")
+        
         let tempVideoURL = info[UIImagePickerControllerMediaURL] as! NSURL!
         let pathString = tempVideoURL.relativePath
         
@@ -157,38 +166,44 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             println("Didn't have video data to write")
         }
         
-        let videoObject = PFObject(className: "Video")
-        videoObject["user"] = PFUser.currentUser()
-        videoObject["song"] = self.song
-        videoObject["fileSystemPath"] = videoName
         
-        videoObject.saveInBackgroundWithBlock { (success, error) -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("didAddSong", object: nil)
+        assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(tempVideoURL, completionBlock: { (assetURL, error) -> Void in
+            if error != nil {
+                println("Error occurred when writing video: \(error)")
+            } else {
+                
+                let videoObject = PFObject(className: "Video")
+                videoObject["user"] = PFUser.currentUser()
+                videoObject["song"] = self.song
+                videoObject["fileSystemPath"] = videoName
+                videoObject["videoAssetURL"] = assetURL.absoluteString 
+                
+                videoObject.saveInBackgroundWithBlock { (success, error) -> Void in
+                    
+                    //Send message to freestyles view controller that a video has been added
+                    NSNotificationCenter.defaultCenter().postNotificationName("didAddSong", object: nil)
+                    
+                }
 
-        }
+                
+                println("Saved video to URL: \(assetURL)")
+            }
+        })
+
+
         
-        UIImagePickerControllerReferenceURL
+    }
+ 
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
+        dismissViewControllerAnimated(false, completion: { () -> Void in
+            self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
+        })
         
-        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
-    
-        
-        //Send a notification to BeatsAndFreestylesViewController that didAddSong is now true
+        performSegueWithIdentifier("returnToDropABeatViewController", sender: self)
         
         
     }
-    
-    
-        func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    
-            dismissViewControllerAnimated(false, completion: { () -> Void in
-                self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
-            })
-            
-            performSegueWithIdentifier("returnToDropABeatViewController", sender: self)
-            
-            
-        }
     
     
 }

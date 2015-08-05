@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     @IBAction func DropABeat(sender: AnyObject) {
         
         captureButton.hidden = false
-        
+    
         song = SongPlayer.sharedInstance.randomSong()
         SongNameLabel.text = song!.SongName
         

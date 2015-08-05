@@ -73,17 +73,17 @@ class SocialShareViewController: UIViewController, FBSDKSharingDelegate {
     
     func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!)
     {
-        println("This shit completed homie")
+        println("Video share completed homie")
     }
     func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!)
     {
-        println("This shit failed homie")
+        println("Video share failed homie")
         println(error)
     }
     
     func sharerDidCancel(sharer: FBSDKSharing!)
     {
-        println("this shit did Cancel homie")
+        println("VideoShare did Cancel homie")
     }
     /*
     // MARK: - Navigation
