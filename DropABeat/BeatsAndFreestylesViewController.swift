@@ -307,7 +307,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
                 
                 if let url = NSURL(fileURLWithPath: videoPath)
                 {
-                    upcoming.url = url
+                    upcoming.videoURL = url
                 }
                 
                 self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)

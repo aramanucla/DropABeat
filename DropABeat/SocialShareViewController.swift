@@ -8,14 +8,21 @@
 
 import UIKit
 import Social
+import FBSDKShareKit
 
-class SocialShareViewController: UIViewController {
+class SocialShareViewController: UIViewController, FBSDKSharingDelegate {
 
     
-    var url: NSURL!
+    var url: NSURL?
+    
+    var videoURL: NSURL?
+    
+    var shareDialog = FBSDKShareDialog()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        shareDialog.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -29,12 +36,31 @@ class SocialShareViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func shareOnFacebook(sender: AnyObject) {
-        var shareToFacebook: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        
+        if(url != nil){
+        var shareToFacebook: SLComposeViewController = SLComposeViewController(forServiceType:  SLServiceTypeFacebook)
         shareToFacebook.setInitialText("Check out this beat!")
         
         println(url)
         shareToFacebook.addURL(url)
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
+        }
+        
+        else
+        {
+            var video: FBSDKShareVideo = FBSDKShareVideo()
+            video.videoURL = self.videoURL
+            var content: FBSDKShareVideoContent = FBSDKShareVideoContent()
+            content.video = video
+            
+            
+            shareDialog.fromViewController = self
+            shareDialog.shareContent = content
+            
+            shareDialog.show()
+            
+            
+        }
     }
 
     
@@ -45,8 +71,20 @@ class SocialShareViewController: UIViewController {
         self.presentViewController(shareToTwitter, animated: true, completion: nil)
     }
     
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!)
+    {
+        println("This shit completed homie")
+    }
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!)
+    {
+        println("This shit failed homie")
+        println(error)
+    }
     
-    
+    func sharerDidCancel(sharer: FBSDKSharing!)
+    {
+        println("this shit did Cancel homie")
+    }
     /*
     // MARK: - Navigation
 

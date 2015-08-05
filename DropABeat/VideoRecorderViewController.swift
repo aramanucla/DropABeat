@@ -167,7 +167,7 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
 
         }
         
-        
+        UIImagePickerControllerReferenceURL
         
         
         UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
