@@ -22,6 +22,7 @@ class LikeHelper
         let likeObject = PFObject(className: "Like")
         likeObject["fromUser"] = user
         likeObject["toSong"] = song
+        likeObject["toSongId"] = song.objectId
         
         likeObject.saveInBackgroundWithBlock() { (success: Bool, error: NSError?) -> Void in
                 

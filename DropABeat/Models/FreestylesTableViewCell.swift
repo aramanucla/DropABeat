@@ -18,9 +18,6 @@ class FreestylesTableViewCell: UITableViewCell {
    
     @IBOutlet weak var songTitleLabel: UILabel!
     
-    
-    
-    
     @IBAction func moreButtonTapped(sender: AnyObject) {
         //An Action Sheet that lets you choose to report/share a song
         var myActionSheet: UIAlertController = UIAlertController(title: nil, message: "Choose an option", preferredStyle: UIAlertControllerStyle.ActionSheet)

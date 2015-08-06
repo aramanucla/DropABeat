@@ -13,12 +13,14 @@ import AVKit
 import MediaPlayer
 
 
-//Create a public Selected Song Number
 
+//Create a public activity indicator
+public var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
 
 class ViewController: UIViewController {
     
     var song: Song?
+    
     
     var likes: [PFObject]? = []
     
@@ -33,6 +35,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var captureButton: UIButton!
     override func viewDidLoad() {
         
+        
+        actInd.center = self.view.center
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+        view.addSubview(actInd)
         
         captureButton.enabled = false
         
@@ -100,6 +107,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func DropABeat(sender: AnyObject) {
+        
+        actInd.startAnimating()
         
         captureButton.enabled = true
     

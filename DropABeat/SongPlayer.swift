@@ -26,6 +26,8 @@ class SongPlayer: NSObject
     var audioPlayer = AVPlayer()
     
     
+    
+    
     var selectedSongNumber: Int = 0
     
     var songs: [Song] = []
@@ -36,12 +38,45 @@ class SongPlayer: NSObject
     
     override init()
     {
+        
+        
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeSongPlayState:", name: ChangeSongPlayState, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playSongFromBeginning:", name: AVPlayerItemDidPlayToEndTimeNotification, object: audioPlayer.currentItem)
         
         audioPlayer.volume = 1.0
+        
+        self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
+                
     }
+    
+    
+    
+    
+    
+    
+    
+     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        
+        if(object as! NSObject == audioPlayer && keyPath == "status")
+        {
+            if(audioPlayer.status == AVPlayerStatus.ReadyToPlay)
+            {
+                //Disable the Activity indicator here
+                actInd.stopAnimating()
+            }
+            
+            else if(audioPlayer.status == AVPlayerStatus.Failed)
+            {
+                println("Error AVPlayer Status Failed with error")
+            }
+        }
+        
+}
+
+        
+
     
     func queryAllSongs()
     {
@@ -111,10 +146,19 @@ class SongPlayer: NSObject
                 }
                 
                 
+                //    if (player != nil)
+                //    [player removeObserver:self forKeyPath:@"status"];
+                //    player = [AVPlayer playerWithPlayerItem:anItem];
+                //    [player addObserver:self forKeyPath:@"status" options:0 context:nil];
+
+                
+                
                 self.currentSong = notification.object as? Song
                 if let songURL = self.currentSong?.SongFile?.url {
                     
+                    self.audioPlayer.removeObserver(self, forKeyPath: "status")
                     self.audioPlayer = AVPlayer(URL: NSURL(string: songURL))
+                    self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
                     self.audioPlayer.play()
                     
                     
@@ -134,7 +178,10 @@ class SongPlayer: NSObject
                 }
                 
                 if let audioFileURL: AnyObject = notification.object{
+                
+                self.audioPlayer.removeObserver(self, forKeyPath: "status")
                 self.audioPlayer = AVPlayer(URL: audioFileURL as! NSURL)
+                self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
                 self.audioPlayer.play()
                 
                 

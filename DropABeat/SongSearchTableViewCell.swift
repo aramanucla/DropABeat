@@ -141,22 +141,26 @@ class SongSearchTableViewCell: UITableViewCell
             if(notificationSong == song)
             {
                 playPauseButton.setTitle("Play", forState: UIControlState.Normal)
+                playPauseButton.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
             }
         case Playing:
             if(notificationSong == song)
             {
                 playPauseButton.setTitle("Pause", forState: UIControlState.Normal)
+                playPauseButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
             }
         case Restart:
             if(notificationSong == song)
             {
                 playPauseButton.setTitle("Pause", forState: UIControlState.Normal)
+                playPauseButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
             }
         case Stopped:
             if(notificationSong == song)
             {
                 restartButton.hidden = true
                 playPauseButton.setTitle("Play", forState: UIControlState.Normal)
+                playPauseButton.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
             }
         default:
             println("Probably recording, Action not implemented; neither pause nor playing")

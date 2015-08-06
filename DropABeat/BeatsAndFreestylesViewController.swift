@@ -20,10 +20,10 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     
     var myNSFileManager = NSFileManager()
     
-    var myBeats: [PFObject] = []
     var myFreestyleSongNames: [String] = []
     var songsArray = [Song]()
-    var myPublishedBeats: [PFObject] = []
+    var videoArray = [Video]()
+    
     
     var didViewAppear: Bool = true
     var didAddSong: Bool = false
@@ -31,16 +31,17 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     
     var moviePlayerController: MPMoviePlayerController!
     
-  //  var uploadedByUserArray = [String]()
+    //  var uploadedByUserArray = [String]()
     
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         
-        
         super.viewDidLoad()
         
         
+        //Set up a listener for didAddSong a.k.a when a video was added
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setDidAddSongToTrue:", name: "didAddSong", object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -51,14 +52,10 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     }
     
     
-    override func viewWillAppear(animated: Bool)
+    override func viewDidAppear(animated: Bool)
     {
-        self.songsArray = []
         
-        //Set up a listener for didAddSong a.k.a when a video was added
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setDidAddSongToTrue:", name: "didAddSong", object: nil)
-        
-        
+        super.viewDidAppear(animated)
         
         //Adds video at fileSystemPath to stringsOfVideoPaths Array
         
@@ -78,6 +75,9 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
                         
                         if let assetURL = videos[self.oldEndCount]["videoAssetURL"] as? NSString
                         {
+                            //Append the fetched videos to videoArray
+                            
+                        self.videoArray.append((videos[self.oldEndCount] as? Video)!)
                             self.stringsOfAssetURLs.append(assetURL)
                         }
                         
@@ -107,7 +107,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
             
         }
         
-        super.viewWillAppear(animated)
+        
         self.loadFavorites()
     }
     
@@ -117,7 +117,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     func setDidAddSongToTrue(notification: NSNotification)
     {
         self.didAddSong = true
-        self.viewWillAppear(true)
+        self.viewDidAppear(true)
         tableView.reloadData()
     }
     
@@ -139,7 +139,7 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
         indexPathForSelectedMoreButton = self.tableView.indexPathForCell(cell)
         self.performSegueWithIdentifier("showSocialShareOptions", sender: self)
     }
-
+    
     func showVideoShareOptions(cell: FreestylesTableViewCell)->Void
     {
         indexPathForSelectedMoreButton = self.tableView.indexPathForCell(cell)
@@ -148,64 +148,32 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     
     
     
-    func loadFavorites()
-    {
+    func loadFavorites() {
+        let likesQuery = PFQuery(className: "Like")
+        likesQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        likesQuery.includeKey("toSong")
+        
+        let mySongsQuery = PFQuery(className: "Song")
+        mySongsQuery.whereKey("user", equalTo: PFUser.currentUser()!)
+//        mySongsQuery.includeKey("user")
         
         
-        var mySongCompletionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
-            if let songList = songArray as? [Song]
-            {
-                for song in songList
-                {
-                    self.songsArray.append(song)
-                    //self.uploadedByUserArray.append("you")
-                }
-                
-                
+        let myLikedSongsQuery = PFQuery(className: "Song")
+        myLikedSongsQuery.whereKey("objectId", matchesKey: "toSongId", inQuery: likesQuery)
+        
+        let query = PFQuery.orQueryWithSubqueries([mySongsQuery, myLikedSongsQuery])
+        query.includeKey("user")
+
+        
+        
+        query.findObjectsInBackgroundWithBlock { (songArray: [AnyObject]?, error: NSError?) -> Void in
+            self.songsArray = []
+            if let songList = songArray as? [Song] {
+                self.songsArray += songList
             }
-            
             
             self.tableView.reloadData()
         }
-        
-        
-        var likedSongCompletionBlock = { (likeArray: [AnyObject]?, error: NSError?) -> Void in
-            if let likesList = likeArray as? [PFObject] {
-                
-                for like in likesList {
-                    println(like)
-                    let song = like.objectForKey("toSong") as? Song
-                    if let foundSong = song {
-                        println(foundSong)
-                        self.songsArray.append(foundSong)
-                       // let uploadedByUser = foundSong.user?.username
-                       // self.uploadedByUserArray.append(uploadedByUser!)
-                        println(self.songsArray.count)
-                    }
-                }
-                
-                var mySongQuery = PFQuery(className: "Song").whereKey("user", equalTo: PFUser.currentUser()!)
-                mySongQuery.findObjectsInBackgroundWithBlock(mySongCompletionBlock)
-                self.tableView.reloadData()
-            }
-        }
-        
-        
-        
-        self.findFavorites(likedSongCompletionBlock)
-        
-    }
-    
-    func findFavorites(likedSongCompletionBlock: PFArrayResultBlock)
-    {
-        println("Making query")
-        var favoriteSongQuery = PFQuery(className: "Like").whereKey("fromUser", equalTo: PFUser.currentUser()!)
-        
-        favoriteSongQuery.includeKey("toSong")
-        favoriteSongQuery.includeKey("toSong.user")
-        
-        
-        favoriteSongQuery.findObjectsInBackgroundWithBlock(likedSongCompletionBlock)
         
     }
     
@@ -219,19 +187,16 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     
     func reloadToAddLike(song: Song)
     {
-        self.viewWillAppear(true)
+        self.viewDidAppear(true)
         tableView.reloadData()
     }
     
     
-
+    
     
     
     @IBAction func changeTableView(sender: AnyObject) {
-        
-        
         tableView.reloadData()
-        
     }
     /*
     // MARK: - Navigation
@@ -282,26 +247,26 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
         {
             //if you're in beats
             if(segmentedController.selectedSegmentIndex == 0){
-            
-            var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
-            
-            
-            let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! BeatsTableViewCell
-            
-            if let cellSongURL = cell.song!.SongFile?.url{
-                upcoming.url = NSURL(string: cellSongURL)
-            }
-            
-            self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
-            
-            indexPathForSelectedMoreButton = nil
-            }
-            
                 
-            //if youre in freestyles
+                var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
+                
+                
+                let cell = self.tableView.cellForRowAtIndexPath(indexPathForSelectedMoreButton!) as! BeatsTableViewCell
+                
+                if let cellSongURL = cell.song!.SongFile?.url{
+                    upcoming.url = NSURL(string: cellSongURL)
+                }
+                
+                self.tableView.deselectRowAtIndexPath(indexPathForSelectedMoreButton!, animated: true)
+                
+                indexPathForSelectedMoreButton = nil
+            }
+                
+                
+                //if youre in freestyles
             else
             {
-    
+                
                 var upcoming: SocialShareViewController = segue.destinationViewController as! SocialShareViewController
                 
                 
@@ -316,11 +281,11 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
                 
                 indexPathForSelectedMoreButton = nil
             }
-
+            
             
         }
-
-
+        
+        
     }
     
     
@@ -342,9 +307,10 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("BeatsTableViewCell") as! BeatsTableViewCell
             
+            println("Gonna crash with indexPath row \(indexPath.row), total count \(self.songsArray.count)")
             let song = songsArray[indexPath.row]
             
-           // cell.uploadedByUser.text = "Uploaded by " + uploadedByUserArray[indexPath.row]
+            // cell.uploadedByUser.text = "Uploaded by " + uploadedByUserArray[indexPath.row]
             
             
             //REMEMBER HERE THAT I HAVE A DIDSET FOR CELL.SONG THAT SETS THE LIKE BUTTON TO HIDDEN/SELECTED
@@ -376,8 +342,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             var asset : AVURLAsset = AVURLAsset.assetWithURL(url) as! AVURLAsset
             
             var generator = AVAssetImageGenerator(asset: asset)
-            
-            
+        
             
             let time = CMTimeMakeWithSeconds(1.0, 1)
             var actualTime : CMTime = CMTimeMake(0, 0)
@@ -387,7 +352,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             var curUIImage = UIImage(CGImage: myImage)
             
             cell.videoThumbnail.image = curUIImage ?? UIImage()
-
+            
             
             return cell
         }
@@ -396,13 +361,9 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(segmentedController.selectedSegmentIndex == 0)
-        {
-            println(songsArray.count)
+        if(segmentedController.selectedSegmentIndex == 0) {
             return songsArray.count
-        }
-        else
-        {
+        } else {
             return self.myFreestyleSongNames.count
         }
     }
@@ -412,11 +373,17 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
+        //You can edit the row at indexPath if a.) You are in the myBeats section and the song is a song that you uploaded. b.) You are in the freestyles section
+        
+        
         if(segmentedController.selectedSegmentIndex == 0 && songsArray[indexPath.row].user == PFUser.currentUser()! )
         {
             return true
         }
-            
+        else if(segmentedController.selectedSegmentIndex == 1)
+        {
+            return true
+        }
         else
         {
             return false
@@ -425,7 +392,16 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+        
+        
+        //If the edityingStyle is a Delete Editing style, and We are in the Beats section
+        //Then Query all the songs uploaded by the current user, whose objecID
+        //Matches the song at the current indexPath's objectID
+        // Then delete that song in background with block: reloadDataCompletionBlock
+        //Then delete that song from songsArray, tell TableView to delete the row with
+        //Animation, requery all the songs into SongsArray, and then reload Data
+        
+        if (editingStyle == UITableViewCellEditingStyle.Delete && segmentedController.selectedSegmentIndex == 0 ) {
             // handle delete (by removing the data from your array and updating the tableview)
             
             let query = PFQuery(className: "Song")
@@ -435,7 +411,7 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             var reloadDataCompletionBlock = {(success: Bool, error: NSError?)->Void in
                 self.songsArray.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                self.viewWillAppear(true)
+                self.viewDidAppear(true)
                 tableView.reloadData()}
             
             var findSongCompletionBlock = {(results: [AnyObject]?, error: NSError?) -> Void in
@@ -451,10 +427,43 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
             
             
             query.findObjectsInBackgroundWithBlock(findSongCompletionBlock)
-            
-            
-            
         }
+        
+        //OR if you are in the freestyles view controller, you can delete any of the rows
+        //Use a query to retrieve the Video Object at this indexPath.row
+        //Find object in Background with block
+        //then delete object in background with block
+        //In the final block, remove the video's name in the videoFreestylesName
+            
+        else if(editingStyle == UITableViewCellEditingStyle.Delete && segmentedController.selectedSegmentIndex == 1)
+        {
+            let query = PFQuery(className: "Video")
+//            query.whereKey("objectId", matchesKey: videoArray[indexPath.row]["objectId"], inQuery: <#PFQuery#>)
+            query.whereKey("objectId", equalTo: videoArray[indexPath.row].objectId!)
+            
+            
+            var reloadDataCompletionBlock = {(success: Bool, error: NSError?)->Void in
+                self.videoArray.removeAtIndex(indexPath.row)
+                self.myFreestyleSongNames.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                self.viewDidAppear(true)
+                self.tableView.reloadData()
+            }
+            
+            
+            var completionBlock = {(results: [AnyObject]?, error: NSError?) -> Void in
+                    if let results = results as? [Video]
+                    {
+                        for result in results{
+                            result.deleteInBackgroundWithBlock(reloadDataCompletionBlock)
+                        }
+                    }
+            }
+            
+            query.findObjectsInBackgroundWithBlock(completionBlock)
+
+        }
+        
     }
 }
 
@@ -473,23 +482,23 @@ extension BeatsAndFreestylesViewController: UITableViewDelegate
             var documentsDirectory: NSString = paths[0] as! NSString
             
             var videoPath: String = documentsDirectory.stringByAppendingPathComponent(stringsOfVideoPaths[indexPath.row])
-
+            
             if let url = NSURL(fileURLWithPath: videoPath) {
                 if NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
                     
-                   var newMoviePlayerViewController = MPMoviePlayerViewController(contentURL: url)
+                    var newMoviePlayerViewController = MPMoviePlayerViewController(contentURL: url)
                     
-//                    moviePlayerController = MPMoviePlayerController(contentURL: url)
-//                    
-//                    moviePlayerController.shouldAutoplay = true
-//                    moviePlayerController.movieSourceType = MPMovieSourceType.File
-//                    
-//                    moviePlayerController.view.frame = CGRect(x: 0, y: 200, width: 500, height: 300)
-//                    
-//                    self.view.addSubview(moviePlayerController.view)
-//                    
-//                    // moviePlayerController.prepareToPlay()
-//                    moviePlayerController.play()
+                    //                    moviePlayerController = MPMoviePlayerController(contentURL: url)
+                    //
+                    //                    moviePlayerController.shouldAutoplay = true
+                    //                    moviePlayerController.movieSourceType = MPMovieSourceType.File
+                    //
+                    //                    moviePlayerController.view.frame = CGRect(x: 0, y: 200, width: 500, height: 300)
+                    //
+                    //                    self.view.addSubview(moviePlayerController.view)
+                    //
+                    //                    // moviePlayerController.prepareToPlay()
+                    //                    moviePlayerController.play()
                     
                     newMoviePlayerViewController.moviePlayer.fullscreen = true
                     newMoviePlayerViewController.moviePlayer.controlStyle = MPMovieControlStyle.Fullscreen
@@ -503,9 +512,6 @@ extension BeatsAndFreestylesViewController: UITableViewDelegate
             }
         }
     }
-    
-    
-    
 }
 
 

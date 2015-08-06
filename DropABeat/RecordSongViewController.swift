@@ -12,7 +12,19 @@ import Parse
 import AudioToolbox
 
 class RecordSongViewController: UIViewController, UITextFieldDelegate {
-
+    
+    var timerCount = 0
+    var timerRunning = false
+    var timer = NSTimer()
+    
+    
+    func counting()
+    {
+        timerCount+=1
+        timerLabel.text = "\(timerCount)"
+    }
+    
+    @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var recordButton: UIButton!
     
@@ -51,6 +63,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
   
     @IBAction func recordButtonTapped(sender: UIButton) {
         
+        
+        
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryRecord, error: nil)
         
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: nil, userInfo: [SongPlayStateKey:Paused])
@@ -63,6 +77,15 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
                 playButton.enabled = false // Check this later.
                 audioRecorder?.record()
                 println("Recording")
+                
+                
+                if (timerRunning == false){
+                    timerCount = 0
+                    timerLabel.text = "0"
+                    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("counting"), userInfo: nil, repeats: true)
+                    timerRunning = true
+                }
+                
             }
         } else {
             // STOP RECORDING
@@ -71,6 +94,11 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
             playButton.setTitle("Play", forState: UIControlState.Normal)
             playButton.enabled = true
             saveButton.enabled = true
+            
+            if(timerRunning == true){
+                timer.invalidate()
+                timerRunning = false
+            }
         }
 
     }

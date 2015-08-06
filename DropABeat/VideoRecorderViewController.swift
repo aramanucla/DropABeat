@@ -87,9 +87,12 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             
             
                         let button   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-                        button.frame = CGRectMake(70, 200, 100, 90)
-                        button.backgroundColor = UIColor.greenColor()
-                        button.setTitle("Test Button", forState: UIControlState.Normal)
+                        button.frame = CGRectMake(0.0, UIScreen.mainScreen().bounds.size.height - invisibleView.frame.size.height, 100, 90)
+            
+                        button.setImage(UIImage(named: "DropABeatButton"), forState: UIControlState.Normal)
+            
+//                        button.backgroundColor = UIColor.greenColor()
+//                        button.setTitle("Test Button", forState: UIControlState.Normal)
                         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
                         imagePicker.cameraOverlayView?.addSubview(button)
             
@@ -200,7 +203,6 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             self.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
         })
         
-        performSegueWithIdentifier("returnToDropABeatViewController", sender: self)
         
         
     }
