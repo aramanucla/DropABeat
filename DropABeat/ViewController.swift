@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         
-        captureButton.hidden = true
+        captureButton.enabled = false
         
          AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         
@@ -43,12 +43,12 @@ class ViewController: UIViewController {
         
         SongPlayer.sharedInstance.queryAllSongs()
         
-        PausePlay.hidden = true
-        RestartOutlet.hidden = true
+        PausePlay.enabled = false
+        RestartOutlet.enabled = false
         
         
         
-        
+        SongNameLabel.text = "Hit the Disc to Drop A Beat!"
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
@@ -73,11 +73,13 @@ class ViewController: UIViewController {
             if(notificationSong == song)
             {
                 PausePlay.setTitle("Play", forState: UIControlState.Normal)
+                PausePlay.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
             }
         case Playing:
             if(notificationSong == song)
             {
                 PausePlay.setTitle("Pause", forState: UIControlState.Normal)
+                PausePlay.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
             }
         case Restart:
             if(notificationSong == song)
@@ -99,15 +101,15 @@ class ViewController: UIViewController {
     
     @IBAction func DropABeat(sender: AnyObject) {
         
-        captureButton.hidden = false
+        captureButton.enabled = true
     
         song = SongPlayer.sharedInstance.randomSong()
         SongNameLabel.text = song!.SongName
         
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey: Playing])
         
-        PausePlay.hidden = false
-        RestartOutlet.hidden = false
+        PausePlay.enabled = true
+        RestartOutlet.enabled = true
         
         
         
