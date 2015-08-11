@@ -62,6 +62,7 @@ class DropABeatViewController: UIViewController {
         
         SongPlayer.sharedInstance.queryAllSongs()
         
+        dropABeatButton.enabled = false
         PausePlay.enabled = false
         RestartOutlet.enabled = false
         
@@ -72,6 +73,13 @@ class DropABeatViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songPlayStateDidChange:", name: SongPlayStateDidChange, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "AllSongsLoaded:", name: "AllSongsLoaded", object: nil)
+        
+    }
+    
+    func AllSongsLoaded(notification: NSNotification)
+    {
+        dropABeatButton.enabled = true
     }
     
     

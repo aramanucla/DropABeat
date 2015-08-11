@@ -78,7 +78,7 @@ class VideoRecorder: NSObject {
             
             
             let button   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            button.frame = CGRectMake(30, 350, 100, 90)
+            button.frame = CGRectMake(110, 450, 100, 90)
             
             button.setImage(UIImage(named: "DropABeatButton"), forState: UIControlState.Normal)
             

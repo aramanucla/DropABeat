@@ -86,8 +86,7 @@ class SongPlayer: NSObject
             
             
             self.songs = (objectsArray as? [Song])!
-            
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("AllSongsLoaded", object: nil)
         })
         
     }

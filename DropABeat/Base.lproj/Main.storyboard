@@ -843,10 +843,10 @@
                                                     </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAu-kA-RhV">
-                                                    <rect key="frame" x="541" y="35" width="40" height="30"/>
+                                                    <rect key="frame" x="541" y="30" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="ikh-zz-oXj"/>
-                                                        <constraint firstAttribute="height" constant="30" id="smS-eR-vDI"/>
+                                                        <constraint firstAttribute="height" constant="40" id="smS-eR-vDI"/>
                                                     </constraints>
                                                     <state key="normal" image="moreButtonWithCircle">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1049,20 +1049,11 @@
                                                     </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTH-5c-KBq">
-                                                    <rect key="frame" x="95" y="31" width="32" height="16"/>
+                                                    <rect key="frame" x="95" y="31" width="438" height="16"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cND-nN-wOB">
-                                                    <rect key="frame" x="544" y="21" width="37" height="37"/>
-                                                    <state key="normal" image="moreButtonWithCircle">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="moreButtonTapped:" destination="fyD-wE-tl5" eventType="touchUpInside" id="BXA-qr-Rdh"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play Clear" translatesAutoresizingMaskIntoConstraints="NO" id="euN-9S-5qm">
                                                     <rect key="frame" x="40" y="26" width="25" height="25"/>
                                                     <constraints>
@@ -1070,6 +1061,19 @@
                                                         <constraint firstAttribute="height" constant="25" id="LQb-eQ-xej"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cND-nN-wOB">
+                                                    <rect key="frame" x="541" y="19" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="ky2-1O-NhA"/>
+                                                        <constraint firstAttribute="height" constant="40" id="luM-J1-iG3"/>
+                                                    </constraints>
+                                                    <state key="normal" image="moreButtonWithCircle">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="moreButtonTapped:" destination="fyD-wE-tl5" eventType="touchUpInside" id="BXA-qr-Rdh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="BTH-5c-KBq" secondAttribute="bottom" constant="24" id="5RK-ac-X4M"/>
@@ -1090,6 +1094,7 @@
                                                 <constraint firstItem="jtA-lF-hmV" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leadingMargin" constant="12" id="cnW-rd-Ikr"/>
                                                 <constraint firstAttribute="centerY" secondItem="cND-nN-wOB" secondAttribute="centerY" id="jjv-gJ-idd"/>
                                                 <constraint firstItem="BTH-5c-KBq" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leadingMargin" constant="77" id="n8P-yO-k10"/>
+                                                <constraint firstItem="cND-nN-wOB" firstAttribute="leading" secondItem="BTH-5c-KBq" secondAttribute="trailing" constant="8" id="oKX-ln-MbR"/>
                                                 <constraint firstAttribute="centerY" secondItem="BTH-5c-KBq" secondAttribute="centerY" id="q8e-G4-ofd"/>
                                                 <constraint firstAttribute="centerY" secondItem="euN-9S-5qm" secondAttribute="centerY" id="qfI-6c-vb1"/>
                                                 <constraint firstItem="jtA-lF-hmV" firstAttribute="top" secondItem="LCN-Vf-jDx" secondAttribute="topMargin" id="rM0-mO-31Q"/>
