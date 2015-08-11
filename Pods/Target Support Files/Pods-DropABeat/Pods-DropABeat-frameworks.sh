@@ -58,6 +58,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-DropABeat/FBSDKShareKit.framework'
   install_framework 'Pods-DropABeat/Parse.framework'
   install_framework 'Pods-DropABeat/ParseFacebookUtilsV4.framework'
+  install_framework 'Pods-DropABeat/SDWebImage.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-DropABeat/Bolts.framework'
@@ -66,4 +67,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-DropABeat/FBSDKShareKit.framework'
   install_framework 'Pods-DropABeat/Parse.framework'
   install_framework 'Pods-DropABeat/ParseFacebookUtilsV4.framework'
+  install_framework 'Pods-DropABeat/SDWebImage.framework'
 fi

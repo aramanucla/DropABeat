@@ -11,7 +11,9 @@ import Parse
 import MediaPlayer
 import AVFoundation
 
-class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, presentShareActionSheetDelegate {
+class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  reloadDataDelegate, presentShareActionSheetDelegate {
+    
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
     
     var indexPathForSelectedMoreButton: NSIndexPath?
     
@@ -33,8 +35,46 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
     
     //  var uploadedByUserArray = [String]()
     
+    let imagePicker = UIImagePickerController()
+    
+    @IBOutlet weak var myProfilePicture: UIImageView!
+    
+    
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+    @IBAction func profilePictureButtonTapped(sender: AnyObject) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            myProfilePicture.contentMode = .ScaleAspectFit
+            myProfilePicture.image = pickedImage
+            
+            // upload image
+            let imageData = UIImagePNGRepresentation(pickedImage)
+            let imageFile = PFFile(name:"image.png", data:imageData)
+            let user = PFUser.currentUser()
+            user?["profilePicture"] = imageFile
+            user?.saveInBackground()
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+   
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,6 +83,26 @@ class BeatsAndFreestylesViewController: UIViewController, reloadDataDelegate, pr
         //Set up a listener for didAddSong a.k.a when a video was added
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setDidAddSongToTrue:", name: "didAddSong", object: nil)
         // Do any additional setup after loading the view.
+        
+         imagePicker.delegate = self
+        
+        activityIndicator.center = tableView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        tableView.addSubview(activityIndicator)
+        tableView.bringSubviewToFront(activityIndicator)
+        
+        
+        if let file = PFUser.currentUser()?["profilePicture"] as? PFFile, urlString = file.url, url = NSURL(string: urlString){
+            myProfilePicture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
+        
+        
+        self.myProfilePicture.layer.cornerRadius = self.myProfilePicture.frame.size.width / 2
+        self.myProfilePicture.clipsToBounds = true
+        self.myProfilePicture.layer.borderWidth = 3.0;
+        self.myProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+
     }
     
     

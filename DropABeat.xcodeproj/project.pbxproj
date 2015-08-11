@@ -14,6 +14,7 @@
 		E55AF9BF1B7158AA00133712 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AF9BE1B7158AA00133712 /* ParseLoginHelper.swift */; };
 		E55AF9C11B7158D500133712 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AF9C01B7158D500133712 /* ErrorHandling.swift */; };
 		E55FDAF51B55C28100F23278 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FDAF41B55C28100F23278 /* Song.swift */; };
+		E560ADAD1B79821400EC024F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E560ADAC1B79821400EC024F /* SettingsViewController.swift */; };
 		E5667A501B681BD2002331D0 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */; };
 		E56A38F91B69790100D7393B /* FreestylesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A38F81B69790100D7393B /* FreestylesTableViewCell.swift */; };
 		E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7BF1B6165E000F067F2 /* LikeHelper.swift */; };
@@ -124,6 +125,8 @@
 		E55AF9C01B7158D500133712 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		E55AF9C61B7159D700133712 /* ConvenienceKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConvenienceKit.xcodeproj; path = "../../../Downloads/Makestagram-Swift-Solution-StarterProject 3/Frameworks/ConvenienceKit/ConvenienceKit/ConvenienceKit.xcodeproj"; sourceTree = "<group>"; };
 		E55FDAF41B55C28100F23278 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		E560ADA91B79513100EC024F /* DropABeat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DropABeat-Bridging-Header.h"; sourceTree = "<group>"; };
+		E560ADAC1B79821400EC024F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
 		E56A38F81B69790100D7393B /* FreestylesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreestylesTableViewCell.swift; path = Models/FreestylesTableViewCell.swift; sourceTree = "<group>"; };
 		E571F7BF1B6165E000F067F2 /* LikeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeHelper.swift; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				E5DE46D71B70383800F65478 /* LoginViewController.swift */,
 				E55AF9BE1B7158AA00133712 /* ParseLoginHelper.swift */,
 				E55AF9C01B7158D500133712 /* ErrorHandling.swift */,
+				E560ADA91B79513100EC024F /* DropABeat-Bridging-Header.h */,
+				E560ADAC1B79821400EC024F /* SettingsViewController.swift */,
 			);
 			path = DropABeat;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */,
 				E572D4011B5462D80071B961 /* SongPlayer.swift in Sources */,
 				E5473D5D1B66C409001428E6 /* RecordFreestyleViewController.swift in Sources */,
+				E560ADAD1B79821400EC024F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +735,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DropABeat/DropABeat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -754,7 +760,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DropABeat/DropABeat-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

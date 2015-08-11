@@ -19,6 +19,14 @@ public var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGR
 
 class ViewController: UIViewController {
     
+    enum rotationState
+    {
+        case Rotating
+        case NotRotating
+    }
+    
+    var recordRotationState: rotationState = .NotRotating
+    
     var song: Song?
     
     
@@ -26,6 +34,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var PausePlay: UIButton!
     
+    @IBOutlet weak var dropABeatButton: UIButton!
     
     @IBOutlet weak var SongNameLabel: UILabel!
     
@@ -69,6 +78,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    
     func songPlayStateDidChange(notification:NSNotification)
     {
         let info = notification.userInfo?[SongPlayStateKey] as! String
@@ -108,6 +122,17 @@ class ViewController: UIViewController {
     
     @IBAction func DropABeat(sender: AnyObject) {
         
+        
+        //Stop Rotating if it is rotating
+        
+        if(recordRotationState == .Rotating){
+            UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                let transform: CGAffineTransform = CGAffineTransformIdentity
+                self.dropABeatButton.transform = transform
+                }, completion: nil)
+            recordRotationState = .NotRotating
+            
+        }
         actInd.startAnimating()
         
         captureButton.enabled = true
@@ -121,22 +146,62 @@ class ViewController: UIViewController {
         RestartOutlet.enabled = true
         
         
+        //Start Rotation
+        
+        if(recordRotationState == .NotRotating){
+        UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            let transform: CGAffineTransform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            self.dropABeatButton.transform = transform
+            }, completion: nil)
+            
+            recordRotationState = .Rotating
+        
+        }
         
     }
     
     @IBAction func RestartButton(sender: AnyObject) {
         
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Restart])
+        
+        //Start Rotation
+        UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            let transform: CGAffineTransform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            self.dropABeatButton.transform = transform
+            }, completion: nil)
+        
+        recordRotationState = .Rotating
     }
     
     @IBAction func PausePlay(sender: AnyObject) {
+        //self.dropABeatButton.layer.removeAllAnimations()
+        
         if (PausePlay.titleForState(UIControlState.Normal) == "Pause")
         {
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Paused])
+            
+            
+            //Stop Rotation
+            UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                let transform: CGAffineTransform = CGAffineTransformIdentity
+                self.dropABeatButton.transform = transform
+                }, completion: nil)
+            
+            recordRotationState = .NotRotating
+
+            
         }
         else
         {
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
+            
+            //Start Rotation
+            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                let transform: CGAffineTransform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+                self.dropABeatButton.transform = transform
+                }, completion: nil)
+            
+            recordRotationState = .Rotating
         }
     }
     

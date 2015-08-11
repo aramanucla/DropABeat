@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AB036F90EBA2B07D0899D65"
+               BlueprintIdentifier = "3A78CEB61834A8F512E4F9C4"
                BuildableName = "Pods_DropABeat.framework"
                BlueprintName = "Pods-DropABeat"
                ReferencedContainer = "container:Pods.xcodeproj">

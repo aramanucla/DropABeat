@@ -35,6 +35,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else  if let user = user {
                 // if login was successful, display the TabBarController
                 // 2
+                
+                FBSDKGraphRequest(graphPath: "me", parameters: nil).startWithCompletionHandler({ (connection, result, error) -> Void in
+                    if let fbid = result["id"] as? String {
+                        let url = "https://graph.facebook.com/\(fbid)/picture?type=large"
+                        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!) { (data, response, error) in
+                            let file = PFFile(data: data)
+                            
+                            let user = PFUser.currentUser()
+                            user?["profilePicture"] = file
+                            user?.saveInBackground()
+                            
+                        }.resume()
+                    }
+                })
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UIViewController
                 // 3

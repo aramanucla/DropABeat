@@ -15,6 +15,8 @@ import AssetsLibrary
 
 class VideoRecorderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
+    
+
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
@@ -80,14 +82,14 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             imagePicker.showsCameraControls = true
             
             
-                        var invisibleView = UIView(frame: CGRectMake(40, 40, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height-200))
+                        var invisibleView = UIView(frame: CGRectMake(80, 40, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height-200))
                         view.backgroundColor = UIColor.clearColor()
             
                         imagePicker.cameraOverlayView = invisibleView
             
             
                         let button   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-                        button.frame = CGRectMake(0.0, UIScreen.mainScreen().bounds.size.height - invisibleView.frame.size.height, 100, 90)
+                        button.frame = CGRectMake(30, 300, 100, 90)
             
                         button.setImage(UIImage(named: "DropABeatButton"), forState: UIControlState.Normal)
             
@@ -114,6 +116,8 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func didReceiveMemoryWarning() {

@@ -13,6 +13,24 @@ import AudioToolbox
 
 class RecordSongViewController: UIViewController, UITextFieldDelegate {
     
+    
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+    
+    enum recordingState
+    {
+        case Recording
+        case NotRecording
+    }
+    
+    enum playState
+    {
+        case Playing
+        case Paused
+    }
+    
+    var currentRecordingState: recordingState = .NotRecording
+    var currentPlayState: playState = .Paused
+    
     var timerCount = 0
     var timerRunning = false
     var timer = NSTimer()
@@ -37,8 +55,9 @@ class RecordSongViewController: UIViewController, UITextFieldDelegate {
         
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         
-        if sender.titleLabel?.text == "Play" {
-            sender.setTitle("Stop", forState: UIControlState.Normal)
+        if currentPlayState == .Paused {
+                currentPlayState = .Playing
+            playButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
             if audioRecorder?.recording == false {
                 recordButton.enabled = false
                 
@@ -52,8 +71,9 @@ class RecordSongViewController: UIViewController, UITextFieldDelegate {
                 
              
             }
-        } else { // When play button says "Stop" while playing
-            playButton.setTitle("Play", forState: UIControlState.Normal)
+        } else { // When play button says "Pause" while playing
+                currentPlayState = .Paused
+            playButton.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
             recordButton.enabled = true
             
 NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: audioRecorder?.url, userInfo: [SongPlayStateKey:Paused])        }
@@ -69,9 +89,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: nil, userInfo: [SongPlayStateKey:Paused])
         
-        if sender.titleLabel?.text == "Record" {
-            sender.setTitle("Stop", forState: UIControlState.Normal)
-            println((self.recordButton.titleLabel?.text)!)
+        if currentRecordingState == .NotRecording {
+                currentRecordingState = .Recording
             if audioRecorder?.recording == false {
                 println("This gets called")
                 playButton.enabled = false // Check this later.
@@ -90,8 +109,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         } else {
             // STOP RECORDING
             audioRecorder?.stop()
-            sender.setTitle("Record", forState: UIControlState.Normal)
-            playButton.setTitle("Play", forState: UIControlState.Normal)
+            currentRecordingState = .NotRecording
+            currentPlayState = .Paused
             playButton.enabled = true
             saveButton.enabled = true
             
@@ -111,7 +130,6 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        saveButton.hidden = true
         
         // Do any additional setup after loading the view.
         
@@ -150,12 +168,29 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
             audioRecorder?.prepareToRecord()
         }
         
+        
+        playButton.enabled = false
+        saveButton.enabled = false
+        timerLabel.enabled = false
 
+        recordButton.titleLabel?.hidden = true
+        playButton.titleLabel?.hidden = true
+        
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+        view.addSubview(activityIndicator)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
     
     @IBAction func cancelButton(sender: AnyObject) {
@@ -182,7 +217,12 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         
         songObject["SongFile"] = songFile
         
-        songObject.saveInBackground()
+        activityIndicator.startAnimating()
+        
+        songObject.saveInBackgroundWithBlock { (success, error) -> Void in
+            self.activityIndicator.stopAnimating()
+            println("saved")
+        }
         
     }
 
@@ -198,6 +238,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
 
 }
 
+
+
 extension RecordSongViewController: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
     }
@@ -212,7 +254,7 @@ extension RecordSongViewController: AVAudioRecorderDelegate {
 extension RecordSongViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
         recordButton.enabled = true
-        playButton.setTitle("Play", forState: UIControlState.Normal)
+        currentPlayState = .Paused
     }
     
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
@@ -224,8 +266,7 @@ extension RecordSongViewController: AVAudioPlayerDelegate {
 extension RecordSongViewController: UITextFieldDelegate
 {
     func textFieldDidBeginEditing(textField: UITextField) {
-        self.saveButton.hidden = false
-        self.saveButton.enabled = false
+        saveButton.enabled = true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {

@@ -22,6 +22,9 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     let defaultRange = 0...9
     let additionalRangeSize = 10
     
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+
+    
     //Only to pass the indexPath of the more button pressed form the table view cell class to this class
     var indexPathForSelectedMoreButton: NSIndexPath?
     
@@ -40,6 +43,11 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
       //  SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
         
+        activityIndicator.center = tableView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        tableView.addSubview(activityIndicator)
+        tableView.bringSubviewToFront(activityIndicator)
     }
     
     
@@ -209,6 +217,7 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
         
     }
     
+        
     
 }
 
@@ -244,6 +253,18 @@ extension SongSearchViewController: UITableViewDataSource {
         
         
         //Implement something just like LikeHelper.shouldLikeCellBeRed that says, if a song
+        
+        if(indexPath.row == 0)
+        {
+            self.activityIndicator.startAnimating()
+            println("started loading")
+        }
+        
+        if(indexPath.row == tableView.numberOfSections() - 1)
+        {
+            self.activityIndicator.stopAnimating()
+            println("finished loading")
+        }
         
         return cell
         
