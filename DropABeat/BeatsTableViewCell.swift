@@ -210,11 +210,15 @@ class BeatsTableViewCell: UITableViewCell {
         
         if(playPauseButton.titleForState(UIControlState.Normal) == "Play")
         {
+            playPauseButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
+            playPauseButton.setTitle("Pause", forState: UIControlState.Normal)
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
         }
         else
         {
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Paused])
+            playPauseButton.setTitle("Play", forState: UIControlState.Normal)
+            playPauseButton.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
         }
         
         restartButton.hidden = false

@@ -37,17 +37,17 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
         
         println("AHAHAHAHAHAHAHAHAHAHAHAHAHAH The song name is \(song)")
         
-        if(count % 2 == 0){
-        imagePicker.startVideoCapture()
-            count++
-        }
-        
-        else
-        {
-            
-            imagePicker.stopVideoCapture()
-            
-        }
+//        if(count % 2 == 0){
+//        imagePicker.startVideoCapture()
+//            count++
+//        }
+//        
+//        else
+//        {
+//            
+//            imagePicker.stopVideoCapture()
+//            
+//        }
         
         println("Button tapped")
         
@@ -96,7 +96,7 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
 //                        button.backgroundColor = UIColor.greenColor()
 //                        button.setTitle("Test Button", forState: UIControlState.Normal)
                         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-                        imagePicker.cameraOverlayView?.addSubview(button)
+                 //       imagePicker.cameraOverlayView?.addSubview(button)
             
         
             hasPresentedPicker = true

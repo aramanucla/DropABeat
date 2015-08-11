@@ -27,6 +27,10 @@ class SettingsViewController: UIViewController {
         PFUser.logOut()
         
         
+        
+        
+                
+        
         let loginViewController = PFLogInViewController()
         
         loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook

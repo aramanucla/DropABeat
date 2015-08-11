@@ -57,7 +57,7 @@ class RecordSongViewController: UIViewController, UITextFieldDelegate {
         
         if currentPlayState == .Paused {
                 currentPlayState = .Playing
-            playButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
+            playButton.setImage(UIImage(named: "Pause Clear"), forState: UIControlState.Normal)
             if audioRecorder?.recording == false {
                 recordButton.enabled = false
                 
@@ -73,7 +73,7 @@ class RecordSongViewController: UIViewController, UITextFieldDelegate {
             }
         } else { // When play button says "Pause" while playing
                 currentPlayState = .Paused
-            playButton.setImage(UIImage(named: "Play"), forState: UIControlState.Normal)
+            playButton.setImage(UIImage(named: "Play Clear"), forState: UIControlState.Normal)
             recordButton.enabled = true
             
 NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: audioRecorder?.url, userInfo: [SongPlayStateKey:Paused])        }
