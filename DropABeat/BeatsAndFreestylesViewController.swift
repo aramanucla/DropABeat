@@ -356,6 +356,19 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         
     }
     
+    func emptyTableViewBackground(tableView: UITableView, message: String) -> UILabel {
+        var emptyMessage = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height))
+        
+        emptyMessage.textColor = UIColor.lightGrayColor()
+        emptyMessage.text = message
+        
+        emptyMessage.textAlignment = NSTextAlignment.Center
+        emptyMessage.sizeToFit()
+        
+        return emptyMessage
+    }
+
+    
     
     
 }
@@ -422,8 +435,31 @@ extension BeatsAndFreestylesViewController: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(segmentedController.selectedSegmentIndex == 0) {
+            
+            if(songsArray.count == 0)
+            {
+                tableView.backgroundView = emptyTableViewBackground(tableView, message: "Favorite or Upload A Beat To Get Started")
+            }
+            
+            else
+            {
+                tableView.backgroundView = nil
+            }
+            
+            
             return songsArray.count
         } else {
+            
+            if(myFreestyleSongNames.count == 0)
+            {
+                tableView.backgroundView = emptyTableViewBackground(tableView, message: "Click on a Song to Make a Freestyle Video")
+            }
+            
+            else
+            {
+                tableView.backgroundView = nil
+            }
+            
             return self.myFreestyleSongNames.count
         }
     }

@@ -647,16 +647,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Some of these icons are from icons8.com" translatesAutoresizingMaskIntoConstraints="NO" id="QIS-FQ-9GP">
-                                <rect key="frame" x="8" y="216" width="300" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="miP-zJ-A0f"/>
-                                    <constraint firstAttribute="width" constant="300" id="p6j-a9-Zed"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbN-DW-Ldj">
                                 <rect key="frame" x="8" y="30" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
@@ -667,9 +657,20 @@
                                     <action selector="cancelButtonTapped:" destination="0n6-XT-JgK" eventType="touchUpInside" id="2Gu-KU-8pO"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Some of these icons are from icons8.com. App Icon made with help from: announcer by AnsteyDesign from the Noun Project." translatesAutoresizingMaskIntoConstraints="NO" id="QIS-FQ-9GP">
+                                <rect key="frame" x="150" y="216" width="300" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="miP-zJ-A0f"/>
+                                    <constraint firstAttribute="width" constant="300" id="p6j-a9-Zed"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.36470588240000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QIS-FQ-9GP" firstAttribute="top" secondItem="kdC-N0-FBY" secondAttribute="bottom" constant="25" id="4e2-YR-6da"/>
                             <constraint firstAttribute="centerX" secondItem="IKd-vL-3Ag" secondAttribute="centerX" id="5je-WB-hOl"/>
                             <constraint firstItem="vbN-DW-Ldj" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="Iej-6E-nNq"/>
                             <constraint firstItem="kdC-N0-FBY" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="P7u-fx-Myg"/>
@@ -678,7 +679,14 @@
                             <constraint firstItem="QIS-FQ-9GP" firstAttribute="top" secondItem="kdC-N0-FBY" secondAttribute="bottom" constant="25" id="gom-gs-PaB"/>
                             <constraint firstItem="QIS-FQ-9GP" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="hhH-PZ-llY"/>
                             <constraint firstItem="vbN-DW-Ldj" firstAttribute="top" secondItem="NxD-cL-EwF" secondAttribute="bottom" constant="10" id="ny3-d9-NBA"/>
+                            <constraint firstAttribute="centerX" secondItem="QIS-FQ-9GP" secondAttribute="centerX" id="rVA-lD-K56"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gom-gs-PaB"/>
+                                <exclude reference="hhH-PZ-llY"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dl-Tb-yxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1075,6 +1083,7 @@
                                                 <constraint firstAttribute="centerX" secondItem="BTH-5c-KBq" secondAttribute="centerX" id="Sf5-ut-Xa4"/>
                                                 <constraint firstItem="euN-9S-5qm" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leading" constant="40" id="Sgl-3A-8Ow"/>
                                                 <constraint firstItem="jtA-lF-hmV" firstAttribute="top" secondItem="LCN-Vf-jDx" secondAttribute="topMargin" constant="4" id="Syf-LB-Sia"/>
+                                                <constraint firstItem="cND-nN-wOB" firstAttribute="leading" secondItem="BTH-5c-KBq" secondAttribute="trailing" constant="5" id="U4F-sj-eXL"/>
                                                 <constraint firstAttribute="centerX" secondItem="euN-9S-5qm" secondAttribute="centerX" id="VaS-eA-x80"/>
                                                 <constraint firstItem="jtA-lF-hmV" firstAttribute="leading" secondItem="LCN-Vf-jDx" secondAttribute="leading" constant="20" id="WtE-EV-OZb"/>
                                                 <constraint firstItem="BTH-5c-KBq" firstAttribute="leading" secondItem="jtA-lF-hmV" secondAttribute="trailing" constant="15" id="aGF-DV-RH5"/>
@@ -1104,6 +1113,7 @@
                                                     <exclude reference="n8P-yO-k10"/>
                                                     <exclude reference="J25-Z4-gyE"/>
                                                     <exclude reference="Q8d-Kt-iz3"/>
+                                                    <exclude reference="U4F-sj-eXL"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

@@ -89,14 +89,14 @@ class VideoRecorderViewController: UIViewController, UIImagePickerControllerDele
             
             
                         let button   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-                        button.frame = CGRectMake(30, 300, 100, 90)
+                        button.frame = CGRectMake(30, 350, 100, 90)
             
                         button.setImage(UIImage(named: "DropABeatButton"), forState: UIControlState.Normal)
             
 //                        button.backgroundColor = UIColor.greenColor()
 //                        button.setTitle("Test Button", forState: UIControlState.Normal)
                         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-                 //       imagePicker.cameraOverlayView?.addSubview(button)
+                        imagePicker.cameraOverlayView?.addSubview(button)
             
         
             hasPresentedPicker = true
