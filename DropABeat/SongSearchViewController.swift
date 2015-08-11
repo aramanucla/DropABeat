@@ -19,6 +19,9 @@ public var searchAudioPlayer = AVPlayer()
 
 class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     
+    var videoRecorder: VideoRecorder?
+
+    
     let defaultRange = 0...9
     let additionalRangeSize = 10
     
@@ -166,14 +169,14 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
         
         if(segue.identifier == "showVideoRecorderSegue")
         {
-            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
+//            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
             
             let indexPath = self.tableView.indexPathForSelectedRow()
             
             
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! SongSearchTableViewCell
             
-            upcoming.song = cell.song!
+//            upcoming.song = cell.song!
             
             
             self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
@@ -308,7 +311,10 @@ extension SongSearchViewController: UITableViewDelegate
 {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("showVideoRecorderSegue", sender: self)
+        videoRecorder = VideoRecorder(viewController: self, song: songs[indexPath.row], callback: {
+            (image: UIImage?) -> Void in
+            
+        })
     }
     
     

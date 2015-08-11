@@ -15,7 +15,7 @@
 		E55AF9C11B7158D500133712 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AF9C01B7158D500133712 /* ErrorHandling.swift */; };
 		E55FDAF51B55C28100F23278 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FDAF41B55C28100F23278 /* Song.swift */; };
 		E560ADAD1B79821400EC024F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E560ADAC1B79821400EC024F /* SettingsViewController.swift */; };
-		E5667A501B681BD2002331D0 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */; };
+		E5667A501B681BD2002331D0 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5667A4F1B681BD2002331D0 /* VideoRecorder.swift */; };
 		E56A38F91B69790100D7393B /* FreestylesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A38F81B69790100D7393B /* FreestylesTableViewCell.swift */; };
 		E571F7C01B6165E000F067F2 /* LikeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7BF1B6165E000F067F2 /* LikeHelper.swift */; };
 		E571F7D41B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */; };
@@ -31,7 +31,7 @@
 		E5DE46D81B70383800F65478 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE46D71B70383800F65478 /* LoginViewController.swift */; };
 		E5DE46FF1B710C1000F65478 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DE46FE1B710C1000F65478 /* Accounts.framework */; };
 		E5F78F001B4D97860030DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */; };
-		E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* ViewController.swift */; };
+		E5F78F051B4D97860030DD2B /* DropABeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F041B4D97860030DD2B /* DropABeatViewController.swift */; };
 		E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F061B4D97860030DD2B /* Main.storyboard */; };
 		E5F78F0A1B4D97860030DD2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F091B4D97860030DD2B /* Images.xcassets */; };
 		E5F78F0D1B4D97860030DD2B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */; };
@@ -127,7 +127,7 @@
 		E55FDAF41B55C28100F23278 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		E560ADA91B79513100EC024F /* DropABeat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DropABeat-Bridging-Header.h"; sourceTree = "<group>"; };
 		E560ADAC1B79821400EC024F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
+		E5667A4F1B681BD2002331D0 /* VideoRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
 		E56A38F81B69790100D7393B /* FreestylesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreestylesTableViewCell.swift; path = Models/FreestylesTableViewCell.swift; sourceTree = "<group>"; };
 		E571F7BF1B6165E000F067F2 /* LikeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeHelper.swift; sourceTree = "<group>"; };
 		E571F7D31B61BE9F00F067F2 /* BeatsAndFreestylesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsAndFreestylesViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		E5F78EFA1B4D97850030DD2B /* DropABeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropABeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78EFE1B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E5F78F041B4D97860030DD2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E5F78F041B4D97860030DD2B /* DropABeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropABeatViewController.swift; sourceTree = "<group>"; };
 		E5F78F071B4D97860030DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E5F78F091B4D97860030DD2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E5F78F0C1B4D97860030DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 				E5F78EFF1B4D97860030DD2B /* AppDelegate.swift */,
 				E5F78F881B5028B20030DD2B /* SongSearchViewController.swift */,
 				E5F78F8A1B502A560030DD2B /* SongSearchTableViewCell.swift */,
-				E5F78F041B4D97860030DD2B /* ViewController.swift */,
+				E5F78F041B4D97860030DD2B /* DropABeatViewController.swift */,
 				E547404A1B65EDA800FB1FAF /* RecordSongViewController.swift */,
 				E547404C1B65EDEE00FB1FAF /* AddSongMethodViewController.swift */,
 				E5473D5C1B66C409001428E6 /* RecordFreestyleViewController.swift */,
@@ -278,7 +278,7 @@
 				E5F78EFE1B4D97860030DD2B /* Info.plist */,
 				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
 				E5F78EFD1B4D97860030DD2B /* Supporting Files */,
-				E5667A4F1B681BD2002331D0 /* VideoRecorderViewController.swift */,
+				E5667A4F1B681BD2002331D0 /* VideoRecorder.swift */,
 				E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */,
 				E58283321B6EEBEA00C15D6C /* ReportSongTableViewCell.swift */,
 				E5DE46D31B70148E00F65478 /* SocialShareViewController.swift */,
@@ -570,9 +570,9 @@
 				E55FDAF51B55C28100F23278 /* Song.swift in Sources */,
 				E547404B1B65EDA800FB1FAF /* RecordSongViewController.swift in Sources */,
 				E5873D7E1B73F48400C847D5 /* Video.swift in Sources */,
-				E5F78F051B4D97860030DD2B /* ViewController.swift in Sources */,
+				E5F78F051B4D97860030DD2B /* DropABeatViewController.swift in Sources */,
 				E547404D1B65EDEE00FB1FAF /* AddSongMethodViewController.swift in Sources */,
-				E5667A501B681BD2002331D0 /* VideoRecorderViewController.swift in Sources */,
+				E5667A501B681BD2002331D0 /* VideoRecorder.swift in Sources */,
 				E572D4031B54768B0071B961 /* DropThisBeatViewController.swift in Sources */,
 				E55AF9BF1B7158AA00133712 /* ParseLoginHelper.swift in Sources */,
 				E55AF9C11B7158D500133712 /* ErrorHandling.swift in Sources */,

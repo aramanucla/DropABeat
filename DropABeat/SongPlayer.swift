@@ -199,6 +199,7 @@ class SongPlayer: NSObject
         case StopCurrentSong:
             audioPlayer.pause()
             audioPlayer.seekToTime(CMTimeMakeWithSeconds(0,5), completionHandler: nil)
+            self.notifySongPlayStateChange(self.currentSong, state: Stopped)
         default:
             println("Action not implemented; handle additional states in song player")
         }

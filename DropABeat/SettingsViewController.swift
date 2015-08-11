@@ -26,11 +26,6 @@ class SettingsViewController: UIViewController {
     @IBAction func logoutUser(sender: AnyObject) {
         PFUser.logOut()
         
-        
-        
-        
-                
-        
         let loginViewController = PFLogInViewController()
         
         loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
@@ -47,6 +42,8 @@ class SettingsViewController: UIViewController {
                 // if login was successful, display the TabBarController
                 // 2
                 
+                if user["authData"] != nil {
+                
                 FBSDKGraphRequest(graphPath: "me", parameters: nil).startWithCompletionHandler({ (connection, result, error) -> Void in
                     if let fbid = result["id"] as? String {
                         let url = "https://graph.facebook.com/\(fbid)/picture?type=large"
@@ -57,15 +54,27 @@ class SettingsViewController: UIViewController {
                             user?["profilePicture"] = file
                             user?.saveInBackground()
                             
+                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                self.dismissViewControllerAnimated(false, completion: { () -> Void in
+                                })
+                            })
+
+                            
                             }.resume()
                     }
                 })
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UIViewController
-                // 3
-                self.window?.rootViewController!.presentViewController(tabBarController, animated:true, completion:nil)
+                }
                 
+                else
+                {
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.dismissViewControllerAnimated(false, completion: { () -> Void in
+                        })
+                    })
+
+
+                }
                 
             }
         }
@@ -77,14 +86,7 @@ class SettingsViewController: UIViewController {
         
         
         
-        
-        UIView.transitionWithView(self.view.window!, duration: 1.0, options: .TransitionCrossDissolve, animations: { () -> Void in
-            let oldState: Bool = UIView.areAnimationsEnabled()
-            UIView.setAnimationsEnabled(false)
-            self.view.window!.rootViewController = loginViewController
-            UIView.setAnimationsEnabled(oldState)
-            },
-            completion: nil)
+       self.presentViewController(loginViewController, animated: true, completion: nil)
         
     }
     override func viewDidLoad() {

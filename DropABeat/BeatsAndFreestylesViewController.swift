@@ -13,6 +13,10 @@ import AVFoundation
 
 class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  reloadDataDelegate, presentShareActionSheetDelegate {
     
+    var videoRecorder: VideoRecorder?
+    
+    
+    
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
     
     var indexPathForSelectedMoreButton: NSIndexPath?
@@ -93,16 +97,6 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         tableView.bringSubviewToFront(activityIndicator)
         
         
-        if let file = PFUser.currentUser()?["profilePicture"] as? PFFile, urlString = file.url, url = NSURL(string: urlString){
-            myProfilePicture.sd_setImageWithURL(url, placeholderImage: nil)
-        }
-        
-        
-        self.myProfilePicture.layer.cornerRadius = self.myProfilePicture.frame.size.width / 2
-        self.myProfilePicture.clipsToBounds = true
-        self.myProfilePicture.layer.borderWidth = 4.0;
-        self.myProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
-
     }
     
     
@@ -116,6 +110,20 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
     {
         
         super.viewDidAppear(animated)
+        
+        //Get user image
+        if let file = PFUser.currentUser()?["profilePicture"] as? PFFile, urlString = file.url, url = NSURL(string: urlString){
+            myProfilePicture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
+        
+        
+        self.myProfilePicture.layer.cornerRadius = self.myProfilePicture.frame.size.width / 2
+        self.myProfilePicture.clipsToBounds = true
+        self.myProfilePicture.layer.borderWidth = 4.0;
+        self.myProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        
+
+        
         
         //Adds video at fileSystemPath to stringsOfVideoPaths Array
         
@@ -273,7 +281,7 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         
         if(segue.identifier == "showVideoRecorderSegue")
         {
-            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
+//            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
             
             let indexPath = self.tableView.indexPathForSelectedRow()
             
@@ -281,7 +289,7 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! BeatsTableViewCell
             
             
-            upcoming.song = cell.song!
+//            upcoming.song = cell.song!
             
             
             self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
@@ -570,7 +578,10 @@ extension BeatsAndFreestylesViewController: UITableViewDelegate
         
         if(segmentedController.selectedSegmentIndex == 0)
         {
-            self.performSegueWithIdentifier("showVideoRecorderSegue", sender: self)
+            videoRecorder = VideoRecorder(viewController: self, song: songsArray[indexPath.row], callback: {
+                (image: UIImage?) -> Void in
+                
+            })
         }
             
         else{

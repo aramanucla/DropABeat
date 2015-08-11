@@ -17,7 +17,10 @@ import MediaPlayer
 //Create a public activity indicator
 public var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
 
-class ViewController: UIViewController {
+class DropABeatViewController: UIViewController {
+    
+     var videoRecorder: VideoRecorder?
+    
     
     enum rotationState
     {
@@ -205,18 +208,15 @@ class ViewController: UIViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if(segue.identifier == "showVideoRecorderSegue")
-        {
-            var upcoming: VideoRecorderViewController = segue.destinationViewController as! VideoRecorderViewController
+    
+    
+    @IBAction func showCamera(sender: AnyObject) {
+        videoRecorder = VideoRecorder(viewController: self, song: song!, callback: {
+            (image: UIImage?) -> Void in
             
-            
-            upcoming.song = song!
-            
-                        
-        }
+        })
     }
+    
     
     
 }
