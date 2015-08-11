@@ -100,7 +100,7 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         
         self.myProfilePicture.layer.cornerRadius = self.myProfilePicture.frame.size.width / 2
         self.myProfilePicture.clipsToBounds = true
-        self.myProfilePicture.layer.borderWidth = 3.0;
+        self.myProfilePicture.layer.borderWidth = 4.0;
         self.myProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
 
     }

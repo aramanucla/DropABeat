@@ -618,7 +618,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKd-vL-3Ag">
-                                <rect key="frame" x="150" y="45" width="300" height="51"/>
+                                <rect key="frame" x="150" y="65" width="300" height="51"/>
                                 <color key="backgroundColor" red="0.72196237659999996" green="0.28924239309999999" blue="0.31067537010000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="FdH-SM-TIO"/>
@@ -648,15 +648,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbN-DW-Ldj">
+                                <rect key="frame" x="8" y="30" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="0n6-XT-JgK" eventType="touchUpInside" id="2Gu-KU-8pO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.36470588240000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="IKd-vL-3Ag" secondAttribute="centerX" id="5je-WB-hOl"/>
+                            <constraint firstItem="vbN-DW-Ldj" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="Iej-6E-nNq"/>
                             <constraint firstItem="kdC-N0-FBY" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="P7u-fx-Myg"/>
                             <constraint firstItem="kdC-N0-FBY" firstAttribute="top" secondItem="NxD-cL-EwF" secondAttribute="bottom" constant="150" id="VZn-xH-N9A"/>
-                            <constraint firstItem="IKd-vL-3Ag" firstAttribute="top" secondItem="NxD-cL-EwF" secondAttribute="bottom" constant="25" id="Vaz-gV-xkX"/>
+                            <constraint firstItem="IKd-vL-3Ag" firstAttribute="top" secondItem="NxD-cL-EwF" secondAttribute="bottom" constant="45" id="Vaz-gV-xkX"/>
                             <constraint firstItem="QIS-FQ-9GP" firstAttribute="top" secondItem="kdC-N0-FBY" secondAttribute="bottom" constant="25" id="gom-gs-PaB"/>
                             <constraint firstItem="QIS-FQ-9GP" firstAttribute="leading" secondItem="fCS-Id-odg" secondAttribute="leading" constant="8" id="hhH-PZ-llY"/>
+                            <constraint firstItem="vbN-DW-Ldj" firstAttribute="top" secondItem="NxD-cL-EwF" secondAttribute="bottom" constant="10" id="ny3-d9-NBA"/>
                         </constraints>
                     </view>
                 </viewController>
