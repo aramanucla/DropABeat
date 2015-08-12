@@ -37,16 +37,8 @@
 		E5F78F0A1B4D97860030DD2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F091B4D97860030DD2B /* Images.xcassets */; };
 		E5F78F0D1B4D97860030DD2B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */; };
 		E5F78F191B4D97860030DD2B /* DropABeatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F181B4D97860030DD2B /* DropABeatTests.swift */; };
-		E5F78F241B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */; };
-		E5F78F251B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */; };
 		E5F78F281B4D9EFD0030DD2B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F271B4D9EFD0030DD2B /* AVFoundation.framework */; };
 		E5F78F2A1B4DAFC00030DD2B /* AudioFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */; };
-		E5F78F5F1B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */; };
-		E5F78F601B4DC0680030DD2B /* Childish Gambino - 3005.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */; };
-		E5F78F611B4DC0680030DD2B /* Drake - Energy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */; };
-		E5F78F621B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */; };
-		E5F78F631B4DC0680030DD2B /* Meek Mill - Levels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */; };
-		E5F78F641B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */; };
 		E5F78F6B1B4E1A8F0030DD2B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F651B4E1A8E0030DD2B /* Bolts.framework */; };
 		E5F78F6D1B4E1A8F0030DD2B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */; };
 		E5F78F721B4E1AD30030DD2B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */; };
@@ -154,16 +146,8 @@
 		E5F78F121B4D97860030DD2B /* DropABeatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropABeatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F78F171B4D97860030DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F78F181B4D97860030DD2B /* DropABeatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropABeatTests.swift; sourceTree = "<group>"; };
-		E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fort Minor - Remember the Name.mp3"; sourceTree = "<group>"; };
-		E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kanye West - Gold Digger.mp3"; sourceTree = "<group>"; };
 		E5F78F271B4D9EFD0030DD2B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E5F78F291B4DAFC00030DD2B /* AudioFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFileList.swift; sourceTree = "<group>"; };
-		E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Bobby Shmurda - Hot Nigga.mp3"; path = "../../DopeBeatsForXcode/Bobby Shmurda - Hot Nigga.mp3"; sourceTree = "<group>"; };
-		E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Childish Gambino - 3005.mp3"; path = "../../DopeBeatsForXcode/Childish Gambino - 3005.mp3"; sourceTree = "<group>"; };
-		E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Drake - Energy.mp3"; path = "../../DopeBeatsForXcode/Drake - Energy.mp3"; sourceTree = "<group>"; };
-		E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Drake - Zero to One Hundred.mp3"; path = "../../DopeBeatsForXcode/Drake - Zero to One Hundred.mp3"; sourceTree = "<group>"; };
-		E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Meek Mill - Levels.mp3"; path = "../../DopeBeatsForXcode/Meek Mill - Levels.mp3"; sourceTree = "<group>"; };
-		E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Nicki Minaj - Truffle Butter.mp3"; path = "../../DopeBeatsForXcode/Nicki Minaj - Truffle Butter.mp3"; sourceTree = "<group>"; };
 		E5F78F651B4E1A8E0030DD2B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Downloads/parse-library-1.7.5/Bolts.framework"; sourceTree = "<group>"; };
 		E5F78F671B4E1A8F0030DD2B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../Downloads/parse-library-1.7.5/ParseUI.framework"; sourceTree = "<group>"; };
 		E5F78F711B4E1AD30030DD2B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -278,7 +262,6 @@
 				E5F78F091B4D97860030DD2B /* Images.xcassets */,
 				E5F78F0B1B4D97860030DD2B /* LaunchScreen.xib */,
 				E5F78EFE1B4D97860030DD2B /* Info.plist */,
-				E5F78F261B4D9D6A0030DD2B /* StoredMusic */,
 				E5F78EFD1B4D97860030DD2B /* Supporting Files */,
 				E5667A4F1B681BD2002331D0 /* VideoRecorder.swift */,
 				E58283301B6EEBB600C15D6C /* ReportSongViewController.swift */,
@@ -316,21 +299,6 @@
 				E5F78F171B4D97860030DD2B /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E5F78F261B4D9D6A0030DD2B /* StoredMusic */ = {
-			isa = PBXGroup;
-			children = (
-				E5F78F591B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 */,
-				E5F78F5A1B4DC0680030DD2B /* Childish Gambino - 3005.mp3 */,
-				E5F78F5B1B4DC0680030DD2B /* Drake - Energy.mp3 */,
-				E5F78F5C1B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 */,
-				E5F78F5D1B4DC0680030DD2B /* Meek Mill - Levels.mp3 */,
-				E5F78F5E1B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 */,
-				E5F78F231B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 */,
-				E5F78F221B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 */,
-			);
-			name = StoredMusic;
 			sourceTree = "<group>";
 		};
 		E5F78F871B4E1C270030DD2B /* Frameworks */ = {
@@ -484,17 +452,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F78F601B4DC0680030DD2B /* Childish Gambino - 3005.mp3 in Resources */,
 				E5F78F081B4D97860030DD2B /* Main.storyboard in Resources */,
 				E5F78F0D1B4D97860030DD2B /* LaunchScreen.xib in Resources */,
-				E5F78F241B4D9D3D0030DD2B /* Fort Minor - Remember the Name.mp3 in Resources */,
-				E5F78F5F1B4DC0680030DD2B /* Bobby Shmurda - Hot Nigga.mp3 in Resources */,
-				E5F78F251B4D9D3D0030DD2B /* Kanye West - Gold Digger.mp3 in Resources */,
-				E5F78F611B4DC0680030DD2B /* Drake - Energy.mp3 in Resources */,
 				E5F78F0A1B4D97860030DD2B /* Images.xcassets in Resources */,
-				E5F78F641B4DC0680030DD2B /* Nicki Minaj - Truffle Butter.mp3 in Resources */,
-				E5F78F631B4DC0680030DD2B /* Meek Mill - Levels.mp3 in Resources */,
-				E5F78F621B4DC0680030DD2B /* Drake - Zero to One Hundred.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
