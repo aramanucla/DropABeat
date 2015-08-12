@@ -23,6 +23,9 @@ class SettingsViewController: UIViewController {
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+        
     @IBAction func logoutUser(sender: AnyObject) {
         PFUser.logOut()
         
@@ -30,7 +33,14 @@ class SettingsViewController: UIViewController {
         
         loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
         
+        loginViewController.logInView?.logo = nil
         
+        var logInLogoTitle = UILabel()
+        logInLogoTitle.text = "Drop A Beat"
+        logInLogoTitle.font = UIFont(name: "HelveticaNeue", size: 36)
+        loginViewController.logInView?.logo = logInLogoTitle
+        
+
         
 
         parseLoginHelper = ParseLoginHelper {[unowned self] user, error in

@@ -43,14 +43,20 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
     override func viewDidLoad() {
         
         
-      //  SongPlayer.sharedInstance.queryAllSongs()
         super.viewDidLoad()
         
-        activityIndicator.center = tableView.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        tableView.addSubview(activityIndicator)
-        tableView.bringSubviewToFront(activityIndicator)
+        
+        //Check if the internet connection is there
+        if(!Reachability.isConnectedToNetwork()){
+            
+            let alertController: UIAlertController = UIAlertController(title: nil, message: "Internet connection unavailable", preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction: UIAlertAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(doneAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        
     }
     
     
@@ -84,25 +90,59 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
 //        }
 //    }
     
+    
+    
+    
     override func viewWillAppear(animated: Bool)
     {
+        
+        //Check if the phone is connected to the internet, if it isnt, then display a message
+        
+        if(!Reachability.isConnectedToNetwork()){
+            
+            let alertController: UIAlertController = UIAlertController(title: nil, message: "Internet connection unavailable", preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction: UIAlertAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(doneAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewWillAppear(animated)
+        
+        
+        activityIndicator.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2, UIScreen.mainScreen().bounds.size.height/2 - 80)
+        
+//        activityIndicator.center = tableView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        tableView.addSubview(activityIndicator)
+        tableView.bringSubviewToFront(activityIndicator)
+        
+        
         self.loadSongs()
     }
     
     
     func loadSongs()
     {
+        
+        
         var completionBlock = { (songArray: [AnyObject]?, error: NSError?) -> Void in
+            
+            if (Reachability.isConnectedToNetwork()){
+            
             self.songs = songArray as! [Song]
             
+            self.activityIndicator.stopAnimating()
+                
 //            for song in self.songs{
 //                if let username = song.user?.username!{
 //           // self.uploadedByUserArray.append(username)
 //                }
 //            }
-            
+            }
             self.tableView.reloadData()
         }
         self.searchUsers(SearchBar.text, completionBlock: completionBlock)
@@ -139,6 +179,8 @@ class SongSearchViewController: UIViewController, presentActionSheetDelegate {
 //        filteredSongQuery.skip = range.startIndex
 //        filteredSongQuery.limit = range.endIndex - range.startIndex
         
+        
+        self.activityIndicator.startAnimating()
         
         filteredSongQuery.findObjectsInBackgroundWithBlock(completionBlock)
         
@@ -256,18 +298,6 @@ extension SongSearchViewController: UITableViewDataSource {
         
         
         //Implement something just like LikeHelper.shouldLikeCellBeRed that says, if a song
-        
-        if(indexPath.row == 0)
-        {
-            self.activityIndicator.startAnimating()
-            println("started loading")
-        }
-        
-        if(indexPath.row == tableView.numberOfSections() - 1)
-        {
-            self.activityIndicator.stopAnimating()
-            println("finished loading")
-        }
         
         return cell
         

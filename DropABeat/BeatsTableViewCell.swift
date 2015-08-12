@@ -213,6 +213,8 @@ class BeatsTableViewCell: UITableViewCell {
             playPauseButton.setImage(UIImage(named: "Pause"), forState: UIControlState.Normal)
             playPauseButton.setTitle("Pause", forState: UIControlState.Normal)
             NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey:Playing])
+            
+            println("Song name is  \(song)")
         }
         else
         {

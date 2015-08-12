@@ -14,6 +14,7 @@ import AudioToolbox
 class RecordSongViewController: UIViewController, UITextFieldDelegate {
     
     
+    
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
     
     enum recordingState
@@ -118,6 +119,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
                 timer.invalidate()
                 timerRunning = false
             }
+            
+            AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         }
 
     }
@@ -189,12 +192,15 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldAutorotate() -> Bool {
-        return false
-    }
     
     @IBAction func cancelButton(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        
+
+        
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("refreshFavorites", object: nil)
+        })
+        
     }
     
     
@@ -222,6 +228,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
         songObject.saveInBackgroundWithBlock { (success, error) -> Void in
             self.activityIndicator.stopAnimating()
             println("saved")
+            
+            
         }
         
     }
@@ -237,6 +245,8 @@ NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, o
     */
 
 }
+
+
 
 
 

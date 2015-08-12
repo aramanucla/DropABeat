@@ -11,11 +11,11 @@ import Parse
 import MediaPlayer
 import AVFoundation
 
-class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  reloadDataDelegate, presentShareActionSheetDelegate {
+class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  reloadDataDelegate, presentShareActionSheetDelegate  {
     
     var videoRecorder: VideoRecorder?
     
-    
+    var recorderViewController: RecordSongViewController!
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
     
@@ -40,6 +40,14 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
     //  var uploadedByUserArray = [String]()
     
     let imagePicker = UIImagePickerController()
+    
+    
+    
+    func reloadTableViewData()
+    {
+        self.viewDidAppear(true)
+
+    }
     
     @IBOutlet weak var myProfilePicture: UIImageView!
     
@@ -74,15 +82,23 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         dismissViewControllerAnimated(true, completion: nil)
     }
    
+    
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     
+    func refreshFavorites(notification: NSNotification){
+        self.viewWillAppear(true)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshFavorites:", name: "refreshFavorites", object: nil)
+       
         
         //Set up a listener for didAddSong a.k.a when a video was added
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setDidAddSongToTrue:", name: "didAddSong", object: nil)
@@ -105,6 +121,19 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        //Check if the internet connection is there
+        if(!Reachability.isConnectedToNetwork()){
+            
+            let alertController: UIAlertController = UIAlertController(title: nil, message: "Internet connection unavailable", preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction: UIAlertAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(doneAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+    }
     
     override func viewDidAppear(animated: Bool)
     {
@@ -369,6 +398,8 @@ class BeatsAndFreestylesViewController: UIViewController, UIImagePickerControlle
         
         emptyMessage.textColor = UIColor.lightGrayColor()
         emptyMessage.text = message
+        
+        emptyMessage.font = emptyMessage.font.fontWithSize(14)
         
         emptyMessage.textAlignment = NSTextAlignment.Center
         emptyMessage.sizeToFit()

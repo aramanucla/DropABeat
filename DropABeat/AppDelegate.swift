@@ -103,16 +103,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginViewController = PFLogInViewController()
             
             
-//            loginViewController.logInView?.logo = nil
-            
-//            var logInLogoTitle = UILabel()
-//            logInLogoTitle.text = "Drop A Beat"
-//            loginViewController.logInView?.logo = logInLogoTitle
             
             
             loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
+            
+                       loginViewController.logInView?.logo = nil
+            
+                        var logInLogoTitle = UILabel()
+                        logInLogoTitle.text = "Drop A Beat"
+                        logInLogoTitle.font = UIFont(name: "HelveticaNeue", size: 36)
+                        loginViewController.logInView?.logo = logInLogoTitle
+
             
             startViewController = loginViewController
         }

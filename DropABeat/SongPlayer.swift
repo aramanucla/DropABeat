@@ -25,8 +25,7 @@ class SongPlayer: NSObject
 {
     var audioPlayer = AVPlayer()
     
-    
-    
+    var closurePlayer: AVPlayer!
     
     var selectedSongNumber: Int = 0
     
@@ -36,9 +35,11 @@ class SongPlayer: NSObject
     
     static let sharedInstance = SongPlayer()
     
+    var observer: AnyObject!
+
+    
     override init()
     {
-        
         
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeSongPlayState:", name: ChangeSongPlayState, object: nil)
@@ -46,8 +47,10 @@ class SongPlayer: NSObject
         
         audioPlayer.volume = 1.0
         
-        self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
-                
+//        self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
+        
+        
+        
     }
     
     
@@ -56,24 +59,24 @@ class SongPlayer: NSObject
     
     
     
-     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        
-        
-        if(object as! NSObject == audioPlayer && keyPath == "status")
-        {
-            if(audioPlayer.status == AVPlayerStatus.ReadyToPlay)
-            {
-                //Disable the Activity indicator here
-                actInd.stopAnimating()
-            }
-            
-            else if(audioPlayer.status == AVPlayerStatus.Failed)
-            {
-                println("Error AVPlayer Status Failed with error")
-            }
-        }
-        
-}
+//     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//        
+//        
+//        if(object as! NSObject == audioPlayer && keyPath == "status")
+//        {
+//            if(audioPlayer.status == AVPlayerStatus.ReadyToPlay)
+//            {
+//                //Disable the Activity indicator here
+//                actInd.stopAnimating()
+//            }
+//            
+//            else if(audioPlayer.status == AVPlayerStatus.Failed)
+//            {
+//                println("Error AVPlayer Status Failed with error")
+//            }
+//        }
+//        
+//}
 
         
 
@@ -84,15 +87,21 @@ class SongPlayer: NSObject
         allSongQuery.findObjectsInBackgroundWithBlock({
             (objectsArray : [AnyObject]?, error: NSError?) -> Void in
             
+            if(Reachability.isConnectedToNetwork()){
             
             self.songs = (objectsArray as? [Song])!
-            NSNotificationCenter.defaultCenter().postNotificationName("AllSongsLoaded", object: nil)
+            }
+        NSNotificationCenter.defaultCenter().postNotificationName("AllSongsLoaded", object: nil)
         })
+            
+        
         
     }
     
     func randomSong() -> Song
     {
+
+        
         var unsignedArrayCount = UInt32(songs.count)
         var unsignedRandomNumber = arc4random_uniform(unsignedArrayCount)
         var randomNumber = Int(unsignedRandomNumber)
@@ -113,7 +122,6 @@ class SongPlayer: NSObject
         let info = notification.userInfo?[SongPlayStateKey] as! String
         
         
-        
         switch info {
         case Paused:
             
@@ -128,6 +136,8 @@ class SongPlayer: NSObject
             
             
         case Playing:
+
+            
             
             if(notification.object is Song)
             {
@@ -145,19 +155,27 @@ class SongPlayer: NSObject
                 }
                 
                 
-                //    if (player != nil)
-                //    [player removeObserver:self forKeyPath:@"status"];
-                //    player = [AVPlayer playerWithPlayerItem:anItem];
-                //    [player addObserver:self forKeyPath:@"status" options:0 context:nil];
-
                 
                 
                 self.currentSong = notification.object as? Song
                 if let songURL = self.currentSong?.SongFile?.url {
                     
-                    self.audioPlayer.removeObserver(self, forKeyPath: "status")
                     self.audioPlayer = AVPlayer(URL: NSURL(string: songURL))
-                    self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
+
+                    
+                    // Setup boundary time observer to trigger when audio really begins,
+                    // specifically after 1/3 of a second playback
+                    closurePlayer = audioPlayer
+                    
+                    observer = audioPlayer.addBoundaryTimeObserverForTimes([NSValue(CMTime: CMTimeMake(1, 3))], queue: nil) { () -> Void in
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName("PlaybackStartedNotification", object: nil)
+                            self.closurePlayer.removeTimeObserver(self.observer)
+                    
+                        
+                    }
+
+                    
                     self.audioPlayer.play()
                     
                     
@@ -178,9 +196,9 @@ class SongPlayer: NSObject
                 
                 if let audioFileURL: AnyObject = notification.object{
                 
-                self.audioPlayer.removeObserver(self, forKeyPath: "status")
                 self.audioPlayer = AVPlayer(URL: audioFileURL as! NSURL)
-                self.audioPlayer.addObserver(self, forKeyPath: "status", options: nil, context: nil)
+                    
+                    
                 self.audioPlayer.play()
                 
                 

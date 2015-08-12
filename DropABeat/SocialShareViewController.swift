@@ -39,10 +39,8 @@ class SocialShareViewController: UIViewController, FBSDKSharingDelegate {
         
         if(url != nil){
         var shareToFacebook: SLComposeViewController = SLComposeViewController(forServiceType:  SLServiceTypeFacebook)
-        shareToFacebook.setInitialText("Check out this beat!")
-        
-        println(url)
-        shareToFacebook.addURL(url)
+    
+        shareToFacebook.setInitialText("Check out this beat! From the DropABeat App")
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
         }
         
@@ -66,7 +64,7 @@ class SocialShareViewController: UIViewController, FBSDKSharingDelegate {
     
     @IBAction func shareOnTwitter(sender: AnyObject) {
         var shareToTwitter: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        shareToTwitter.setInitialText("Check out this beat!")
+        shareToTwitter.setInitialText("Check out this beat! From the DropABeat App")
         shareToTwitter.addURL(url)
         self.presentViewController(shareToTwitter, animated: true, completion: nil)
     }

@@ -75,7 +75,12 @@ class DropABeatViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "AllSongsLoaded:", name: "AllSongsLoaded", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopActivityIndicator:", name: "PlaybackStartedNotification", object: nil)
+        
+        
     }
+    
+    
     
     func AllSongsLoaded(notification: NSNotification)
     {
@@ -83,14 +88,31 @@ class DropABeatViewController: UIViewController {
     }
     
     
+    func stopActivityIndicator(notification: NSNotification)
+    {
+        actInd.stopAnimating()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldAutorotate() -> Bool {
-        return false
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        //Check if the phone is connected to the internet, if it isnt, then display a message
+        
+        if(!Reachability.isConnectedToNetwork()){
+            
+            let alertController: UIAlertController = UIAlertController(title: nil, message: "Internet connection unavailable", preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction: UIAlertAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(doneAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
     }
     
     
@@ -132,7 +154,7 @@ class DropABeatViewController: UIViewController {
     
     
     @IBAction func DropABeat(sender: AnyObject) {
-        
+        if(Reachability.isConnectedToNetwork()){
         
         //Stop Rotating if it is rotating
         
@@ -149,7 +171,8 @@ class DropABeatViewController: UIViewController {
         captureButton.enabled = true
     
         song = SongPlayer.sharedInstance.randomSong()
-        SongNameLabel.text = song!.SongName
+        
+        SongNameLabel.text = song?.SongName
         
         NSNotificationCenter.defaultCenter().postNotificationName(ChangeSongPlayState, object: song, userInfo: [SongPlayStateKey: Playing])
         
@@ -168,8 +191,8 @@ class DropABeatViewController: UIViewController {
             recordRotationState = .Rotating
         
         }
-        
     }
+}
     
     @IBAction func RestartButton(sender: AnyObject) {
         
